@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import ClientLayout from "./mainuse/ClientLayout";
+import ClientLayout from "./clayout/ClientLayout";
 
 
 export const metadata = {

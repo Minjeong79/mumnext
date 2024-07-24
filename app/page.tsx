@@ -1,12 +1,17 @@
-import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import LoginPageImg from "./mcomponents/loginpage/login"; 
 
 
 export default async function Index() {
-
+  
   return (
- <div>
-  <p><Link href="/components/dogSelect">로그인</Link></p>
- </div>
+    <div>
+      <div>
+        <LoginPageImg/>
+      </div>
+      <p>
+        <Link href="/mcomponents/dogselect">카카오 로그인</Link>
+      </p>
+    </div>
   );
 }
