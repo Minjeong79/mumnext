@@ -1,5 +1,13 @@
 import { createClient } from "@/utils/supabase/client";
 
+export const WeatherURL =
+"https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst";
+
+export const WeatherSERVICEKEY =
+"Y1TEjuVO5hEMU0yG1YY7J9dJvRQbv+87/sewOQKgQa9JnI2l9Xyj/Zm5gnvsy1Hu/BVCW3WofoTKePCW1ZTrkA==";
+
+export const KakaoKey = "59ca3c987fbd48ed883eeede61bcd0b5";
+
 const supabase = createClient();
 
 //로그인 첫 화면 강아지 이미지

@@ -9,41 +9,26 @@ export default function BottomMenu() {
 
   const { data, error } = useSWR("bottomMenu", fetcher);
 
-  //   const handleMenu = async (item: string) => {
-  //     const { error } = await supabase.from("writedb").select();
-  //     switch (item) {
-  //       case "일기":
-  //         nav(`/List`);
-  //         break;
-  //       case "산책":
-  //         nav(`/mapPage`);
-  //         break;
-  //       case "메인":
-  //         nav(`/dogMain`);
-  //         break;
-  //       default:
-  //         console.log("완료");
-  //     }
-  //     console.log(error);
-  //   };
+    const handleMenu = async (item: string) => {
+      
+    };
 
   return (
     <>
       <h1>메뉴 바</h1>
-      <div>
+      <div style={{position:'absolute', bottom:'0px'}}>
         <ul
           style={{
             display: "flex",
             background: "#999",
             width: "100%",
-            height: "80px",
           }}
         >
           {data?.map((item, index) => (
             <li key={index}>
-              <Link href="" id="">
+              <button onClick={handleMenu()}>
                 <img src={item.backurl} alt="메뉴 아이콘" />
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
