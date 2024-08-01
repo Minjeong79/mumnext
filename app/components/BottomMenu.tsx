@@ -5,13 +5,17 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function BottomMenu() {
+  const router = useRouter();
   const fetcher = () => fetchBottomMenu();
 
   const { data, error } = useSWR("bottomMenu", fetcher);
 
-    const handleMenu = async (item: string) => {
-      
-    };
+  const handleMenu = async () => {
+    // const { error } = await supabase.from("writedb").select();
+    // router.push('/mcomponents/diary')
+    // router.push('/mcomponents/map')
+    router.push('/mcomponents/community')
+  };
 
   return (
     <>
@@ -26,7 +30,7 @@ export default function BottomMenu() {
         >
           {data?.map((item, index) => (
             <li key={index}>
-              <button onClick={handleMenu()}>
+              <button onClick={()=> handleMenu()}>
                 <img src={item.backurl} alt="메뉴 아이콘" />
               </button>
             </li>

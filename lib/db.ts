@@ -21,7 +21,7 @@ export async function fetchDogImageUrl() {
 }
 //강아지 선택
 export async function fetchDogImgUrlList() {
-  let { data, error } = await supabase.from("dogimgdb").select("*");
+  let { data, error } = await supabase.from("zdogimgdb").select("*");
   if (error) {
     throw error;
   }
@@ -31,7 +31,7 @@ export async function fetchDogImgUrlList() {
 
 //테마 선택
 export async function fetchThemaImgUrlList() {
-  let { data, error } = await supabase.from("dogthemaicon").select("*");
+  let { data, error } = await supabase.from("zdogthemaicon").select("*");
   if (error) {
     throw error;
   }
@@ -46,5 +46,21 @@ export async function fetchBottomMenu() {
     throw error;
   }
 
+  return data;
+}
+
+//일기 작성 아이콘
+export async function fetchWriteiconTop(){
+  const { data, error } = await supabase.from("zdiarywriteimgtop").select("*");
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+export async function fetchWriteiconBottom(){
+  const { data, error } = await supabase.from("zdiarywriteimgbottom").select("*");
+  if (error) {
+    throw error;
+  }
   return data;
 }

@@ -1,5 +1,5 @@
-import BottomMenu from "@/app/ccomponents/BottomMenu";
-import TopMenu from "@/app/ccomponents/TopMenu";
+import BottomMenu from "@/app/components/BottomMenu";
+import TopMenu from "@/app/components/TopMenu";
 
 export default function MainPage() {
   return (
