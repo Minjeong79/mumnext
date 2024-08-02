@@ -1,11 +1,11 @@
 import { selector } from "recoil";
-import { dogThemaSelect } from "./atom";
+import { countState  } from "./atom";
 
 export const dogSelectState = selector({
     key:'dogSelectState',
     get: ({get}) =>{
-        const imgList = get(dogThemaSelect);
-        return imgList
+        const img = get(countState );
+        return img
     },
 });
 
