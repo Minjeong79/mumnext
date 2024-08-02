@@ -1,7 +1,7 @@
 import {atom} from 'recoil';
 
-export const dogThemaSelect = atom<any>({
-    key:'dogThemaSelect',
-    default: [],
+export const countState  = atom<any>({
+    key:'countState ',
+    default: null,
 })
 

@@ -2,6 +2,8 @@
 import useSWR from "swr";
 import { fetchDogImgUrlList } from "@/lib/db";
 import { useRouter } from "next/navigation";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { countState } from "../recoil/atom";
 
 export default function DogSelectImg() {
   const fetcher = () => fetchDogImgUrlList();
@@ -9,9 +11,15 @@ export default function DogSelectImg() {
 
   const { data, error } = useSWR("dogImageList", fetcher);
 
+  const [dogPick, setDogPick] = useRecoilState(countState);
+
   const imgClickhandle = async (index: number) => {
-    router.push(`/mcomponents/themaselect/main`);
+    const dog = `dog${index}`;
+    setDogPick(dog);
+    // router.push(`/mcomponents/themaselect/main`);
   };
+
+  console.log(dogPick);
   return (
     <>
       <h1>강아지 선택 화면</h1>
