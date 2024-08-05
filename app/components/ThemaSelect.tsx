@@ -2,14 +2,17 @@
 import useSWR from "swr";
 import { fetchThemaImgUrlList } from "@/lib/db";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+import { themaSate } from "../recoil/atom";
 
 export default function ThemaSelectImg() {
   const fetcher = () => fetchThemaImgUrlList();
-  const router = useRouter();
   const { data, error } = useSWR("themaImageList", fetcher);
 
+  const [themaPick, setThemaPick] = useRecoilState(themaSate);
+
   const imgClickhandle = async (index: number) => {
-    router.push(`/mcomponents/themaselect/main`);
+    setThemaPick(index);
   };
 
   return (
