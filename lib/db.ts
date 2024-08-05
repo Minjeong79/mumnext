@@ -8,7 +8,7 @@ export const WeatherSERVICEKEY =
 
 export const KakaoKey = "59ca3c987fbd48ed883eeede61bcd0b5";
 
-const supabase = createClient();
+export const supabase = createClient();
 
 //로그인 첫 화면 강아지 이미지
 export async function fetchDogImageUrl() {
