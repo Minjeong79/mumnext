@@ -1,8 +1,7 @@
 "use client";
 import useSWR from "swr";
 import { fetchDogImgUrlList } from "@/lib/db";
-import { useRouter } from "next/navigation";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { countState } from "../recoil/atom";
 
 export default function DogSelectImg() {

@@ -6,6 +6,7 @@ export default async function LoginPageImg() {
   return (
     <div>
       <img src={fetcher} alt="강아지 이미지" />
+      
     </div>
   );
 }
