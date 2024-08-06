@@ -1,17 +1,14 @@
 import Link from "next/link";
-import LoginPageImg from "./mcomponents/loginpage/login"; 
-
+import LoginPageImg from "./components/loginpage/loginImg";
+import LoginPage from "./components/loginpage/login";
 
 export default async function Index() {
-  
   return (
     <div>
       <div>
-        <LoginPageImg/>
+        <LoginPageImg />
       </div>
-      <p>
-        <Link href="/mcomponents/dogselect">카카오 로그인</Link>
-      </p>
+      <LoginPage />
     </div>
   );
 }
