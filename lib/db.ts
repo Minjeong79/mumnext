@@ -23,6 +23,7 @@ export async function fetchDogImageUrl() {
     .getPublicUrl("dogSelect/dog0.png");
   return data.publicUrl;
 }
+
 //강아지 선택
 export async function fetchDogImgUrlList() {
   let { data, error } = await supabase.from("zdogimgdb").select("*");

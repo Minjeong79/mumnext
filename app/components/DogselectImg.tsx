@@ -1,26 +1,37 @@
 "use client";
-import useSWR from "swr";
 import { fetchDogImgUrlList } from "@/lib/db";
 import { useRecoilState } from "recoil";
 import { countState } from "../recoil/atom";
+import { useEffect, useState } from "react";
 
+interface UrlType {
+  name: string;
+  url: string;
+}
 export default function DogSelectImg() {
-  const fetcher = () => fetchDogImgUrlList();
+  const [dogPick, setDogPick] = useState<UrlType[]>([]);
 
-  const { data, error } = useSWR("dogImageList", fetcher);
-
-  const [dogPick, setDogPick] = useRecoilState(countState);
+  const [dogPickState, setDogPickState] = useRecoilState(countState);
 
   const imgClickhandle = async (index: number) => {
-    setDogPick(index);
+    setDogPickState(index);
   };
 
+  useEffect(() => {
+    async function urlList() {
+      const fetcher = await fetchDogImgUrlList();
+      if (fetcher) {
+        setDogPick(fetcher);
+      }
+    }
+    urlList();
+  }, []);
   return (
-    <>
+    <section>
       <h1>강아지 선택 화면</h1>
       <div>
         <ul style={{ display: "flex" }}>
-          {data?.map((item, index) => (
+          {dogPick.map((item, index) => (
             <li key={index}>
               <button id="" onClick={() => imgClickhandle(index)}>
                 <img src={item.url} alt="강아지 이미지" />
@@ -29,6 +40,6 @@ export default function DogSelectImg() {
           ))}
         </ul>
       </div>
-    </>
+    </section>
   );
 }
