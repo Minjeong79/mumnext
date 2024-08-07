@@ -4,6 +4,11 @@ import { fetchBottomMenu } from "@/lib/db";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+interface BottomMenuType {
+  id: number;
+  backurl: string;
+  menutext: string;
+}
 export default function BottomMenu() {
   const router = useRouter();
   const fetcher = () => fetchBottomMenu();
@@ -14,7 +19,7 @@ export default function BottomMenu() {
     // const { error } = await supabase.from("writedb").select();
     // router.push('/mcomponents/diary')
     // router.push('/mcomponents/map')
-    router.push('/mcomponents/community')
+    // router.push('/mcomponents/community')
   };
 
   return (
@@ -30,7 +35,7 @@ export default function BottomMenu() {
         >
           {data?.map((item, index) => (
             <li key={index}>
-              <button onClick={()=> handleMenu()}>
+              <button onClick={()=> handleMenu(item.menuname)}>
                 <img src={item.backurl} alt="메뉴 아이콘" />
               </button>
             </li>

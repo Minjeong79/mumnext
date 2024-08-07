@@ -1,33 +1,40 @@
-"use client";
-
+'use client';
 import { LoginUserUid, supabase } from "@/lib/db";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState,useSetRecoilState, useRecoilValue } from "recoil";
 import { loginUid } from "@/app/recoil/atom";
 import { useRouter } from "next/navigation";
 import { LoginState } from "@/app/recoil/selectors";
-import { useEffect } from "react";
-import { User } from '@supabase/supabase-js';
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
+import Link from "next/link";
+import { useSession, SessionProvider } from 'next-auth/react';
 
 export default function LoginPage() {
-  
   const [uid, setUid] = useRecoilState(loginUid);
+  const [value, setValue] = useState(false);
   const dataUid = useRecoilValue(LoginState);
-  useEffect(()=>{
+  const session = useSession();
+  useEffect(() => {
     async function userUidFunc() {
-      const loginUser:User | null = await LoginUserUid();
-      if(loginUser){
+      const loginUser: User | null = await LoginUserUid();
+      if (loginUser) {
+        setValue(true);
+        localStorage.setItem('uid', loginUser.id);
         setUid(loginUser.id);
       }
-      
     }
     userUidFunc();
-  },[]);
+  }, [uid]);
 
-console.log(dataUid);
+  useEffect(() => {
+    const savedUid = localStorage.getItem('uid');
+    if (savedUid) {
+      setUid(savedUid);
+    }
+  }, [value]);
   
-  const router = useRouter();
+ 
   async function signInWithKakao() {
-    
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "kakao",
@@ -35,19 +42,20 @@ console.log(dataUid);
           redirectTo: `https://trtwwyqzkqlqebdiiujp.supabase.co/auth/v1/callback`,
         },
       });
-     
+
       if (error) {
         throw error;
       }
-     
-     
     } catch (error) {
       return error;
     }
   }
- 
 
-  return <>
- 
-  <button onClick={signInWithKakao}>카카오 로그인</button>;</>
+  return (
+    <section>
+
+      {dataUid ? <Link href="/mcomponents/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
+      
+    </section>
+  );
 }

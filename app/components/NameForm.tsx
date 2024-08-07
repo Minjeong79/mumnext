@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { dogSelectState, themaSelectState } from "@/app/recoil/selectors";
+import { LoginState, dogSelectState, themaSelectState } from "@/app/recoil/selectors";
 import { useRecoilValue } from "recoil";
 import { supabase } from "@/lib/db";
 import { useState } from "react";
@@ -9,15 +9,17 @@ export default function NameForm() {
   const [name, setName] = useState("");
   const dogPick = useRecoilValue(dogSelectState);
   const themaPick = useRecoilValue(themaSelectState);
+  const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
 
+  console.log(dataUid);
   const handleSumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       const { data, error } = await supabase.from("dogthemaname").insert([
         {
-          uuid: "user5",
+          uuid: dataUid,
           dog: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${dogPick}.png`,
           thema: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${themaPick}.png`,
           name: name,
