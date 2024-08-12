@@ -1,13 +1,21 @@
 import { fetchWriteiconTop } from "@/lib/db";
+
+interface ImgType {
+  id: number;
+  name: string;
+  imgurl: string;
+  imgurlO: string;
+}
+
 export default async function DwriteTopicon() {
-  const fetcher = await fetchWriteiconTop();
-console.log(fetcher);
+  const data: ImgType[] = await fetchWriteiconTop();
+
   return (
     <ul>
-      {fetcher.map((item, index) => (
-        <li key={index}>
-           <img src={item.imgurl} alt="이미지" />
-          {item.name}
+      {data.map((item: ImgType) => (
+        <li key={item.id}>
+          <img src={item.imgurl} alt={item.name} />
+          <p>{item.name}</p>
         </li>
       ))}
     </ul>

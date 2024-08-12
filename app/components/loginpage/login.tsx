@@ -7,13 +7,14 @@ import { LoginState } from "@/app/recoil/selectors";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { useSession, SessionProvider } from 'next-auth/react';
+// import { useSession, SessionProvider } from 'next-auth/react';
 
 export default function LoginPage() {
   const [uid, setUid] = useRecoilState(loginUid);
   const [value, setValue] = useState(false);
   const dataUid = useRecoilValue(LoginState);
-  const session = useSession();
+  // const session = useSession();
+  
   useEffect(() => {
     async function userUidFunc() {
       const loginUser: User | null = await LoginUserUid();

@@ -1,8 +1,8 @@
 "use client";
-import useSWR from "swr";
 import { fetchBottomMenu } from "@/lib/db";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface BottomMenuType {
   id: number;
@@ -10,22 +10,41 @@ interface BottomMenuType {
   menutext: string;
 }
 export default function BottomMenu() {
+  const [bmenu, setBmenu] = useState<BottomMenuType[]>([]);
+
   const router = useRouter();
-  const fetcher = () => fetchBottomMenu();
 
-  const { data, error } = useSWR("bottomMenu", fetcher);
-
-  const handleMenu = async () => {
-    // const { error } = await supabase.from("writedb").select();
-    // router.push('/mcomponents/diary')
-    // router.push('/mcomponents/map')
-    // router.push('/mcomponents/community')
+  const imgClickhandle = async (item: string) => {
+    switch (item) {
+      case "일기":
+        router.push("/mcomponents/diary");
+        break;
+      case "산책":
+        router.push("/mcomponents/map");
+        break;
+      case "커뮤":
+        router.push("/mcomponents/community");
+        break;
+      case "설정":
+        router.push("/mcomponents/setting");
+        break;
+      default:
+        console.log("완료");
+    }
   };
-
+  useEffect(() => {
+    async function urlList() {
+      const fetcher = await fetchBottomMenu();
+      if (fetcher) {
+        setBmenu(fetcher);
+      }
+    }
+    urlList();
+  }, []);
   return (
     <>
       <h1>메뉴 바</h1>
-      <div style={{position:'absolute', bottom:'0px'}}>
+      <div style={{ position: "absolute", bottom: "0px" }}>
         <ul
           style={{
             display: "flex",
@@ -33,9 +52,9 @@ export default function BottomMenu() {
             width: "100%",
           }}
         >
-          {data?.map((item, index) => (
+          {bmenu.map((item, index) => (
             <li key={index}>
-              <button onClick={()=> handleMenu(item.menuname)}>
+              <button onClick={() => imgClickhandle(item.menutext)}>
                 <img src={item.backurl} alt="메뉴 아이콘" />
               </button>
             </li>
