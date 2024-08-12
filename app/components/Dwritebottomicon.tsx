@@ -1,30 +1,21 @@
 import { fetchWriteiconBottom } from "@/lib/db";
 
-export default async function  Dwritebottomicon() {
-    const fetcher= await fetchWriteiconBottom();
+interface ImgType {
+  id: number;
+  name: string;
+  imgurl: string;
+}
+export default async function Dwritebottomicon() {
+  const data: ImgType[] = await fetchWriteiconBottom();
 
-    return (
-        <ul style={{display:'flex'}}>
-      {fetcher.map((item, index) => (
-        <li key={index}>
-           <img src={item.imgurl} alt="이미지" />
+  return (
+    <ul style={{ display: "flex" }}>
+      {data.map((item: ImgType) => (
+        <li key={item.id}>
+          <img src={item.imgurl} alt={item.name} />
           {item.name}
         </li>
       ))}
     </ul>
-    )
+  );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
