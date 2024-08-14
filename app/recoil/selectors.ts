@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { countState, loginUid, themaSate  } from "./atom";
+import { countState, loginUid, themaSate, walkState, writeIconState  } from "./atom";
 
 export const dogSelectState = selector({
     key:'dogSelectState',
@@ -25,10 +25,18 @@ export const LoginState = selector({
     }
 });
 
+export const walkIconState = selector({
+    key:'walkIconState',
+    get:({get})=>{
+        const value = get(walkState);
+        return value
+    }
+});
 
-
-
-
-
- // router.push('/mcomponents/dogselect');
-
+export const writePickState = selector({
+    key:'writePickState',
+    get:({get})=>{
+        const value = get(writeIconState);
+        return value;
+    }
+});

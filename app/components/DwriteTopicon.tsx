@@ -1,4 +1,8 @@
+'use client'
 import { fetchWriteiconTop } from "@/lib/db";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { walkState } from "../recoil/atom";
 
 interface ImgType {
   id: number;
@@ -7,15 +11,31 @@ interface ImgType {
   imgurlO: string;
 }
 
-export default async function DwriteTopicon() {
-  const data: ImgType[] = await fetchWriteiconTop();
+export default function DwriteTopicon() {
+  const [datas, setDatas] = useState<ImgType[]>([]);
+  const [icon, setIcon] = useRecoilState(walkState);
+
+  const hadleClick = (item:string)=>{
+    setIcon(item);
+    console.log(item);
+  }
+  useEffect(()=>{
+    const fetch = async ()=>{
+      const data = await fetchWriteiconTop();
+      setDatas(data);
+     
+    }
+    fetch();
+  },[icon]);
 
   return (
     <ul>
-      {data.map((item: ImgType) => (
+      {datas.map((item: ImgType) => (
         <li key={item.id}>
-          <img src={item.imgurl} alt={item.name} />
-          <p>{item.name}</p>
+          <button onClick={()=>hadleClick(item.name)}>
+            <img src={item.imgurl} alt={item.name} />
+            {item.name}
+          </button>
         </li>
       ))}
     </ul>
