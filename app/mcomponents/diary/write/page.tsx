@@ -4,11 +4,12 @@ import Dwritebottomicon from "@/app/components/Dwritebottomicon";
 import DwriteTopicon from "@/app/components/DwriteTopicon";
 import { useFormState } from "react-dom";
 import { useRecoilValue } from "recoil";
-import { walkIconState } from "@/app/recoil/selectors";
+import { walkIconState, writePickState } from "@/app/recoil/selectors";
+
 
 export default function Write() {
   const [value, setValue] = useState(false);
-  const pickWIcon = useRecoilValue(walkIconState);
+  const pickWIcon = useRecoilValue(writePickState);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,10 +17,10 @@ export default function Write() {
   };
 
   useEffect(() => {
+    setValue(true);
     console.log(value);
     console.log(pickWIcon);
   }, [pickWIcon]);
-
   return (
     <>
       <h3>날짜</h3>
