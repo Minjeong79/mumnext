@@ -14,21 +14,16 @@ export default function Dwritebottomicon() {
   const [pickIcon, setPickIcon] = useState<string[]>([]);
   const [icon, setIcon] = useRecoilState<string[]>(writeIconState);
   
+  
   const hadleClick = (item:string)=>{
     setPickIcon((oldIcons) => [...oldIcons, item]);
-    const set = new Set(pickIcon);
-    const uniqueArr = [...set];
-    setIcon(uniqueArr);
-   
-    console.log(pickIcon)
-    // console.log(icon)
   }
-
-  // useEffect(() => {
-  //   const set = new Set(pickIcon);
-  //   const uniqueArr = [...set];
-  //   setIcon(uniqueArr);
-  // }, [pickIcon]); 
+  useEffect(()=>{
+    // const set = new Set(pickIcon);
+    // const uniqueArr = [...set];
+    console.log(pickIcon);
+    setIcon(pickIcon);
+  },[pickIcon])
 
   useEffect(() => {
     const fetch = async () => {
