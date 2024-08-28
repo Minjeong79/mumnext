@@ -1,6 +1,6 @@
-import DogSelectImg from "@/app/components/DogselectImg";
-import NameForm from "@/app/components/NameForm";
-import ThemaSelectImg from "@/app/components/ThemaSelect";
+import DogSelectImg from "@/components/DogselectImg";
+import NameForm from "@/components/NameForm";
+import ThemaSelectImg from "@/components/ThemaSelect";
 import Link from "next/link";
 
 

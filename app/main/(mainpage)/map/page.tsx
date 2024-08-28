@@ -1,5 +1,4 @@
 "use client";
-import BottomMenu from "@/app/components/BottomMenu";
 import { useState, useEffect } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
@@ -138,9 +137,6 @@ const MapPage = () => {
                 검색
               </button>
             </form>
-          </div>
-          <div className="absolute bottom-0 w-full">
-            <BottomMenu />
           </div>
         </div>
       </section>
