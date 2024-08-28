@@ -55,7 +55,7 @@ export default function LoginPage() {
   return (
     <section>
 
-      {dataUid ? <Link href="/mcomponents/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
+      {dataUid ? <Link href="/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
       
     </section>
   );

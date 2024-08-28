@@ -1,8 +1,9 @@
 "use client";
 import { fetchDogImgUrlList } from "@/lib/db";
 import { useRecoilState } from "recoil";
-import { countState } from "../recoil/atom";
 import { useEffect, useState } from "react";
+import { countState } from "@/app/recoil/atom";
+import Image from "next/image";
 
 interface UrlType {
   name: string;
@@ -34,7 +35,7 @@ export default function DogSelectImg() {
           {dogPick.map((item, index) => (
             <li key={index}>
               <button id="" onClick={() => imgClickhandle(index)}>
-                <img src={item.url} alt="강아지 이미지" />
+                <Image src={item.url} width={258} height={276} alt="강아지 이미지" />
               </button>
             </li>
           ))}

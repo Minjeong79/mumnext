@@ -30,7 +30,7 @@ export default function NameForm() {
         throw error;
       }
 
-      router.push("/mcomponents/themaselect/main");
+      router.push("/main");
       return data;
     } catch (error) {
       return error;

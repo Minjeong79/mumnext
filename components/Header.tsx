@@ -1,7 +1,8 @@
 'use client'
+import { LoginState } from "@/app/recoil/selectors";
 import { supabase } from "@/lib/db";
 import { useRecoilValue } from "recoil"
-import { LoginState } from "../recoil/selectors"
+
 export default function HeaderPage(){
     const dataUid = useRecoilValue(LoginState);
     

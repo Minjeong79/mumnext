@@ -1,10 +1,10 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import Dwritebottomicon from "@/app/components/Dwritebottomicon";
-import DwriteTopicon from "@/app/components/DwriteTopicon";
 import { useFormState } from "react-dom";
 import { useRecoilValue } from "recoil";
 import { walkIconState, writePickState } from "@/app/recoil/selectors";
+import DwriteTopicon from "@/components/DwriteTopicon";
+import Dwritebottomicon from "@/components/Dwritebottomicon";
 
 
 export default function Write() {

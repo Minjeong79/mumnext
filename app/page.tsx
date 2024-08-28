@@ -1,6 +1,6 @@
 import HeaderPage from "@/components/Header";
-import LoginPage from "@/components/loginpage/login";
-import LoginPageImg from "@/components/loginpage/loginImg";
+import LoginPage from "@/components/login";
+import LoginPageImg from "@/components/loginImg";
 import Link from "next/link";
 
 export default async function Index() {
