@@ -34,3 +34,27 @@ export interface CityDataList {
     sub_address_no: string;
     zip_code: string;
   }
+
+  export interface ImgType {
+    id: number;
+    name: string;
+    imgurl: string;
+    imgurlO: string;
+  }
+  
+  export interface DataType {
+    id:number;
+    uuid:string;
+    eat:string;
+    pill:string;
+    hospital:string;
+    beauty:string;
+    walkimg:string;
+    eatimg:string;
+    pillimg:string;
+    hospitalimg:string;
+    beautyimg:string;
+    content:string;
+    date:Date;
+    walk:string;
+  }

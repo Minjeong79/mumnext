@@ -1,10 +1,10 @@
 import { createClient } from "@/utils/supabase/client";
-import { User } from '@supabase/supabase-js';
+import { User } from "@supabase/supabase-js";
 export const WeatherURL =
-"https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst";
+  "https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst";
 
 export const WeatherSERVICEKEY =
-"Y1TEjuVO5hEMU0yG1YY7J9dJvRQbv+87/sewOQKgQa9JnI2l9Xyj/Zm5gnvsy1Hu/BVCW3WofoTKePCW1ZTrkA==";
+  "Y1TEjuVO5hEMU0yG1YY7J9dJvRQbv+87/sewOQKgQa9JnI2l9Xyj/Zm5gnvsy1Hu/BVCW3WofoTKePCW1ZTrkA==";
 
 export const KakaoKey = "843e559943bc29af86f736a7f1d33577";
 
@@ -12,7 +12,9 @@ export const supabase = createClient();
 
 //로그인 uid 값 가져 오기
 export async function LoginUserUid(): Promise<User | null> {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return user;
 }
 
@@ -55,15 +57,45 @@ export async function fetchBottomMenu() {
 }
 
 //일기 작성 아이콘
-export async function fetchWriteiconTop(){
+export async function fetchWriteiconTop() {
   const { data, error } = await supabase.from("zdiarywriteimgtop").select("*");
   if (error) {
     throw error;
   }
   return data;
 }
-export async function fetchWriteiconBottom(){
-  const { data, error } = await supabase.from("zdiarywriteimgbottom").select("*");
+export async function fetchWriteiconBottom() {
+  const { data, error } = await supabase
+    .from("zdiarywriteimgbottom")
+    .select("*");
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
+//날짜
+export function dateFunc() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // 06
+  const day = today.getDate().toString().padStart(2, "0");
+  const dateString = year + "." + month + "." + day;
+  return dateString;
+}
+//일기 데이터 조회
+export async function fetchDiaryData() {
+  let { data, error } = await supabase.from("zwritedb").select("*");
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+//일기 데이터 날짜 조회
+export async function fetchDiaryDate() {
+  let { data, error } = await supabase
+    .from("zwritedb")
+    .select("date");
   if (error) {
     throw error;
   }
