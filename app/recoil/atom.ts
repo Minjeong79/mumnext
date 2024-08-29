@@ -15,12 +15,7 @@ export const themaSate = atom<any>({
     key:'uid',
     default: "",
  });
-//산책 아이콘
-export const walkState = atom<any>({
-    key:'walkIcon',
-    default: null,
-});
-
+//글 작성 아이콘 이미지
 export const writeIconState =atom<string[]>({
     key:'writeicons',
     default:[],
