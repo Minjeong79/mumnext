@@ -1,3 +1,9 @@
+export interface BottomMenuType {
+  id: number;
+  backurl: string;
+  menutext: string;
+}
+
 export interface CityDataList {
     cityName: string;
     cityNameEng: string;
@@ -57,4 +63,24 @@ export interface CityDataList {
     content:string;
     date:Date;
     walk:string;
+    walkicon:string;
+    eaticon:string;
+    pillicon:string;
+    hospitalicon:string;
+    beautyicon:string;
+  }
+
+  export interface IconsType {
+    id:number;
+    walk:string;
+    eat:string;
+    pill:string;
+    hospital:string;
+    beauty:string;
+  }
+
+  export interface IconType {
+    id:number;
+    name:string;
+    imgurl:string;
   }

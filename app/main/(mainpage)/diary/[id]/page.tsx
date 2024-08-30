@@ -1,3 +1,6 @@
+import DiaryDetailPage from "@/components/DiaryDetailPage";
+
 export default function DiaryPage(){
-    return<>상세페이지</>
+    
+    return<><DiaryDetailPage/></>
 }

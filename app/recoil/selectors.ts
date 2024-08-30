@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { countState, loginUid, themaSate, walkState, writeIconState  } from "./atom";
+import { countState, loginUid, themaSate, writeIconState  } from "./atom";
 
 export const dogSelectState = selector({
     key:'dogSelectState',
@@ -22,14 +22,6 @@ export const LoginState = selector({
     get:({get})=>{
         const value = get(loginUid);
         return value;
-    }
-});
-
-export const walkIconState = selector({
-    key:'walkIconState',
-    get:({get})=>{
-        const value = get(walkState);
-        return value
     }
 });
 

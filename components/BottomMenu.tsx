@@ -1,15 +1,10 @@
 "use client";
 import { fetchBottomMenu } from "@/lib/db";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { BottomMenuType } from "@/lib/typs";
 
-interface BottomMenuType {
-  id: number;
-  backurl: string;
-  menutext: string;
-}
 export default function BottomMenu() {
   const [bmenu, setBmenu] = useState<BottomMenuType[]>([]);
 
@@ -41,10 +36,10 @@ export default function BottomMenu() {
       }
     }
     urlList();
+    
   }, []);
   return (
     <>
-      <h1>메뉴 바</h1>
       <div style={{ position: "absolute", bottom: "0px" }}>
         <ul
           style={{

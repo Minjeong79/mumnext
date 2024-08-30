@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState, writePickState } from "@/app/recoil/selectors";
 import Dwritebottomicon from "@/components/Dwritebottomicon";
-import { bigdateFunc, dateFunc, supabase } from "@/lib/db";
+import { dateFunc, supabase } from "@/lib/db";
 import { customAlphabet } from "nanoid";
 import { useRouter } from "next/navigation";
 
