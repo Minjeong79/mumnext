@@ -1,37 +1,18 @@
-'use client'
-import { fetchDiaryData } from "@/lib/db";
+import DiaryDataList from "@/components/DiaryDataList";
+import { fetchDiaryData, fetchDiaryListIcons } from "@/lib/db";
+import { DataType, IconsType } from "@/lib/typs";
 import Link from "next/link";
-import { useEffect } from "react";
 
-export default function DiaryListPage() {
- 
-  
-
-  useEffect(()=>{
-    const test = async ()=>{
-      const fetchData = await fetchDiaryData();
-      console.log(fetchData);
-    }
-    test();
-    
-  },[])
+export default async function Page() {
+  const fetchData:DataType[] =  (await fetchDiaryData()) ?? [];
+  const iconsData:IconsType[] = (await fetchDiaryListIcons()) ?? [];
   return (
     <>
       <div>
         <h3>일기</h3>
         <Link href="/main/diary/write">작성</Link>
       </div>
-      <ul style={{background:"#999"}}>
-        <li>
-          <Link href="/main/diary/123">제목 날짜 아이콘리스트</Link>
-        </li>
-        <li>
-          <Link href="/">제목 날짜 아이콘리스트</Link>
-        </li>
-        <li>
-          <Link href="/">제목 날짜 아이콘리스트</Link>
-        </li>
-      </ul>
+      <DiaryDataList fetchData={fetchData} iconsData={iconsData}/>
     </>
   );
 }

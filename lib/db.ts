@@ -93,9 +93,27 @@ export async function fetchDiaryData() {
 }
 //일기 데이터 날짜 조회
 export async function fetchDiaryDate() {
+  let { data, error } = await supabase.from("zwritedb").select("date");
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+//일기 목록 아이콘
+export async function fetchDiaryListIcons() {
+  let { data, error } = await supabase.from("zlistimgdb").select("*");
+
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+//일기 작성시 선택 하는 아이콘
+export async function fetchDiaryNoIcons() {
   let { data, error } = await supabase
-    .from("zwritedb")
-    .select("date");
+    .from("zdiarynowriteimg")
+    .select("*");
+    
   if (error) {
     throw error;
   }
