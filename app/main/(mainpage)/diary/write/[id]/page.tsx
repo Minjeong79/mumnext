@@ -1,6 +1,6 @@
-import WriteEditDiary from "@/components/DeditwriteDiary";
+import EditWriteDiary from "@/components/DEditwriteDiary";
 
 export default function Page(){
   return <section>
-    <WriteEditDiary/> </section>
+    <EditWriteDiary/> </section>
 }

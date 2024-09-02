@@ -36,7 +36,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
       {data!.map((item) =>
         item.id === pathId ? (
             <li key={item.id}>
-             <ul>
+             <ul style={{ display: "flex" }}>
               <li>
               <button onClick={() => hadleClick(item.walk)} type="button">
                 <Image
@@ -49,6 +49,17 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
               </button>
               </li>
               <li>
+              <button onClick={() => hadleClick(item.eat)} type="button">
+                <Image
+                  src={item.eatimg}
+                  width={100}
+                  height={100}
+                  alt={item.eat}
+                />
+                {item.eat}
+              </button>
+              </li>
+              <li>
               <button onClick={() => hadleClick(item.pill)} type="button">
                 <Image
                   src={item.pillimg}
@@ -56,7 +67,29 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                   height={100}
                   alt={item.pill}
                 />
-                {item.walk}
+                {item.pill}
+              </button>
+              </li>
+              <li>
+              <button onClick={() => hadleClick(item.hospital)} type="button">
+                <Image
+                  src={item.hospitalimg}
+                  width={100}
+                  height={100}
+                  alt={item.hospital}
+                />
+                {item.hospital}
+              </button>
+              </li>
+              <li>
+              <button onClick={() => hadleClick(item.beauty)} type="button">
+                <Image
+                  src={item.beautyimg}
+                  width={100}
+                  height={100}
+                  alt={item.beauty}
+                />
+                {item.beauty}
               </button>
               </li>
              </ul>
