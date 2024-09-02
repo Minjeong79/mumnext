@@ -2,19 +2,28 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState, writePickState } from "@/app/recoil/selectors";
-import Dwritebottomicon from "@/components/Dwritebottomicon";
-import { dateFunc, supabase } from "@/lib/db";
+import {
+  dateFunc,
+  fetchDiaryData,
+  fetchDiaryNoIcons,
+  supabase,
+} from "@/lib/db";
 import { customAlphabet } from "nanoid";
 import { usePathname, useRouter } from "next/navigation";
+import { DataType, IconType } from "@/lib/typs";
 import Deditwritebottomicon from "./DEditwritebottomicon";
 
-export default function WriteDiary() {
+export default function WriteEditDiary() {
+  //수정 id
+  const pathname = usePathname();
+  const pathId = Number(pathname.split("/")[4]);
+
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
-  const nanoid = customAlphabet("123456789", 9);
-  const numId = Number(nanoid());
   const [value, setValue] = useState<string[]>([]);
   const [textValue, setTextValue] = useState("");
+  const [data, setData] = useState<DataType[] | null>([]);
+  const [dataIcons, setDataIcons] = useState<IconType[]>([]);
   const pickWIcon = useRecoilValue(writePickState);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,14 +33,13 @@ export default function WriteDiary() {
     const pillTxt = value.filter((item) => item === "약")[0] ?? "";
     const hospitalTxt = value.filter((item) => item === "병원")[0] ?? "";
     const beautylTxt = value.filter((item) => item === "미용")[0] ?? "";
-    console.log(dataUid);
-    // console.log(pillTxt);
+
     const daydate = dateFunc();
     const { data, error } = await supabase
       .from("zwritedb")
-      .insert([
+      .update([
         {
-          id: numId,
+          id: pathId,
           uuid: dataUid,
           eat: eatTxt,
           pill: pillTxt,
@@ -74,25 +82,45 @@ export default function WriteDiary() {
     setValue(Array.from(setArr));
   }, [pickWIcon]);
 
+  useEffect(() => {
+    const handleAllData = async () => {
+      try {
+        const fetchData = await fetchDiaryData();
+        setData(fetchData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    handleAllData();
+  }, []);
+  useEffect(() => {}, [dataIcons]);
+  console.log(pathId);
+  console.log(data);
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        {/* <Suspense fallback={<p>로딩중...</p>}> */}
-        <Dwritebottomicon/>
-        {/* </Suspense> */}
+    <div>
+      <h3>날짜fffffffffff</h3>
+      {data?.map((item) =>
+      
+        item.id === pathId ? (
+          <form onSubmit={handleSubmit} key={item.id}>
+            {/* <Suspense fallback={<p>로딩중...</p>}> */}
+            <Deditwritebottomicon pathId={pathId} />
+            {/* </Suspense> */}
 
-        <textarea
-          name="content"
-          className="resize-none border border-[#F5BB8C] w-full h-40 p-2.5 bg-transparent outline-none rounded-md"
-          value={textValue}
-          onChange={(e) => setTextValue(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit">등록</button>
-        <button type="button" onClick={handelCancle}>
-          취소
-        </button>
-      </form>
-    </>
+            <textarea
+              name="content"
+              className="resize-none border border-[#F5BB8C] w-full h-40 p-2.5 bg-transparent outline-none rounded-md"
+              defaultValue={item.content}
+              onChange={(e) => setTextValue(e.target.value)}
+              required
+            ></textarea>
+            <button type="submit">등록999</button>
+            <button type="button" onClick={handelCancle}>
+              취소
+            </button>
+          </form>
+        ) : null
+      )}
+    </div>
   );
 }
