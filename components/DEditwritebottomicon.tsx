@@ -89,7 +89,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                   height={100}
                   alt={item.beauty}
                 />
-                {item.beauty}
+                {item.beauty} 
               </button>
               </li>
              </ul>
