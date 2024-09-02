@@ -13,7 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { DataType, IconType } from "@/lib/typs";
 import Deditwritebottomicon from "./DEditwritebottomicon";
 
-export default function WriteEditDiary() {
+export default function EditWriteDiary() {
   //수정 id
   const pathname = usePathname();
   const pathId = Number(pathname.split("/")[4]);
