@@ -16,7 +16,9 @@ export default function DiaryDetailPage() {
   const [data, setData] = useState<DataType[] | null>([]);
   const [dataIcons, setDataIcons] = useState<IconType[]>([]);
 
-  const handleUpdate = () => {};
+  const handleUpdate = () => {
+    router.push(`/main/diary/write/${pathId}`);
+  };
   const handelCancle = () => {
     window.confirm("작성 취소 멈?");
     router.push("/main/diary");
@@ -37,7 +39,7 @@ export default function DiaryDetailPage() {
     handleAllData();
   }, []);
   useEffect(() => {}, [dataIcons]);
-
+console.log(dataIcons);
   return (
     <div>
       {data!.map((item) => (
