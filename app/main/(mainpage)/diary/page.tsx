@@ -1,4 +1,4 @@
-import DiaryDataList from "@/components/DiaryDataList";
+import DiaryDataList from "@/components/diary/DiaryDataList";
 import { fetchDiaryData, fetchDiaryListIcons } from "@/lib/db";
 import { DataType, IconsType } from "@/lib/typs";
 import Link from "next/link";
@@ -16,3 +16,4 @@ export default async function Page() {
     </>
   );
 }
+ 
