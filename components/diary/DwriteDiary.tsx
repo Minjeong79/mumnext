@@ -2,11 +2,10 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState, writePickState } from "@/app/recoil/selectors";
-import Dwritebottomicon from "@/components/Dwritebottomicon";
 import { dateFunc, supabase } from "@/lib/db";
 import { customAlphabet } from "nanoid";
 import { usePathname, useRouter } from "next/navigation";
-import Deditwritebottomicon from "./DEditwritebottomicon";
+import Dwritebottomicon from "./Dwriteicon";
 
 export default function WriteDiary() {
   const router = useRouter();
@@ -85,6 +84,7 @@ export default function WriteDiary() {
           name="content"
           className="resize-none border border-[#F5BB8C] w-full h-40 p-2.5 bg-transparent outline-none rounded-md"
           value={textValue}
+          placeholder="내용을 입력해주세요"
           onChange={(e) => setTextValue(e.target.value)}
           required
         ></textarea>

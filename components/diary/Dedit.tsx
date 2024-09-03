@@ -11,7 +11,7 @@ import {
 import { customAlphabet } from "nanoid";
 import { usePathname, useRouter } from "next/navigation";
 import { DataType, IconType } from "@/lib/typs";
-import Deditwritebottomicon from "./DEditwritebottomicon";
+import Deditwritebottomicon from "./Dediticon";
 
 export default function EditWriteDiary() {
   //수정 id
@@ -28,43 +28,17 @@ export default function EditWriteDiary() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const walkTxt = value.filter((item) => item === "산책")[0] ?? "";
-    const eatTxt = value.filter((item) => item === "밥")[0] ?? "";
-    const pillTxt = value.filter((item) => item === "약")[0] ?? "";
-    const hospitalTxt = value.filter((item) => item === "병원")[0] ?? "";
-    const beautylTxt = value.filter((item) => item === "미용")[0] ?? "";
 
-    const daydate = dateFunc();
     const { data, error } = await supabase
       .from("zwritedb")
       .update([
         {
           id: pathId,
           uuid: dataUid,
-          eat: eatTxt,
-          pill: pillTxt,
-          hospital: hospitalTxt,
-          beauty: beautylTxt,
-          walkimg: walkTxt
-            ? "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon1.png"
-            : "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon1-1.png",
-          eatimg: eatTxt
-            ? "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon2.png"
-            : "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon2-1.png",
-          pillimg: pillTxt
-            ? "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon3.png"
-            : "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon3-1.png",
-          hospitalimg: hospitalTxt
-            ? "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon4.png"
-            : "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon4-1.png",
-          beautyimg: beautylTxt
-            ? "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon5.png"
-            : "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/wirteImg/img_icon5-1.png",
           content: textValue,
-          date: daydate,
-          walk: walkTxt,
         },
       ])
+      .eq('id', pathId)
       .select("*");
     router.push("/main/diary");
     if (error) {
@@ -94,8 +68,6 @@ export default function EditWriteDiary() {
     handleAllData();
   }, []);
   useEffect(() => {}, [dataIcons]);
-  console.log(pathId);
-  console.log(data);
   return (
     <div>
       <h3>날짜fffffffffff</h3>

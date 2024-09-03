@@ -1,4 +1,4 @@
-import EditWriteDiary from "@/components/DEditwriteDiary";
+import EditWriteDiary from "@/components/diary/Dedit";
 
 export default function Page(){
   return <section>

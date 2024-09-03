@@ -1,4 +1,4 @@
-import WriteDiary from "@/components/DwriteDiary";
+import WriteDiary from "@/components/diary/DwriteDiary";
 import { dateFunc } from "@/lib/db";
 
 export default function Page(){
