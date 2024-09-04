@@ -1,12 +1,13 @@
 "use client";
 
 import { LoginState } from "@/app/recoil/selectors";
-import { fetchDiaryData, fetchDiaryNoIcons } from "@/lib/db";
+import { fetchDiaryData, fetchDiaryNoIcons, supabase } from "@/lib/db";
 import { DataType, IconType } from "@/lib/typs";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import DeleteDiaryButton from "./Ddelete";
 
 export default function DiaryDetailPage() {
   const dataUid = useRecoilValue(LoginState);
@@ -23,6 +24,8 @@ export default function DiaryDetailPage() {
     window.confirm("작성 취소 멈?");
     router.push("/main/diary");
   };
+
+
   useEffect(() => {
     const handleAllData = async () => {
       try {
@@ -37,9 +40,10 @@ export default function DiaryDetailPage() {
       }
     };
     handleAllData();
+
   }, []);
   useEffect(() => {}, [dataIcons]);
-console.log(dataIcons);
+
   return (
     <div>
       {data!.map((item) => (
@@ -157,15 +161,27 @@ console.log(dataIcons);
               <div>{item.content}</div>
               {item.uuid === dataUid ? (
                 <div style={{ marginTop: "100px" }}>
-                  <button type="button" onClick={handleUpdate}>
-                    수정
-                  </button>
-                  <button type="button" onClick={handelCancle}>
-                    취소
-                  </button>
+                  <div>
+                    <button type="button" onClick={handleUpdate}>
+                      수정
+                    </button>
+                    <button type="button" onClick={handelCancle}>
+                      취소
+                    </button>
+                  </div>
+                  <div>
+                    <DeleteDiaryButton pathId={pathId}/>
+                    <button type="button" >
+                      목록
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <></>
+                <div>
+                  <button type="button" >
+                    목록222
+                  </button>
+                </div>
               )}
             </section>
           ) : (
