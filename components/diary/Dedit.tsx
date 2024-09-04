@@ -70,7 +70,7 @@ export default function EditWriteDiary() {
   useEffect(() => {}, [dataIcons]);
   return (
     <div>
-      <h3>날짜fffffffffff</h3>
+      <h3>날짜</h3>
       {data?.map((item) =>
       
         item.id === pathId ? (
