@@ -18,22 +18,21 @@ export default function Cwrite() {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile(event.target.files[0]);
     }
-   
   };
 
- 
-
-  useEffect(()=>{
+  useEffect(() => {
+    console.log("Selected file: ", selectedFile); 
+    if (!selectedFile) {
+      // 파일이 선택되지 않았다면 아무 작업도 하지 않음
+      return;
+    }
     const handleimgSubmit = () => {
-      if (!selectedFile) {
-        return;
-      }
       const formData = new FormData();
-      formData.append('file', selectedFile);
-console.log(formData);
-
-      fetch("/api/community-api", {
-        method: "POST",
+      formData.append("file", selectedFile);
+      console.log(formData);
+  
+      fetch('/api/community-api', {
+        method: 'POST',
         body: formData,
       })
         .then((response) => {
@@ -46,13 +45,14 @@ console.log(formData);
           console.error("Error:", error);
         });
     };
-    handleimgSubmit();
-  },[selectedFile]);
-
   
+    handleimgSubmit();
+  }, [selectedFile]);
+  
+
   return (
     <div>
-      <form >
+      {/* <form> */}
         <h3>날짜</h3>
         {/* <div>
           <input
@@ -67,7 +67,7 @@ console.log(formData);
         <div>
           <button type="submit">등록</button>
         </div>
-      </form>
+      {/* </form> */}
     </div>
   );
 }

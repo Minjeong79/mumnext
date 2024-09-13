@@ -4,8 +4,9 @@ import { supabase } from "@/lib/db";
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
-        const file = formData.get('file');
-
+        
+        const file = formData.get('file') as Blob;
+        
         if (!file) {
             // 파일이 없는 경우
             return NextResponse.json({ error: '파일이 존재하지 않습니다.' }, { status: 400 });
