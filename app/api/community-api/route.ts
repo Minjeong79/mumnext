@@ -1,25 +1,28 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/db";
+import { fetchStroageImg, supabase } from "@/lib/db";
 
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
-        
-        const file = formData.get('file') as Blob;
-        
+       
+        const file = formData.get('file');
         if (!file) {
             // 파일이 없는 경우
             return NextResponse.json({ error: '파일이 존재하지 않습니다.' }, { status: 400 });
         }
-
+        const filePath = `write/${(file as File).name}`;
         const { data, error } = await supabase
           .storage
-          .from('community')
-          .upload(`write/${(file as File).name}`, file, {
+          .from('communityimg')
+          .upload(filePath, file, {
             cacheControl: '3600',
             upsert: false
           });
 
+          
+        const imgurl = await fetchStroageImg(filePath);
+          
+        
         if (error) {
             // 파일 업로드 오류
             console.error('파일 업로드 오류:', error.message);
@@ -27,7 +30,7 @@ export async function POST(request: Request) {
         }
 
         if (data) {
-            const avatarUrl = data.path; // 파일 업로드 경로를 저장합니다.
+            const avatarUrl = data.path; // 파일 업로드 경로를 저장
             return NextResponse.json({ message: '이미지 업로드 성공', url: avatarUrl });
         } else {
             return NextResponse.json({ error: '파일 업로드에 실패했습니다.' }, { status: 500 });

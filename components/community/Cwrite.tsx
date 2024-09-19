@@ -21,7 +21,6 @@ export default function Cwrite() {
   };
 
   useEffect(() => {
-    console.log("Selected file: ", selectedFile); 
     if (!selectedFile) {
       // 파일이 선택되지 않았다면 아무 작업도 하지 않음
       return;
@@ -29,7 +28,6 @@ export default function Cwrite() {
     const handleimgSubmit = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      console.log(formData);
   
       fetch('/api/community-api', {
         method: 'POST',
@@ -52,9 +50,9 @@ export default function Cwrite() {
 
   return (
     <div>
-      {/* <form> */}
+      <form>
         <h3>날짜</h3>
-        {/* <div>
+        <div>
           <input
             type="text"
             name="title"
@@ -62,12 +60,12 @@ export default function Cwrite() {
             required
           />
         </div>
-        <textarea name="content" placeholder="내용을 입력해주세요" required /> */}
+        <textarea name="content" placeholder="내용을 입력해주세요" required />
         <input type="file" onChange={handleFileChange} />
         <div>
           <button type="submit">등록</button>
         </div>
-      {/* </form> */}
+      </form>
     </div>
   );
 }
