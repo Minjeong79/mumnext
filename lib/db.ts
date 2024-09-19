@@ -110,12 +110,29 @@ export async function fetchDiaryListIcons() {
 }
 //일기 작성시 선택 하는 아이콘
 export async function fetchDiaryNoIcons() {
-  let { data, error } = await supabase
-    .from("zdiarynowriteimg")
-    .select("*");
-    
+  let { data, error } = await supabase.from("zdiarynowriteimg").select("*");
+
   if (error) {
     throw error;
   }
   return data;
 }
+//스토리지 이미지 url
+export async function fetchStroageImg(url:string): Promise<string> {
+  const { data } = supabase
+  .storage
+  .from('communityimg')
+  .getPublicUrl(url)
+  return data.publicUrl;
+}
+
+//커뮤니티 테이블 이미지
+export async function fetchCommunityImg() {
+  let { data, error } = await supabase.from("community").select("imgurl");
+
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
