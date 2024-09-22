@@ -118,11 +118,8 @@ export async function fetchDiaryNoIcons() {
   return data;
 }
 //스토리지 이미지 url
-export async function fetchStroageImg(url:string): Promise<string> {
-  const { data } = supabase
-  .storage
-  .from('communityimg')
-  .getPublicUrl(url)
+export async function fetchStroageImg(url: string): Promise<string> {
+  const { data } = supabase.storage.from("communityimg").getPublicUrl(url);
   return data.publicUrl;
 }
 
@@ -136,3 +133,11 @@ export async function fetchCommunityImg() {
   return data;
 }
 
+//커뮤니티 데이터 조회
+export async function fetchCommunityData() {
+  let { data, error } = await supabase.from("community").select("*");
+  if (error) {
+    throw error;
+  }
+  return data;
+}

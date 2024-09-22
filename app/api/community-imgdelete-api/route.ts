@@ -3,14 +3,13 @@ import { supabase } from "@/lib/db";
 
 export async function DELETE(request: Request) {
   const { lastParts } = await request.json();
-  const encodedPath = `write/${encodeURIComponent(lastParts)}`;
-  console.log("삭제할 파일 경로:", encodedPath);
+  const encodedPath = `write/${lastParts}`;
+
   try {
     const { data, error } = await supabase.storage
       .from("communityimg")
       .remove([encodedPath]);
 
-    console.log(data);
     if (error) {
       console.error("Supabase 에러:", error.message);
       return NextResponse.json(
@@ -19,7 +18,7 @@ export async function DELETE(request: Request) {
       );
     }
 
-    console.log("삭제 성공:", data);
+    // console.log("삭제 성공:", data);
     return NextResponse.json({ message: "이미지 삭제 성공" });
   } catch (error) {
     return NextResponse.json({ error: "이미지 삭제 못함" }, { status: 500 });
