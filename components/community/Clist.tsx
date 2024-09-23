@@ -17,8 +17,16 @@ export default async function CommunityList({
           <li key={item.id}>
             <Link href={`/main/community/${item.id}`}>
               {item.title}
-              {item.imgurl ? <Image src={item.imgurl} width={100} height={100} alt="이미지" /> : <></>}
-              
+              {item.imgurl ? (
+                <Image
+                  src={item.imgurl}
+                  width={100}
+                  height={100}
+                  alt="이미지"
+                />
+              ) : (
+                <></>
+              )}
             </Link>
           </li>
         ))}

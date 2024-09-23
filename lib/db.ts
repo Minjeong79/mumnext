@@ -141,3 +141,15 @@ export async function fetchCommunityData() {
   }
   return data;
 }
+
+//커뮤니티 상세페이지 조회
+export async function fetchCommunityDataDetail(id: number) {
+  let { data, error } = await supabase
+    .from("community")
+    .select("*")
+    .eq("id", id);
+  if (error) {
+    throw error;
+  }
+  return data;
+}

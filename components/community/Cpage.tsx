@@ -25,12 +25,12 @@ export default function CommunityPage() {
     fetchData();
   }, []);
 
-  const handleEdit = ()=>{
-    router.push(`/main/community/write/${lastParts}`)
-  }
-  const handleCancle = ()=>{
+  const handleEdit = () => {
+    router.push(`/main/community/write/${lastParts}`);
+  };
+  const handleCancle = () => {
     router.push(`/main/community`);
-  }
+  };
   return (
     <div>
       {data?.map((item, index) => (
@@ -38,13 +38,17 @@ export default function CommunityPage() {
           {item.id === Number(lastParts) ? (
             <div>
               <h3>{item.title}</h3>
-              <Image src={item.imgurl} width={250} height={250} alt="img"/>
+              <Image src={item.imgurl} width={250} height={250} alt="img" />
               <p>{item.content}</p>
               <div>
                 {dataUid === item.uuid ? (
                   <div>
-                    <button type="button" onClick={handleEdit}>수정</button>
-                    <button type="button" onClick={handleCancle}>취소</button>
+                    <button type="button" onClick={handleEdit}>
+                      수정
+                    </button>
+                    <button type="button" onClick={handleCancle}>
+                      삭제
+                    </button>
                   </div>
                 ) : (
                   <div></div>
