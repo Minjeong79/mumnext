@@ -1,9 +1,7 @@
-export default function CommunityPage(){
+import CommunityPage from "@/components/community/Cpage";
+
+export default function Page(){
     return <>
-        제목
-        내용
-        이미지
-        댓글
-        좋아요
+       <CommunityPage/>
     </>
 }
