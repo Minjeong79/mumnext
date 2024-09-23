@@ -40,4 +40,7 @@ export async function POST(request: Request) {
   if (error) {
     throw error;
   }
+  return NextResponse.json({
+    message: "일기 업로드 성공",
+  });
 }

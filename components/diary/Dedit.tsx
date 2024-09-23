@@ -26,24 +26,22 @@ export default function EditWriteDiary() {
   const [dataIcons, setDataIcons] = useState<IconType[]>([]);
   const pickWIcon = useRecoilValue(writePickState);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const { data, error } = await supabase
-      .from("zwritedb")
-      .update([
-        {
-          id: pathId,
-          uuid: dataUid,
-          content: textValue,
-        },
-      ])
-      .eq('id', pathId)
-      .select("*");
-    router.push("/main/diary");
-    if (error) {
-      throw error;
+    const requestBody = {
+      id: pathId,
+      content: textValue,
+    };
+    try {
+      fetch("/api/diary-edit-api", {
+        method: "PUT",
+        body: JSON.stringify(requestBody),
+      });
+      router.push("/main/diary");
+    } catch (error) {
+      console.error("수정 못 함:", error);
     }
+  
   };
 
   const handelCancle = () => {
@@ -72,7 +70,6 @@ export default function EditWriteDiary() {
     <div>
       <h3>날짜</h3>
       {data?.map((item) =>
-      
         item.id === pathId ? (
           <form onSubmit={handleSubmit} key={item.id}>
             {/* <Suspense fallback={<p>로딩중...</p>}> */}

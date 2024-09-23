@@ -39,6 +39,7 @@ export default function WriteDiary() {
         method: "POST",
         body: JSON.stringify(requestBody),
       });
+      router.push('/main/diary');
     } catch (error) {
       console.log(error);
     }
