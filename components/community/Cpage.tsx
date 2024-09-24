@@ -11,6 +11,7 @@ export default function CommunityPage() {
   const pathname = usePathname();
   const parts = pathname.split("/");
   const lastParts = parts[parts.length - 1];
+  const numId = Number(lastParts);
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
   const [data, setData] = useState<CommunityType[]>([]);
@@ -29,16 +30,28 @@ export default function CommunityPage() {
     router.push(`/main/community/write/${lastParts}`);
   };
   const handleCancle = () => {
+    window.confirm('삭제 할래 멈?');
+    try {
+      fetch('/api/community-delete-api',{
+        method:'DELETE',
+        body : JSON.stringify({id:numId})
+      });
+    } catch (error) {
+      console.log(error);
+    }
     router.push(`/main/community`);
   };
   return (
     <div>
       {data?.map((item, index) => (
         <div key={index}>
-          {item.id === Number(lastParts) ? (
+          {item.id === numId ? (
             <div>
               <h3>{item.title}</h3>
-              <Image src={item.imgurl} width={250} height={250} alt="img" />
+              <div>
+                {item.imgurl ? (<Image src={item.imgurl} width={250} height={250} alt="img" />):(<div></div>)}
+              </div>
+              
               <p>{item.content}</p>
               <div>
                 {dataUid === item.uuid ? (
