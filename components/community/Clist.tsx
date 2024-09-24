@@ -14,7 +14,7 @@ export default async function CommunityList({
     <>
       <ul>
         {data?.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} style={{ background:"#999", margin:'10px'}}>
             <Link href={`/main/community/${item.id}`}>
               {item.title}
               {item.imgurl ? (
