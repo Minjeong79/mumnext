@@ -2,12 +2,20 @@ import { CommunityType } from "@/lib/typs";
 import CommunityList from "./Clist";
 
 export default function SearchCommunity({
-  fetchDatas,
+  search,
 }: {
-  fetchDatas: CommunityType[];
+  search?: string | undefined;
 }) {
-  return <div style={{border:'1px solid #999'}}>
-    <input type="text"/>
-    <CommunityList fetchDatas={fetchDatas} />
-  </div>;
+  const handleSerch = () => {
+    try {
+      const response = fetch("/api/community-seaarch-api", {
+        method: "GET",
+      });
+    } catch (error) {}
+  };
+  return (
+    <div>
+      <input type="text" onClick={handleSerch} required />
+    </div>
+  );
 }
