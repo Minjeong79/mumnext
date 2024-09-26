@@ -18,10 +18,11 @@ export default function LoginPage() {
   useEffect(() => {
     async function userUidFunc() {
       const loginUser: User | null = await LoginUserUid();
+      const fullName = loginUser?.user_metadata.full_name;
       if (loginUser) {
         setValue(true);
         localStorage.setItem('uid', loginUser.id);
-        setUid(loginUser.id);
+        setUid({uid: loginUser.id, fullName: fullName});
       }
     }
     userUidFunc();
@@ -29,8 +30,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     const savedUid = localStorage.getItem('uid');
+    console.log(savedUid);
     if (savedUid) {
-      setUid(savedUid);
+      setUid({uid: savedUid, fullName: ""});
     }
   }, [value]);
   

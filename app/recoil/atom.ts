@@ -11,9 +11,12 @@ export const themaSate = atom<any>({
     default:null,
 });
 //uid
- export const loginUid = atom<string>({
-    key:'uid',
-    default: "",
+export const loginUid = atom({
+    key:'user',
+    default: {
+        uid:'',
+        fullName:''
+    },
  });
 //글 작성 아이콘 이미지
 export const writeIconState =atom<string[]>({

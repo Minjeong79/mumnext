@@ -153,3 +153,15 @@ export async function fetchCommunityDataDetail(id: number) {
   }
   return data;
 }
+
+//커뮤니티 댓글 조회
+export async function fetchCommentData(id: number) {
+  let { data, error } = await supabase
+    .from("communitycomment")
+    .select("*")
+    .eq("id", id);
+    if (error) {
+      throw error;
+    }
+    return data;
+}

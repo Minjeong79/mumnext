@@ -93,3 +93,11 @@ export interface CommunityType {
   imgurl: string;
   date: Date;
 }
+
+export interface CommentType {
+  mainid:number;
+  id: number;
+  uuid: string;
+  content: string;
+  date: Date;
+}
