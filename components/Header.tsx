@@ -7,9 +7,13 @@ export default function HeaderPage(){
     const dataUid = useRecoilValue(LoginState);
     
     async function signOut() {
-        const { error } = await supabase.auth.signOut()
+        const { error } = await supabase.auth.signOut();
+        localStorage.removeItem('uid');
+        if(error){
+            throw error;
+        }
       }
 return <header>
-    {dataUid ? <button onClick={signOut}>로그아웃</button> : <button>로그인</button>}
+    {dataUid.uid ? <button onClick={signOut}>로그아웃</button> : <button>로그인</button>}
     </header>
 }

@@ -85,11 +85,13 @@ export default function Cwrite() {
     e.preventDefault();
     const requestBody = {
       id: numId,
-      uuid: dataUid,
+      uuid: dataUid.uid,
       title: titleValue,
       content: textValue,
       imgurl: imageUrl,
+      username:dataUid.fullName
     };
+    console.log(requestBody);
     try {
       fetch("/api/community-api", {
         method: "POST",

@@ -12,14 +12,14 @@ export default function NameForm() {
   const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
 
-  console.log(dataUid);
+  console.log(dataUid.uid);
   const handleSumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       const { data, error } = await supabase.from("dogthemaname").insert([
         {
-          uuid: dataUid,
+          uuid: dataUid.uid,
           dog: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${dogPick}.png`,
           thema: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${themaPick}.png`,
           name: name,

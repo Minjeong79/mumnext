@@ -111,7 +111,9 @@ export default function CommunityPage() {
         </div>
       ))}
       <div style={{ marginTop: "30px" }}>
-        <div></div>
+        <div style={{background:"skblue"}}>
+          {dataComment.map((item)=> (<li>{item.content}</li>))}
+        </div>
         <br />
         <br />
         <form onSubmit={handleComent} style={{ border: "1px solid #999" }}>
