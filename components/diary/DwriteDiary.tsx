@@ -26,7 +26,7 @@ export default function WriteDiary() {
 
     const requestBody = {
       id: numId,
-      uuid: dataUid,
+      uuid: dataUid.uid,
       eat: eatTxt,
       pill: pillTxt,
       hospital: hospitalTxt,

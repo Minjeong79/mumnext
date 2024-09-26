@@ -26,7 +26,7 @@ export default function LoginPage() {
       }
     }
     userUidFunc();
-  }, [uid]);
+  }, []);
 
   useEffect(() => {
     const savedUid = localStorage.getItem('uid');
@@ -34,7 +34,7 @@ export default function LoginPage() {
     if (savedUid) {
       setUid({uid: savedUid, fullName: ""});
     }
-  }, [value]);
+  }, []);
   
  
   async function signInWithKakao() {
@@ -57,7 +57,7 @@ export default function LoginPage() {
   return (
     <section>
 
-      {dataUid ? <Link href="/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
+      {dataUid.uid ? <Link href="/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
       
     </section>
   );
