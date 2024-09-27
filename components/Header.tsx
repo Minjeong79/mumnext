@@ -8,7 +8,7 @@ export default function HeaderPage(){
     
     async function signOut() {
         const { error } = await supabase.auth.signOut();
-        localStorage.removeItem('uid');
+        localStorage.removeItem('user');
         if(error){
             throw error;
         }

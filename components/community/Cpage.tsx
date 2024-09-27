@@ -62,8 +62,8 @@ export default function CommunityPage() {
     const requestBody = {
       mainid: numId,
       id: partId,
-      uuid: dataUid.uid,
-      username: dataUid.fullName,
+      uuid: dataUid,
+      username: dataUid,
       content: textValue,
     };
     try {
@@ -75,10 +75,7 @@ export default function CommunityPage() {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    // 데이터 uid가 정상적으로 설정되었는지 확인
-    console.log(dataUid);
-  }, [dataUid])
+  console.log(dataUid);
   return (
     <div>
       {data?.map((item, index) => (
@@ -96,7 +93,7 @@ export default function CommunityPage() {
 
               <p>{item.content}</p>
               <div>
-                {dataUid.uid === item.uuid ? (
+                {dataUid === item.uuid ? (
                   <div>
                     <button type="button" onClick={handleEdit}>
                       수정
@@ -121,7 +118,7 @@ export default function CommunityPage() {
             <li key={item.mainid}>
               {item.content}
               /닉네임: {item.username}
-              {item.uuid === dataUid.uid ? (
+              {item.uuid === dataUid ? (
                 <>
                 {item.uuid}
                   <button>수정</button>
@@ -130,7 +127,7 @@ export default function CommunityPage() {
               ) : (
                 <>
                  {item.uuid} / 
-                 {dataUid.uid}
+                 {dataUid}
                  
                  </>
               )}
