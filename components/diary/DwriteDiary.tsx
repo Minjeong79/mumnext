@@ -26,7 +26,7 @@ export default function WriteDiary() {
 
     const requestBody = {
       id: numId,
-      uuid: dataUid.uid,
+      uuid: dataUid,
       eat: eatTxt,
       pill: pillTxt,
       hospital: hospitalTxt,
@@ -54,7 +54,7 @@ export default function WriteDiary() {
     const setArr = new Set(newArr);
     setValue(Array.from(setArr));
   }, [pickWIcon]);
-
+  console.log(dataUid);
   return (
     <>
       <form onSubmit={handleSubmit}>

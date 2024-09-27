@@ -21,12 +21,13 @@ export default function LoginPage() {
       const fullName = loginUser?.user_metadata.full_name;
       if (loginUser) {
         setValue(true);
-        localStorage.setItem('user', JSON.stringify({ uid: loginUser.id, fullName }));
-        setUid({uid: loginUser.id, fullName});
+        const userInfo = { uid: loginUser.id, fullName };
+        localStorage.setItem('user', JSON.stringify(userInfo));
+        setUid(userInfo);
       }
     }
     userUidFunc();
-  }, []);
+  }, [setUid]);
 
   useEffect(() => {
     const savedUid = localStorage.getItem('user');
@@ -35,7 +36,7 @@ export default function LoginPage() {
       const parsedUid = JSON.parse(savedUid);
       setUid(parsedUid);
     }
-  }, []);
+  }, [setUid]);
   
  
   async function signInWithKakao() {

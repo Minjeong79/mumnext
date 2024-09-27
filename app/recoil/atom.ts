@@ -12,7 +12,7 @@ export const themaSate = atom<any>({
 });
 //uid
 export const loginUid = atom({
-    key:'user',
+    key:'uid',
     default: {
         uid:'',
         fullName:''
