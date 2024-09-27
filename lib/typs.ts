@@ -99,5 +99,6 @@ export interface CommentType {
   id: number;
   uuid: string;
   content: string;
+  username: string;
   date: Date;
 }

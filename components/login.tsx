@@ -21,18 +21,19 @@ export default function LoginPage() {
       const fullName = loginUser?.user_metadata.full_name;
       if (loginUser) {
         setValue(true);
-        localStorage.setItem('uid', loginUser.id);
-        setUid({uid: loginUser.id, fullName: fullName});
+        localStorage.setItem('user', JSON.stringify({ uid: loginUser.id, fullName }));
+        setUid({uid: loginUser.id, fullName});
       }
     }
     userUidFunc();
   }, []);
 
   useEffect(() => {
-    const savedUid = localStorage.getItem('uid');
+    const savedUid = localStorage.getItem('user');
     console.log(savedUid);
     if (savedUid) {
-      setUid({uid: savedUid, fullName: ""});
+      const parsedUid = JSON.parse(savedUid);
+      setUid(parsedUid);
     }
   }, []);
   
