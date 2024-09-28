@@ -1,3 +1,8 @@
+export interface UserType {
+  uid: string;
+  fullName: string;
+}
+
 export interface BottomMenuType {
   id: number;
   backurl: string;
@@ -95,7 +100,7 @@ export interface CommunityType {
 }
 
 export interface CommentType {
-  mainid:number;
+  mainid: number;
   id: number;
   uuid: string;
   content: string;

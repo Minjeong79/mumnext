@@ -53,7 +53,7 @@ export default function Cwrite() {
 
     handleimgSubmit();
   }, [selectedFile]);
-console.log(dataUid.uid)
+
   const handleimgDelete = () => {
     const parts = imageUrl.split("/");
     const lastParts = parts[parts.length - 1];
@@ -89,7 +89,7 @@ console.log(dataUid.uid)
       title: titleValue,
       content: textValue,
       imgurl: imageUrl,
-      username:dataUid.fullName
+      username: dataUid.fullName,
     };
     console.log(requestBody);
     try {

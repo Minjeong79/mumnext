@@ -1,5 +1,4 @@
 "use client";
-import { customAlphabet } from "nanoid";
 import { fetchCommentData, fetchCommunityData } from "@/lib/db";
 import { CommentType, CommunityType } from "@/lib/typs";
 import { useEffect, useState } from "react";
@@ -7,21 +6,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import Image from "next/image";
+import CommentPage from "../comment/Ccomment";
+import { customAlphabet } from "nanoid";
 
 export default function CommunityPage() {
   const pathname = usePathname();
   const parts = pathname.split("/");
   const lastParts = parts[parts.length - 1];
   const partId = Number(lastParts);
-
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
-
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
   const [data, setData] = useState<CommunityType[]>([]);
-  const [dataComment, setDataComment] = useState<CommentType[]>([]);
-  const [textValue, setTextValue] = useState("");
+  const [like, setLike] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,19 +29,12 @@ export default function CommunityPage() {
       }
     };
     fetchData();
-
-    const fetchComment = async () => {
-      const data = await fetchCommentData(partId);
-      if (data) {
-        setDataComment(data);
-      }
-    };
-    fetchComment();
   }, []);
 
   const handleEdit = () => {
     router.push(`/main/community/write/${lastParts}`);
   };
+
   const handleCancle = () => {
     window.confirm("삭제 할래 멈?");
     try {
@@ -57,25 +48,24 @@ export default function CommunityPage() {
     router.push(`/main/community`);
   };
 
-  const handleComent = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleLike = (mainid: number) => {
+    setLike(false);
     const requestBody = {
       mainid: numId,
-      id: partId,
-      uuid: dataUid,
-      username: dataUid,
-      content: textValue,
+      id: mainid,
+      uuid: dataUid.uid,
+      like: like,
     };
     try {
-      fetch("/api/comment-create", {
+      fetch("/api/community-like", {
         method: "POST",
         body: JSON.stringify(requestBody),
       });
-      setTextValue("");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(dataUid);
   return (
     <div>
       {data?.map((item, index) => (
@@ -92,8 +82,11 @@ export default function CommunityPage() {
               </div>
 
               <p>{item.content}</p>
+              <div style={{ background: "skyblue" }}>
+                <button onClick={() => handleLike(item.id)}>좋아요</button>
+              </div>
               <div>
-                {dataUid === item.uuid ? (
+                {dataUid.uid === item.uuid ? (
                   <div>
                     <button type="button" onClick={handleEdit}>
                       수정
@@ -110,43 +103,9 @@ export default function CommunityPage() {
           ) : (
             <></>
           )}
+          <CommentPage partId={partId} />
         </div>
       ))}
-      <div style={{ marginTop: "30px" }}>
-        <div style={{ background: "skblue" }}>
-          {dataComment.map((item) => (
-            <li key={item.mainid}>
-              {item.content}
-              /닉네임: {item.username}
-              {item.uuid === dataUid ? (
-                <>
-                {item.uuid}
-                  <button>수정</button>
-                  <button>삭제</button>
-                </>
-              ) : (
-                <>
-                 {item.uuid} / 
-                 {dataUid}
-                 
-                 </>
-              )}
-            </li>
-          ))}
-        </div>
-        <br />
-        <br />
-        <form onSubmit={handleComent} style={{ border: "1px solid #999" }}>
-          <textarea
-            name="content"
-            value={textValue}
-            onChange={(e) => setTextValue(e.target.value)}
-            placeholder="내용을 입력해주세요"
-            required
-          ></textarea>
-          <button type="submit">등록</button>
-        </form>
-      </div>
     </div>
   );
 }

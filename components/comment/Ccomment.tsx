@@ -1,0 +1,119 @@
+"use client";
+import { customAlphabet } from "nanoid";
+import { fetchCommentData } from "@/lib/db";
+import { CommentType, UserType } from "@/lib/typs";
+import { use, useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { LoginState } from "@/app/recoil/selectors";
+import CommentEdit from "./CcommentEdit";
+
+export default function CommentPage({ partId }: { partId: number }) {
+  const nanoid = customAlphabet("123456789", 9);
+  const numId = Number(nanoid());
+  const dataUid = useRecoilValue(LoginState);
+  const [dataComment, setDataComment] = useState<CommentType[]>([]);
+  const [textValue, setTextValue] = useState("");
+  const [editClick, setEditClick] = useState(0);
+
+  const handleComment = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const requestBody = {
+      mainid: numId,
+      id: partId,
+      uuid: dataUid.uid,
+      username: dataUid.fullName,
+      content: textValue,
+    };
+
+    try {
+      fetch("/api/comment-create", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+      });
+      setTextValue("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEditComment = (mainid: number) => {
+    setEditClick(mainid);
+  };
+
+  const handleDeleteComment = (mainid: number) => {
+    console.log(mainid);
+    try {
+      fetch("/api/comment-delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mainid }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const data = await fetchCommentData(partId);
+      if (data) {
+        setDataComment(data);
+      }
+    };
+    fetchComment();
+  }, [dataComment]);
+
+  const handleEditComplete = () => {
+    setEditClick(0);
+  };
+  return (
+    <div style={{ marginTop: "30px" }}>
+      <div style={{ background: "skblue" }}>
+        {dataComment.map((item) => (
+          <li key={item.mainid} style={{ marginTop: "30px" }}>
+            {item.mainid === editClick ? (
+              <CommentEdit
+                mainId={item.mainid}
+                content={item.content}
+                onEditComplete={handleEditComplete}
+              />
+            ) : (
+              <div>
+                {item.content}
+                /닉네임: {item.username}
+              </div>
+            )}
+
+            {item.uuid === dataUid.uid ? (
+              <div>
+                <button onClick={() => handleEditComment(item.mainid)}>
+                  수정
+                </button>
+
+                <button onClick={() => handleDeleteComment(item.mainid)}>
+                  삭제
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </li>
+        ))}
+      </div>
+      <br />
+      <br />
+      <form onSubmit={handleComment} style={{ border: "1px solid #999" }}>
+        <textarea
+          name="content"
+          value={textValue}
+          onChange={(e) => setTextValue(e.target.value)}
+          placeholder="내용을 입력해주세요"
+          required
+        ></textarea>
+        <button type="submit">등록</button>
+      </form>
+    </div>
+  );
+}

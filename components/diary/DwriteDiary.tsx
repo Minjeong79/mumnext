@@ -26,7 +26,7 @@ export default function WriteDiary() {
 
     const requestBody = {
       id: numId,
-      uuid: dataUid,
+      uuid: dataUid.uid,
       eat: eatTxt,
       pill: pillTxt,
       hospital: hospitalTxt,
@@ -39,7 +39,7 @@ export default function WriteDiary() {
         method: "POST",
         body: JSON.stringify(requestBody),
       });
-      router.push('/main/diary');
+      router.push("/main/diary");
     } catch (error) {
       console.log(error);
     }

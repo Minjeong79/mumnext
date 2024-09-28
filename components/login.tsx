@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import { LoginUserUid, supabase } from "@/lib/db";
-import { useRecoilState,useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { loginUid } from "@/app/recoil/atom";
 import { useRouter } from "next/navigation";
 import { LoginState } from "@/app/recoil/selectors";
@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [value, setValue] = useState(false);
   const dataUid = useRecoilValue(LoginState);
   // const session = useSession();
-  
+
   useEffect(() => {
     async function userUidFunc() {
       const loginUser: User | null = await LoginUserUid();
@@ -22,23 +22,13 @@ export default function LoginPage() {
       if (loginUser) {
         setValue(true);
         const userInfo = { uid: loginUser.id, fullName };
-        localStorage.setItem('user', JSON.stringify(userInfo));
+        localStorage.setItem("user", JSON.stringify(userInfo));
         setUid(userInfo);
       }
     }
     userUidFunc();
   }, [setUid]);
 
-  useEffect(() => {
-    const savedUid = localStorage.getItem('user');
-    console.log(savedUid);
-    if (savedUid) {
-      const parsedUid = JSON.parse(savedUid);
-      setUid(parsedUid);
-    }
-  }, [setUid]);
-  
- 
   async function signInWithKakao() {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
@@ -58,9 +48,11 @@ export default function LoginPage() {
 
   return (
     <section>
-
-      {dataUid.uid ? <Link href="/dogselect">강아지 선택하기</Link> : <button onClick={signInWithKakao}>카카오 로그인</button>}
-      
+      {dataUid.uid ? (
+        <Link href="/dogselect">강아지 선택하기</Link>
+      ) : (
+        <button onClick={signInWithKakao}>카카오 로그인</button>
+      )}
     </section>
   );
 }
