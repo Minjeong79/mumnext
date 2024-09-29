@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
+
+const withPWA = require('next-pwa')({
+    dest: 'public'
+})
+
+
 const nextConfig = {
-    images:{
-        domains:["trtwwyqzkqlqebdiiujp.supabase.co"]
+    reactStrictMode: false,
+    images: {
+        domains: ["trtwwyqzkqlqebdiiujp.supabase.co"]
     }
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);
