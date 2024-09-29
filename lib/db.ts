@@ -160,8 +160,32 @@ export async function fetchCommentData(id: number) {
     .from("communitycomment")
     .select("*")
     .eq("id", id);
-    if (error) {
-      throw error;
-    }
-    return data;
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+//좋아요 전체 조회
+export async function fetchAllLike(id: number) {
+  let { data, error } = await supabase
+    .from("communitylike")
+    .select("*")
+    .eq("id", id);
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
+//좋아요 true만 조회
+export async function fetchCommunityLike(id: number) {
+  let { data, error } = await supabase
+    .from("communitylike")
+    .select("*")
+    .eq("id", id)
+    .eq("like", true);
+  if (error) {
+    throw error;
+  }
+  return data;
 }

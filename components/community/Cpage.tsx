@@ -1,25 +1,30 @@
 "use client";
-import { fetchCommentData, fetchCommunityData } from "@/lib/db";
-import { CommentType, CommunityType } from "@/lib/typs";
+import {
+  fetchAllLike,
+  fetchCommentData,
+  fetchCommunityData,
+  fetchCommunityLike,
+} from "@/lib/db";
+import { CommentType, CommunityType, LikeType } from "@/lib/typs";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import Image from "next/image";
 import CommentPage from "../comment/Ccomment";
-import { customAlphabet } from "nanoid";
+import CommunityLike from "./Clike";
 
 export default function CommunityPage() {
   const pathname = usePathname();
   const parts = pathname.split("/");
   const lastParts = parts[parts.length - 1];
   const partId = Number(lastParts);
-  const nanoid = customAlphabet("123456789", 9);
-  const numId = Number(nanoid());
+
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
   const [data, setData] = useState<CommunityType[]>([]);
-  const [like, setLike] = useState(true);
+  const [likeList, setLikeList] = useState<LikeType[]>([]);
+  const [likeListAll, setLikeListAll] = useState<LikeType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +35,18 @@ export default function CommunityPage() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchLike = async () => {
+      const likeData = await fetchCommunityLike(partId);
+      const likeAllData = await fetchAllLike(partId);
+      if (likeData && likeAllData) {
+        setLikeList(likeData);
+        setLikeListAll(likeAllData);
+      }
+    };
+    fetchLike();
+  }, [likeList]);
 
   const handleEdit = () => {
     router.push(`/main/community/write/${lastParts}`);
@@ -48,24 +65,6 @@ export default function CommunityPage() {
     router.push(`/main/community`);
   };
 
-  const handleLike = (mainid: number) => {
-    setLike(false);
-    const requestBody = {
-      mainid: numId,
-      id: mainid,
-      uuid: dataUid.uid,
-      like: like,
-    };
-    try {
-      fetch("/api/community-like", {
-        method: "POST",
-        body: JSON.stringify(requestBody),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div>
       {data?.map((item, index) => (
@@ -82,9 +81,8 @@ export default function CommunityPage() {
               </div>
 
               <p>{item.content}</p>
-              <div style={{ background: "skyblue" }}>
-                <button onClick={() => handleLike(item.id)}>좋아요</button>
-              </div>
+              <CommunityLike id={item.id} likes={likeListAll} />
+              {likeList.length}
               <div>
                 {dataUid.uid === item.uuid ? (
                   <div>

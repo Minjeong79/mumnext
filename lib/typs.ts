@@ -107,3 +107,10 @@ export interface CommentType {
   username: string;
   date: Date;
 }
+
+export interface LikeType {
+  mainid: number;
+  id: number;
+  uuid: string;
+  like: boolean;
+}
