@@ -6,8 +6,12 @@ import { use, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import CommentEdit from "./CcommentEdit";
+import Head from "next/head";
+import PushNotificationManager from "../push/PushPage";
+import dynamic from "next/dynamic";
 
 export default function CommentPage({ partId }: { partId: number }) {
+  const PushNotificationManager = dynamic(() => import("../push/PushPage"), { ssr: false });
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
   const dataUid = useRecoilValue(LoginState);
@@ -68,11 +72,12 @@ export default function CommentPage({ partId }: { partId: number }) {
   const handleEditComplete = () => {
     setEditClick(0);
   };
+
   return (
-    <div style={{ marginTop: "30px" }}>
-      <div style={{ background: "skblue" }}>
+    <div>
+      <div>
         {dataComment.map((item) => (
-          <li key={item.mainid} style={{ marginTop: "30px" }}>
+          <li key={item.mainid}>
             {item.mainid === editClick ? (
               <CommentEdit
                 mainId={item.mainid}
@@ -103,8 +108,12 @@ export default function CommentPage({ partId }: { partId: number }) {
         ))}
       </div>
       <br />
-      <br />
-      <form onSubmit={handleComment} style={{ border: "1px solid #999" }}>
+      <br /> 
+     
+     
+      
+      <form onSubmit={handleComment} >
+      <PushNotificationManager textValue={textValue} />
         <textarea
           name="content"
           value={textValue}
