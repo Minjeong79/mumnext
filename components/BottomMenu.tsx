@@ -40,7 +40,7 @@ export default function BottomMenu() {
   }, []);
   return (
     <>
-      <div style={{ position: "absolute", bottom: "0px" }}>
+      <div>
         <ul
           style={{
             display: "flex",

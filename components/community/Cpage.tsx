@@ -36,17 +36,17 @@ export default function CommunityPage() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchLike = async () => {
-      const likeData = await fetchCommunityLike(partId);
-      const likeAllData = await fetchAllLike(partId);
-      if (likeData && likeAllData) {
-        setLikeList(likeData);
-        setLikeListAll(likeAllData);
-      }
-    };
-    fetchLike();
-  }, [likeList]);
+  // useEffect(() => {
+  //   const fetchLike = async () => {
+  //     const likeData = await fetchCommunityLike(partId);
+  //     const likeAllData = await fetchAllLike(partId);
+  //     if (likeData && likeAllData) {
+  //       setLikeList(likeData);
+  //       setLikeListAll(likeAllData);
+  //     }
+  //   };
+  //   fetchLike();
+  // }, [likeList]);
 
   const handleEdit = () => {
     router.push(`/main/community/write/${lastParts}`);

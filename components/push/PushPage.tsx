@@ -25,12 +25,13 @@ function urlBase64ToUint8Array(base64String: string) {
   }
 }
 
-function PushNotificationManager() {
+function PushNotificationManager({textValue} : {textValue:string;}) {
   const [isSupported, setIsSupported] = useState(false)
   const [subscription, setSubscription] = useState<PushSubscription | null>(null)
   const [message, setMessage] = useState('')
 
   useEffect(() => {
+    setMessage(textValue);
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       setIsSupported(true)
       registerServiceWorker()
@@ -66,7 +67,7 @@ function PushNotificationManager() {
       })
       setSubscription(sub)
       const subscriptionJson = sub.toJSON();
-      await subscribeUser(subscriptionJson)
+      await subscribeUser(subscriptionJson as any)
     } catch (error) {
       console.error('Failed to subscribe to push notifications:', error)
     }
@@ -123,7 +124,7 @@ function PushNotificationManager() {
           <button onClick={unsubscribeFromPush}>구독취소</button>
           <input
             type="text"
-            placeholder="Enter notification message"
+            placeholder="댓글 푸시 내용"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
