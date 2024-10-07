@@ -18,8 +18,17 @@ export default function CommentPage({ partId }: { partId: number }) {
   const [dataComment, setDataComment] = useState<CommentType[]>([]);
   const [textValue, setTextValue] = useState("");
   const [editClick, setEditClick] = useState(0);
+  const [boolValue, setBoolValue] =  useState(false);
 
-  const handleComment = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const fetchComment = async () => {
+    const data = await fetchCommentData(partId);
+    if (data ) {
+      setDataComment(data); // 새로운 댓글 데이터로 상태 업데이트
+    }
+  };
+
+  const handleComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const requestBody = {
       mainid: numId,
@@ -28,24 +37,33 @@ export default function CommentPage({ partId }: { partId: number }) {
       username: dataUid.fullName,
       content: textValue,
     };
-
+  
     try {
-      fetch("/api/comment-create", {
+      const response = await fetch("/api/comment-create", {
         method: "POST",
         body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-      setTextValue("");
+      
+      if (response.ok) {
+        setTextValue(""); 
+        fetchComment(); 
+      } else {
+        console.error("Failed to create comment", response);
+      }
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   const handleEditComment = (mainid: number) => {
     setEditClick(mainid);
   };
 
   const handleDeleteComment = (mainid: number) => {
-    console.log(mainid);
     try {
       fetch("/api/comment-delete", {
         method: "DELETE",
@@ -60,14 +78,8 @@ export default function CommentPage({ partId }: { partId: number }) {
   };
 
   useEffect(() => {
-    const fetchComment = async () => {
-      const data = await fetchCommentData(partId);
-      if (data) {
-        setDataComment(data);
-      }
-    };
     fetchComment();
-  }, [dataComment]);
+  }, []);
 
   const handleEditComplete = () => {
     setEditClick(0);
