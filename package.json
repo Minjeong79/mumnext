@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "dev-https": "next dev --experimental-https"
+    "dev-https": "node server.js"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
