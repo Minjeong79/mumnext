@@ -154,12 +154,35 @@ export async function fetchCommunityDataDetail(id: number) {
   return data;
 }
 
+//커뮤니티 유저 데이터 조회
+export async function fetchCommunityUserData(uuid:string){
+  let { data, error } = await supabase
+  .from('community')
+  .select("*")
+  .eq('uuid', uuid)
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
 //커뮤니티 댓글 조회
 export async function fetchCommentData(id: number) {
   let { data, error } = await supabase
     .from("communitycomment")
     .select("*")
     .eq("id", id);
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+//커뮤니티 유저 댓글 조회
+export async function fetchCommentUserData(uuid:string) {
+  let { data, error } = await supabase
+  .from('communitycomment')
+  .select("*")
+  .eq('uuid', uuid)
   if (error) {
     throw error;
   }
