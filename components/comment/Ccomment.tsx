@@ -18,8 +18,6 @@ export default function CommentPage({ partId }: { partId: number }) {
   const [dataComment, setDataComment] = useState<CommentType[]>([]);
   const [textValue, setTextValue] = useState("");
   const [editClick, setEditClick] = useState(0);
-  const [boolValue, setBoolValue] =  useState(false);
-
 
   const fetchComment = async () => {
     const data = await fetchCommentData(partId);

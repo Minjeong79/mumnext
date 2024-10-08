@@ -44,7 +44,7 @@ export default function TopMenu() {
     if (typeof window !== "undefined") {
       const script = document.createElement("script");
       script.src =
-        "http://dapi.kakao.com/v2/maps/sdk.js?appkey=843e559943bc29af86f736a7f1d33577&libraries=services&autoload=false";
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=843e559943bc29af86f736a7f1d33577&libraries=services&autoload=false";
       const { kakao } = window;
       console.log(kakao);
 
