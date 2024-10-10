@@ -117,6 +117,13 @@ export async function fetchDiaryNoIcons() {
   }
   return data;
 }
+
+//스토리 메인이미지 url
+export async function fetchMainStroageImg(url: string): Promise<string> {
+  const { data } = supabase.storage.from("profileimg").getPublicUrl(url);
+  return data.publicUrl;
+}
+
 //스토리지 이미지 url
 export async function fetchStroageImg(url: string): Promise<string> {
   const { data } = supabase.storage.from("communityimg").getPublicUrl(url);

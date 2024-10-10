@@ -79,13 +79,13 @@ export default function TopMenu() {
     <>
       <div>
         현재 위치 : {addr}
-        <ul>
+        {/* <ul>
           {data?.map((item: CityDataList, index: number) => (
             <li key={index}>
               {item.cityName} - {item.pm10Value}
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </>
   );
