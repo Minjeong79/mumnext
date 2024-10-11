@@ -1,13 +1,16 @@
-"use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { useRecoilValue } from "recoil";
+'use client'
+
 import { LoginState } from "@/app/recoil/selectors";
-import { fetchMainImg } from "@/lib/db";
 import { MainType } from "@/lib/typs";
-export default function MainImg() {
-  const dataUid = useRecoilValue(LoginState);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import Image from "next/image";
+import { fetchMainImg } from "@/lib/db";
+
+export default function MainImgEditPage(){
+    const dataUid = useRecoilValue(LoginState);
+
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageDataUrl, setImageDataUrl] = useState<MainType[]>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,14 +55,13 @@ export default function MainImg() {
     };
     fetchData();
   }, [imageDataUrl]);
-
-  return (
-    <div>
+  
+    return(
+        <div>
       <div>
         {imageDataUrl.map((item, index) => (
           <div key={index}>
-            {item.mainimg ===
-            "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
+           
               <div>
                 <input
                   type="file"
@@ -80,31 +82,13 @@ export default function MainImg() {
                   <button type="button">취소</button>
                 </div>
               </div>
-            ) : (
-             <><Image
-             src={item.mainimg}
-             width={40}
-             height={40}
-             alt="유저 프로필 이미지"
-           /> </>
-            )}
+        
 
-            <Image
-              src={item.dog}
-              width={40}
-              height={40}
-              alt="유저 선택한 강아지"
-            />
-            <Image
-              src={item.thema}
-              width={40}
-              height={40}
-              alt="유저 프로필 이미지"
-            />
+           
             <p>{item.name}</p>
           </div>
         ))}
       </div>
     </div>
-  );
+    )
 }

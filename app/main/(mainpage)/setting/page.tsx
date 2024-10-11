@@ -1,4 +1,5 @@
 import SettingCommentList from "@/components/setting/commentList";
+import UserDeletePage from "@/components/setting/UserDelete";
 import Link from "next/link";
 
 export default function SettingPage(){
@@ -12,6 +13,6 @@ export default function SettingPage(){
             <SettingCommentList/>
         </div>
        
-        <button>탈퇴 하기</button>
+       <UserDeletePage/>
     </>
 }

@@ -39,17 +39,6 @@ export async function POST(request: Request) {
         );
       }
 
-      if (data) {
-        return NextResponse.json({
-          message: "이미지 업로드 성공",
-          url: imgurl,
-        });
-      } else {
-        return NextResponse.json(
-          { error: "파일 업로드에 실패했습니다." },
-          { status: 500 }
-        );
-      }
     } catch (error) {
         console.log('스토리지 이미지 업로드 오류');
     }
