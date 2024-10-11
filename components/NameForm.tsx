@@ -21,7 +21,7 @@ export default function NameForm() {
         {
           uuid: dataUid.uid,
           dog: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${dogPick}.png`,
-          thema: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogSelect/${themaPick}.png`,
+          thema: `https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/dogThemaBg/${themaPick}.png`,
           name: name,
         },
       ]);

@@ -46,6 +46,14 @@ export interface Address {
   zip_code: string;
 }
 
+export interface MainType {
+  uuid: string;
+  dog:string;
+  thema:string;
+  name:string;
+  mainimg:string;
+}
+
 export interface ImgType {
   id: number;
   name: string;

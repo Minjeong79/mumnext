@@ -13,7 +13,7 @@ export const themaSelectState = selector({
   key: "themaSelectState",
   get: ({ get }) => {
     const value = get(themaSate);
-    return `thema${value}`;
+    return `thema_bg${value}`;
   },
 });
 

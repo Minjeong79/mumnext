@@ -118,6 +118,18 @@ export async function fetchDiaryNoIcons() {
   return data;
 }
 
+//메인 이미지 조회
+export async function fetchMainImg(uuid: string) {
+  let { data, error } = await supabase
+    .from("dogthemaname")
+    .select("*")
+    .eq("uuid", uuid);
+    if (error) {
+      throw error;
+    }
+    return data;
+}
+
 //스토리 메인이미지 url
 export async function fetchMainStroageImg(url: string): Promise<string> {
   const { data } = supabase.storage.from("profileimg").getPublicUrl(url);
@@ -162,11 +174,11 @@ export async function fetchCommunityDataDetail(id: number) {
 }
 
 //커뮤니티 유저 데이터 조회
-export async function fetchCommunityUserData(uuid:string){
+export async function fetchCommunityUserData(uuid: string) {
   let { data, error } = await supabase
-  .from('community')
-  .select("*")
-  .eq('uuid', uuid)
+    .from("community")
+    .select("*")
+    .eq("uuid", uuid);
   if (error) {
     throw error;
   }
@@ -185,11 +197,11 @@ export async function fetchCommentData(id: number) {
   return data;
 }
 //커뮤니티 유저 댓글 조회
-export async function fetchCommentUserData(uuid:string) {
+export async function fetchCommentUserData(uuid: string) {
   let { data, error } = await supabase
-  .from('communitycomment')
-  .select("*")
-  .eq('uuid', uuid)
+    .from("communitycomment")
+    .select("*")
+    .eq("uuid", uuid);
   if (error) {
     throw error;
   }
@@ -218,4 +230,11 @@ export async function fetchCommunityLike(id: number) {
     throw error;
   }
   return data;
+}
+
+//유저 탈퇴
+export async function userDelete(uuid:string) {
+  const { data, error } = await supabase.auth.admin.deleteUser(
+    uuid
+  )
 }
