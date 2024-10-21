@@ -38,9 +38,10 @@ export default function NameForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSumit}>
+    <div className="w-1/2 mx-auto">
+      <form onSubmit={handleSumit} className="flex gap-x-3">
         <input
+        className="w-full h-12 rounded-lg"
           type="text"
           name="textname"
           id="name"
@@ -48,7 +49,7 @@ export default function NameForm() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <button type="submit">등록</button>
+        <button type="submit" className="rounded-lg bg-slate-400 text-white w-28 h-12">등록</button>
       </form>
     </div>
   );

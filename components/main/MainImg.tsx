@@ -55,56 +55,62 @@ export default function MainImg() {
 
   return (
     <div>
-      <div>
-        {imageDataUrl.map((item, index) => (
-          <div key={index}>
-            {item.mainimg ===
-            "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
-              <div>
-                <input
-                  type="file"
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                  id="file-input"
-                />
-                <label htmlFor="file-input" style={{ cursor: "pointer" }}>
-                <Image
-                src={item.mainimg}
+      {imageDataUrl.map((item, index) => (
+        <div key={index}>
+          <div className="w-[70vw] relative">
+            <Image
+              layout="responsive"
+              src={item.thema}
+              width={80}
+              height={40}
+              alt="유저 테마 이미지"
+            />
+            <div className="absolute top-0 right-0 left-0">
+              {item.mainimg ===
+              "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
+                <div className="bg-[#D9D9D9] w-36 h-36 rounded-full mx-auto ">
+                  <input
+                    type="file"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="file-input"
+                  />
+                  <label htmlFor="file-input" className="cursor-pointer">
+                    <Image
+                      className="w-36 h-36 rounded-full mx-auto "
+                      src={item.mainimg}
+                      width={40}
+                      height={40}
+                      alt="유저 프로필 이미지"
+                    />
+                  </label>
+                  <div className="">
+                    <button type="submit">등록</button>
+                    <button type="button">취소</button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Image
+                    src={item.mainimg}
+                    width={40}
+                    height={40}
+                    alt="유저 프로필 이미지"
+                  />{" "}
+                </>
+              )}
+
+              <Image
+                src={item.dog}
                 width={40}
                 height={40}
-                alt="유저 프로필 이미지"
+                alt="유저 선택한 강아지"
               />
-                </label>
-                <div>
-                  <button type="submit">등록</button>
-                  <button type="button">취소</button>
-                </div>
-              </div>
-            ) : (
-             <><Image
-             src={item.mainimg}
-             width={40}
-             height={40}
-             alt="유저 프로필 이미지"
-           /> </>
-            )}
-
-            <Image
-              src={item.dog}
-              width={40}
-              height={40}
-              alt="유저 선택한 강아지"
-            />
-            <Image
-              src={item.thema}
-              width={40}
-              height={40}
-              alt="유저 프로필 이미지"
-            />
-            <p>{item.name}</p>
+              <p>{item.name}</p>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
