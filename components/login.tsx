@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [value, setValue] = useState(false);
   const [data, setData] = useState<MainType[]>([]);
   const dataUid = useRecoilValue(LoginState);
-
+  const router = useRouter();
   // const session = useSession();
 
   useEffect(() => {
@@ -35,8 +35,9 @@ export default function LoginPage() {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchMainImg(dataUid.uid);
-      if (data) {
-        setData(data);
+      const dataFind = data?.find((item) => item.uuid === dataUid.uid);
+      if (dataFind) {
+        router.push("/main");
       }
     }
     fetchData();
@@ -59,30 +60,38 @@ export default function LoginPage() {
     }
   }
 
-  console.log(data);
+  useEffect(() => {}, []);
   return (
-    <section>
-      <div>
-        {dataUid.uid ? (
-          <div>
-            <Link href="/dogselect">강아지 선택하기</Link>
+    <div className=" mt-6 mx-auto">
+      {dataUid.uid ? (
+        <div>
+          <Link
+            href="/dogselect"
+            className="bg-white w-72 h-10 rounded-lg p-4 px-5"
+          >
+            강아지 선택하기
+          </Link>
 
-            <div>
-              {data.map((item) => (
-                <div>
-                  {item.uuid === dataUid.uid ? (
-                    <div> 만든게 있어요</div>
-                  ) : (
-                    <div> 만든게 없어요</div>
-                  )}
-                </div>
-              ))}
-            </div>
+          <div>
+            {data.map((item) => (
+              <div>
+                {item.uuid === dataUid.uid ? (
+                  <div> 만든게 있어요</div>
+                ) : (
+                  <div> 만든게 없어요</div>
+                )}
+              </div>
+            ))}
           </div>
-        ) : (
-          <button onClick={signInWithKakao}>카카오 로그인</button>
-        )}
-      </div>
-    </section>
+        </div>
+      ) : (
+        <button
+          onClick={signInWithKakao}
+          className="bg-white w-72 h-10 rounded-lg"
+        >
+          카카오 로그인
+        </button>
+      )}
+    </div>
   );
 }

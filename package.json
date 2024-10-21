@@ -12,6 +12,7 @@
     "autoprefixer": "10.4.17",
     "axios": "^1.7.2",
     "geist": "^1.2.1",
+    "helmet": "^8.0.0",
     "nanoid": "^5.0.7",
     "next": "latest",
     "next-auth": "^5.0.0-beta.20",

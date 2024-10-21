@@ -16,6 +16,7 @@ interface ResultItem {
 }
 export default function TopMenu() {
   const [addr, setAddr] = useState("");
+  const [addrInfo, setAddrInfo] = useState<CityDataList | null>(null);
 
   const fetchData = async () => {
     try {
@@ -34,6 +35,7 @@ export default function TopMenu() {
       console.log(error);
     }
   };
+
   const { data, error } = useSWR("weatherData", fetchData);
 
   const geolocation = useGeolocation();
@@ -46,7 +48,6 @@ export default function TopMenu() {
       script.src =
         "https://dapi.kakao.com/v2/maps/sdk.js?appkey=843e559943bc29af86f736a7f1d33577&libraries=services&autoload=false";
       const { kakao } = window;
-      console.log(kakao);
 
       script.onload = () => {
         if (window.kakao && window.kakao.maps) {
@@ -73,20 +74,39 @@ export default function TopMenu() {
       };
       document.head.appendChild(script);
     }
+
   }, [latitude, longitude]);
 
+  useEffect(() => {
+    if (data && addr) {
+      const fetchDataPm = data.find(
+        (item: CityDataList) => item.cityName === addr
+      );
+      setAddrInfo(fetchDataPm || null);
+    }
+  }, [data, addr]);
+
+  
+
   return (
-    <>
+    <div className="">
+      현재 위치 : {addr}
       <div>
-        현재 위치 : {addr}
-        {/* <ul>
-          {data?.map((item: CityDataList, index: number) => (
+      {addrInfo ?
+       <div>
+         <p>City Name: {addrInfo.cityName}</p> 
+         <p>PM10 Value: {addrInfo.pm10Value}</p>
+       </div> : <>안나와요</>
+      }
+    
+      </div>
+      {/* <ul>
+          {addrInfo?.map((item: CityDataList, index: number) => (
             <li key={index}>
-              {item.cityName} - {item.pm10Value}
+              {item.cityName === addr ? <p>{item.pm10Value}</p> : <p>아니에요</p> }
             </li>
           ))}
         </ul> */}
-      </div>
-    </>
+    </div>
   );
 }

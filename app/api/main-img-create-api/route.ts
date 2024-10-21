@@ -5,8 +5,7 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const file = formData.get("file");
   const uid = formData.get("uid");
-  console.log(uid);
-  console.log(file, "-------------------------------------------------------");
+  const encodedFileName = encodeURIComponent((file as File).name);
   try {
     if (!file) {
       // 파일이 없는 경우
@@ -15,7 +14,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    const filePath = `profile/${(file as File).name}`;
+    const filePath = `profile/${encodedFileName}`;
     
    
    let imgurl = ""

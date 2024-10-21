@@ -39,15 +39,8 @@ export default function BottomMenu() {
     
   }, []);
   return (
-    <>
-      <div>
-        <ul
-          style={{
-            display: "flex",
-            background: "#999",
-            width: "100%",
-          }}
-        >
+      <div className="absolute bottom-0">
+        <ul className="flex">
           {bmenu.map((item, index) => (
             <li key={index}>
               <button onClick={() => imgClickhandle(item.menutext)}>
@@ -57,6 +50,5 @@ export default function BottomMenu() {
           ))}
         </ul>
       </div>
-    </>
   );
 }

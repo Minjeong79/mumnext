@@ -17,12 +17,12 @@ export default function HeaderPage() {
     }
   }
   return (
-    <header>
+    <div className="text-right">
       {dataUid.uid ? (
-        <button onClick={signOut}>로그아웃</button>
+        <button onClick={signOut} className="bg-white rounded-lg text-xs p-1 ">로그아웃</button>
       ) : (
-        <button>로그인</button>
+        <button className="bg-white rounded-lg text-xs p-1 ">로그인</button>
       )}
-    </header>
+    </div>
   );
 }

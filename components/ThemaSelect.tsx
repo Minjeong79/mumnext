@@ -13,9 +13,11 @@ interface UrlType {
 export default function ThemaSelectImg() {
   const [themaPick, setThemaPick] = useState<UrlType[]>([]);
   const [themaPickState, setThemaPickState] = useRecoilState(themaSate);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const imgClickhandle = async (index: number) => {
     setThemaPickState(index);
+    setSelectedIndex(index);
   };
 
   useEffect(() => {
@@ -29,19 +31,22 @@ export default function ThemaSelectImg() {
   }, []);
 
   return (
-    <>
-      <h1>테마 선택 화면111</h1>
-      <div>
-        <ul style={{ display: "flex" }}>
+    <div >
+     <h3 className="text-2xl pb-3 text-center">테마 선택</h3>
+     <ul className="flex justify-evenly">
           {themaPick.map((item, index) => (
-            <li key={index}>
+          <li
+          key={index}
+          className={`rounded-lg p-2 ${
+            selectedIndex === index ? "bg-[#EB934B]" : "hover:bg-[#EB934B]"
+          }`}
+        >
               <button id="" onClick={() => imgClickhandle(index)}>
-                <Image src={item.url} width={200} height={200} alt="테마 이미지" />
+                <Image src={item.url} width={160} height={160} alt="테마 이미지" />
               </button>
             </li>
           ))}
         </ul>
-      </div>
-    </>
+    </div>
   );
 }

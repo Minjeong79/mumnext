@@ -13,7 +13,7 @@ export default async function LoginPageImg() {
     <div>
      
      
-      <Image src={fetcher} width={258} height={276} alt="강아지 이미지" />
+      <Image className=" mx-auto" src={fetcher} width={258} height={276} alt="강아지 이미지" />
     </div>
   );
 }

@@ -6,10 +6,12 @@ import Link from "next/link";
 
 export default function DogSelectPage() {
   return (
-    <>
+    <div className="bg-[#FFEAD9] min-h-screen w-screen flex justify-center items-center">
+     <div className="w-7/12 flex flex-col justify-center gap-y-8">
       <DogSelectImg />
       <ThemaSelectImg />
       <NameForm/>
-    </>
+      </div>
+    </div>
   );
 }
