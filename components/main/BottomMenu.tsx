@@ -40,7 +40,7 @@ export default function BottomMenu() {
   }, []);
   return (
       <div className="absolute bottom-0">
-        <ul className="flex">
+        <ul className="flex justify-around">
           {bmenu.map((item, index) => (
             <li key={index}>
               <button onClick={() => imgClickhandle(item.menutext)}>

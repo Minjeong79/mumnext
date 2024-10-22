@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import { fetchMainImg } from "@/lib/db";
 import { MainType } from "@/lib/typs";
+import TopMenu from "./TopMenu";
 export default function MainImg() {
   const dataUid = useRecoilValue(LoginState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -57,56 +58,62 @@ export default function MainImg() {
     <div>
       {imageDataUrl.map((item, index) => (
         <div key={index}>
-          <div className="w-[70vw] relative">
+          <div className="relative">
             <Image
-              layout="responsive"
+              layout="fixed"
               src={item.thema}
-              width={80}
-              height={40}
+              width={800}
+              height={800}
               alt="유저 테마 이미지"
             />
+            <TopMenu dogName={item.name} />
             <div className="absolute top-0 right-0 left-0">
-              {item.mainimg ===
-              "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
-                <div className="bg-[#D9D9D9] w-36 h-36 rounded-full mx-auto ">
-                  <input
-                    type="file"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="file-input"
-                  />
-                  <label htmlFor="file-input" className="cursor-pointer">
+              <div className="flex flex-col items-center justify-around min-h-screen">
+                {item.mainimg ===
+                "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
+                  <div className="flex items-center">
+                   <div className="w-36 h-36 rounded-full mx-auto ">
+                    <input
+                        type="file"
+                        onChange={handleFileChange}
+                        className="hidden"
+                        id="file-input"
+                      />
+                      <label htmlFor="file-input" className="cursor-pointer">
+                        <Image
+                          className="w-36 h-36 rounded-full mx-auto "
+                          src={item.mainimg}
+                          width={40}
+                          height={40}
+                          alt="유저 프로필 이미지"
+                        />
+                      </label>
+                    </div>
+                    <div className="flex flex-col">
+                      <button type="submit">등록</button>
+                      <button type="button">취소</button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
                     <Image
-                      className="w-36 h-36 rounded-full mx-auto "
                       src={item.mainimg}
                       width={40}
                       height={40}
                       alt="유저 프로필 이미지"
-                    />
-                  </label>
-                  <div className="">
-                    <button type="submit">등록</button>
-                    <button type="button">취소</button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <Image
-                    src={item.mainimg}
-                    width={40}
-                    height={40}
-                    alt="유저 프로필 이미지"
-                  />{" "}
-                </>
-              )}
+                    />{" "}
+                  </>
+                )}
 
-              <Image
-                src={item.dog}
-                width={40}
-                height={40}
-                alt="유저 선택한 강아지"
-              />
-              <p>{item.name}</p>
+                <div className="">
+                  <Image
+                    src={item.dog}
+                    width={220}
+                    height={220}
+                    alt="유저 선택한 강아지"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
