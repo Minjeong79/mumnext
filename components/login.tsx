@@ -33,14 +33,18 @@ export default function LoginPage() {
   }, [setUid]);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await fetchMainImg(dataUid.uid);
-      const dataFind = data?.find((item) => item.uuid === dataUid.uid);
-      if (dataFind) {
-        router.push("/main");
+    if(dataUid){
+      async function fetchData() {
+        const data = await fetchMainImg(dataUid.uid);
+        const dataFind = data?.find((item) => item.uuid === dataUid.uid);
+        if (dataFind) {
+          router.push("/main");
+        }
       }
+      fetchData();
     }
-    fetchData();
+   
+   
   }, [value]);
 
   async function signInWithKakao() {
@@ -72,17 +76,6 @@ export default function LoginPage() {
             강아지 선택하기
           </Link>
 
-          <div>
-            {data.map((item) => (
-              <div>
-                {item.uuid === dataUid.uid ? (
-                  <div> 만든게 있어요</div>
-                ) : (
-                  <div> 만든게 없어요</div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       ) : (
         <button
