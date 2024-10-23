@@ -13,16 +13,16 @@ export default function BottomMenu() {
   const imgClickhandle = async (item: string) => {
     switch (item) {
       case "일기":
-        router.push("/main/diary");
+        router.push("/diary");
         break;
       case "산책":
-        router.push("/main/map");
+        router.push("/map");
         break;
       case "커뮤":
-        router.push("/main/community");
+        router.push("community");
         break;
       case "설정":
-        router.push("/main/setting");
+        router.push("/setting");
         break;
       default:
         console.log("완료");
@@ -39,12 +39,12 @@ export default function BottomMenu() {
     
   }, []);
   return (
-      <div className="absolute bottom-0">
+      <div className="absolute bottom-0 w-full">
         <ul className="flex justify-around">
           {bmenu.map((item, index) => (
             <li key={index}>
               <button onClick={() => imgClickhandle(item.menutext)}>
-                <Image src={item.backurl} width={150} height={150} alt="메뉴 아이콘" />
+                <Image src={item.backurl} width={130} height={130} alt="메뉴 아이콘" />
               </button>
             </li>
           ))}

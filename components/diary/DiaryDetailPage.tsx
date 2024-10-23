@@ -13,24 +13,25 @@ export default function DiaryDetailPage() {
   const dataUid = useRecoilValue(LoginState);
   const pathname = usePathname();
   const router = useRouter();
-  const pathId = Number(pathname.split("/")[3]);
+  const pathId = Number(pathname.split("/")[2]);
   const [data, setData] = useState<DataType[] | null>([]);
   const [dataIcons, setDataIcons] = useState<IconType[]>([]);
 
   const handleUpdate = () => {
-    router.push(`/main/diary/write/${pathId}`);
+    router.push(`/diary/write/${pathId}`);
   };
   const handelCancle = () => {
     window.confirm("작성 취소 멈?");
-    router.push("/main/diary");
+    router.push("/diary");
   };
 
-
+  console.log(pathId);
   useEffect(() => {
     const handleAllData = async () => {
       try {
         const fetchData = await fetchDiaryData();
         const fetchDataIcons = await fetchDiaryNoIcons();
+       
         setData(fetchData);
         if (fetchDataIcons !== null) {
           setDataIcons(fetchDataIcons);
@@ -159,7 +160,7 @@ export default function DiaryDetailPage() {
                 )}
               </div>
               <div>{item.content}</div>
-              {item.uuid === dataUid ? (
+              {item.uuid === dataUid.uid ? (
                 <div style={{ marginTop: "100px" }}>
                   <div>
                     <button type="button" onClick={handleUpdate}>

@@ -6,6 +6,7 @@ import { LoginState } from "@/app/recoil/selectors";
 import { fetchMainImg } from "@/lib/db";
 import { MainType } from "@/lib/typs";
 import TopMenu from "./TopMenu";
+import HeaderPage from "../Header";
 export default function MainImg() {
   const dataUid = useRecoilValue(LoginState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -55,7 +56,7 @@ export default function MainImg() {
   }, [imageDataUrl]);
 
   return (
-    <div>
+    <div className="min-w-[800px] min-h-[800px]">
       {imageDataUrl.map((item, index) => (
         <div key={index}>
           <div className="relative">

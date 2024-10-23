@@ -14,8 +14,8 @@ export default function RootLayout({
 }) {
  
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
+    <html lang="kr" className={GeistSans.className}>
+      <body className="">
       <Head>
         <link rel="manifest" href="/manifest.ts" />
       </Head>
