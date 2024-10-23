@@ -6,7 +6,7 @@ export default async function Index() {
   return (
     <div className="bg-[#FFEAD9] min-h-screen w-screen flex justify-center items-center">
     <div className="w-7/12 flex flex-col justify-center">
-      <HeaderPage />
+      <HeaderPage/>
       <LoginPageImg />
       <LoginPage />
     </div>

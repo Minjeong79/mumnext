@@ -39,7 +39,7 @@ export default function WriteDiary() {
         method: "POST",
         body: JSON.stringify(requestBody),
       });
-      router.push("/main/diary");
+      router.push("/diary");
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +47,7 @@ export default function WriteDiary() {
 
   const handelCancle = () => {
     window.confirm("작성 취소 멈?");
-    router.push("/main/diary");
+    router.push("/diary");
   };
   useEffect(() => {
     const newArr = Object.values(pickWIcon);
@@ -56,25 +56,25 @@ export default function WriteDiary() {
   }, [pickWIcon]);
   console.log(dataUid);
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        {/* <Suspense fallback={<p>로딩중...</p>}> */}
-        <Dwritebottomicon />
-        {/* </Suspense> */}
+    <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
+      {/* <Suspense fallback={<p>로딩중...</p>}> */}
+      <Dwritebottomicon />
+      {/* </Suspense> */}
 
-        <textarea
-          name="content"
-          className="resize-none border border-[#F5BB8C] w-full h-40 p-2.5 bg-transparent outline-none rounded-md"
-          value={textValue}
-          placeholder="내용을 입력해주세요"
-          onChange={(e) => setTextValue(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit">등록</button>
-        <button type="button" onClick={handelCancle}>
+      <textarea
+        name="content"
+        className="resize-none border border-[#F5BB8C] w-full h-56 p-2.5 bg-transparent outline-none rounded-md"
+        value={textValue}
+        placeholder="내용을 입력해주세요"
+        onChange={(e) => setTextValue(e.target.value)}
+        required
+      ></textarea>
+      <div className="flex justify-center">
+        <button type="submit" className="ml-4 p-3 px-6 bg-orange-600 text-white rounded-lg text-base">등록</button>
+        <button type="button" className="ml-4 p-3 px-6 bg-neutral-400 text-white rounded-lg text-base" onClick={handelCancle}>
           취소
         </button>
-      </form>
-    </>
+      </div>
+    </form>
   );
 }

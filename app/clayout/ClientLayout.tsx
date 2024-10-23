@@ -8,7 +8,7 @@ export default function ClientLayout({children}: {
     return (
         <RecoilRoot>
             <InitializeUidState/>
-            <main className="min-h-screen flex flex-col items-center">
+            <main className="min-h-screen bg-[#FFEAD9]">
             {children}
             </main>
         </RecoilRoot>

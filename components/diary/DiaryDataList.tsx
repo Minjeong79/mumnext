@@ -18,7 +18,7 @@ export default function DiaryDataList({
   const [data, setData] = useState<DataType[]>([]);
 
   const handleAllData = () => {
-    const uidData = fetchData.filter((item) => item.uuid === dataUid);
+    const uidData = fetchData.filter((item) => item.uuid === dataUid.uid);
     setData(uidData);
   };
   
@@ -27,32 +27,28 @@ export default function DiaryDataList({
     handleAllData();
   }, [dataUid]);
 
+  console.log(data.length)
   return (
-    <div>
-      <ul style={{width:'100vw'}}>
+    <section>
+      <ul className={`h-[480px] w-10/12 mx-auto flex flex-col gap-y-3 ${data.length >= 8 ? "overflow-y-scroll" : "" } `}>
         {data.map((item) => (
-          <li
-            key={item.id}
-            style={{
-              width: "100%",
-              height: "50px",
-              background: "#999",
-              margin: "10px 0px",
-              
-            }}
-          >
-            <Link href={`/main/diary/${item.id}`} style={{display:"flex"}}>
+          <li key={item.id} className="bg-white rounded-lg p-3 items-center">
+            <Link href={`/diary/${item.id}`} className="flex justify-between">
                 <div>{item.content}</div>
-                <div>{item.walk ? <Image src={item.walkicon} width={30} height={30} alt={item.walk}/> : <></>}</div>
-                <div>{item.eat ? <Image src={item.eaticon} width={30} height={30} alt={item.eat}/> : <></>}</div>
-                <div>{item.pill ? <Image src={item.pillicon} width={30} height={30} alt={item.pill}/> : <></>}</div>
-                <div>{item.hospital ? <Image src={item.hospitalicon} width={30} height={30} alt={item.hospital}/> : <></>}</div>
-                <div>{item.beauty ? <Image src={item.beautyicon} width={30} height={30} alt={item.beauty}/> : <></>}</div>
+                <div className="flex gap-x-1">
+                  <div>{item.walk ? <Image src={item.walkicon} width={30} height={30} alt={item.walk}/> : <></>}</div>
+                  <div>{item.eat ? <Image src={item.eaticon} width={30} height={30} alt={item.eat}/> : <></>}</div>
+                  <div>{item.pill ? <Image src={item.pillicon} width={30} height={30} alt={item.pill}/> : <></>}</div>
+                  <div>{item.hospital ? <Image src={item.hospitalicon} width={30} height={30} alt={item.hospital}/> : <></>}</div>
+                  <div>{item.beauty ? <Image src={item.beautyicon} width={30} height={30} alt={item.beauty}/> : <></>}</div>
+                </div>
+               
                
             </Link>
           </li>
         ))}
-      </ul>
-    </div>
+      </ul> 
+     
+    </section>
   );
 }
