@@ -17,21 +17,16 @@ export default function DiaryDetailPage() {
   const [data, setData] = useState<DataType[] | null>([]);
   const [dataIcons, setDataIcons] = useState<IconType[]>([]);
 
-  const handleUpdate = () => {
-    router.push(`/diary/write/${pathId}`);
-  };
   const handelCancle = () => {
-    window.confirm("작성 취소 멈?");
     router.push("/diary");
   };
 
-  console.log(pathId);
   useEffect(() => {
     const handleAllData = async () => {
       try {
-        const fetchData = await fetchDiaryData();
+        const fetchData = await fetchDiaryData(dataUid.uid);
         const fetchDataIcons = await fetchDiaryNoIcons();
-       
+
         setData(fetchData);
         if (fetchDataIcons !== null) {
           setDataIcons(fetchDataIcons);
@@ -41,7 +36,6 @@ export default function DiaryDetailPage() {
       }
     };
     handleAllData();
-
   }, []);
   useEffect(() => {}, [dataIcons]);
 
@@ -50,140 +44,125 @@ export default function DiaryDetailPage() {
       {data!.map((item) => (
         <div key={item.id}>
           {item.id === pathId ? (
-            <section>
-              <h3>{item.date.toString()}</h3>
-              <div style={{ display: "flex" }}>
+            <section className="flex flex-col gap-y-14 w-3/4 mx-auto">
+              <h3 className="text-xl text-center p-9">
+                {item.date.toString()}
+              </h3>
+              <div className="flex w-full justify-evenly">
                 {item.walk ? (
                   <div>
                     <Image
                       src={item.walkimg}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={item.walk}
                     />
-                    <p>{item.walk}</p>
+                    <p className="text-center">{item.walk}</p>
                   </div>
                 ) : (
                   <div>
                     <Image
                       src={dataIcons[0].imgurl}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={dataIcons[0].name}
                     />
-                    <p>{dataIcons[0].name}</p>
+                    <p className="text-center">{dataIcons[0].name}</p>
                   </div>
                 )}
                 {item.eat ? (
                   <div>
                     <Image
                       src={item.eatimg}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={item.eat}
                     />
-                    <p>{item.eat}</p>
+                    <p className="text-center">{item.eat}</p>
                   </div>
                 ) : (
                   <div>
                     <Image
                       src={dataIcons[1].imgurl}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={dataIcons[1].name}
                     />
-                    <p>{dataIcons[1].name}</p>
+                    <p className="text-center">{dataIcons[1].name}</p>
                   </div>
                 )}
                 {item.pill ? (
                   <div>
                     <Image
                       src={item.pillimg}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={item.pill}
                     />
-                    <p>{item.pill}</p>
+                    <p className="text-center">{item.pill}</p>
                   </div>
                 ) : (
                   <div>
                     <Image
                       src={dataIcons[2].imgurl}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={dataIcons[2].name}
                     />
-                    <p>{dataIcons[2].name}</p>
+                    <p className="text-center">{dataIcons[2].name}</p>
                   </div>
                 )}
                 {item.hospital ? (
                   <div>
                     <Image
                       src={item.hospitalimg}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={item.hospital}
                     />
-                    <p>{item.hospital}</p>
+                    <p className="text-center">{item.hospital}</p>
                   </div>
                 ) : (
                   <div>
                     <Image
                       src={dataIcons[3].imgurl}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={dataIcons[3].name}
                     />
-                    <p>{dataIcons[3].name}</p>
+                    <p className="text-center">{dataIcons[3].name}</p>
                   </div>
                 )}
                 {item.beauty ? (
                   <div>
                     <Image
                       src={item.beautyimg}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={item.beauty}
                     />
-                    <p>{item.beauty}</p>
+                    <p className="text-center">{item.beauty}</p>
                   </div>
                 ) : (
                   <div>
                     <Image
                       src={dataIcons[4].imgurl}
-                      width={50}
-                      height={50}
+                      width={80}
+                      height={80}
                       alt={dataIcons[4].name}
                     />
-                    <p>{dataIcons[4].name}</p>
+                    <p className="text-center">{dataIcons[4].name}</p>
                   </div>
                 )}
               </div>
-              <div>{item.content}</div>
-              {item.uuid === dataUid.uid ? (
-                <div style={{ marginTop: "100px" }}>
-                  <div>
-                    <button type="button" onClick={handleUpdate}>
-                      수정
-                    </button>
-                    <button type="button" onClick={handelCancle}>
-                      취소
-                    </button>
-                  </div>
-                  <div>
-                    <DeleteDiaryButton pathId={pathId}/>
-                    <button type="button" >
-                      목록
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <button type="button" >
-                    목록222
-                  </button>
+              <section className="w-full">
+                <div className=" h-48 p-2.5 overflow-y-scroll mb-3">{item.content}</div>
+                {item.uuid === dataUid.uid && (
+                <div className="flex w-full">
+                    <DeleteDiaryButton pathId={pathId} />
                 </div>
               )}
+              </section>
             </section>
           ) : (
             <></>

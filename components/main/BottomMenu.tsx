@@ -44,7 +44,7 @@ export default function BottomMenu() {
           {bmenu.map((item, index) => (
             <li key={index}>
               <button onClick={() => imgClickhandle(item.menutext)}>
-                <Image src={item.backurl} width={130} height={130} alt="메뉴 아이콘" />
+                <Image src={item.backurl} width={110} height={130} alt="메뉴 아이콘" />
               </button>
             </li>
           ))}

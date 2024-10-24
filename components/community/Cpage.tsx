@@ -49,7 +49,7 @@ export default function CommunityPage() {
   // }, [likeList]);
 
   const handleEdit = () => {
-    router.push(`/main/community/write/${lastParts}`);
+    router.push(`/community/write/${lastParts}`);
   };
 
   const handleCancle = () => {
@@ -62,7 +62,7 @@ export default function CommunityPage() {
     } catch (error) {
       console.log(error);
     }
-    router.push(`/main/community`);
+    router.push(`/community`);
   };
 
   return (

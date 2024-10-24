@@ -1,29 +1,21 @@
 "use client";
 import { writeIconState } from "@/app/recoil/atom";
+import { LoginState } from "@/app/recoil/selectors";
 import { fetchDiaryData, fetchDiaryDate, fetchWriteiconBottom } from "@/lib/db";
 import { DataType, ImgType } from "@/lib/typs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
   const [data, setData] = useState<DataType[] | null>([]);
-  const [pickIcon, setPickIcon] = useState<string[]>([]);
-  const [icon, setIcon] = useRecoilState<string[]>(writeIconState);
-
-  const hadleClick = (itemName: string) => {
-    console.log(itemName);
-    setPickIcon((oldIcons) => [...oldIcons, itemName]);
-  };
-
-  useEffect(() => {
-    setIcon(pickIcon);
-  }, [pickIcon]);
+  const dataUid = useRecoilValue(LoginState);
+  
 
   useEffect(() => {
     const handleAllData = async () => {
       try {
-        const fetchData = await fetchDiaryData();
+        const fetchData = await fetchDiaryData(dataUid.uid);
         setData(fetchData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -33,65 +25,55 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
   }, []);
 
   return (
-    <ul style={{ display: "flex" }}>
-      {data!.map((item) =>
+    <ul>
+      {data!.map((item, index) =>
         item.id === pathId ? (
           <li key={item.id}>
-            <ul style={{ display: "flex" }}>
-              <li>
-                <button onClick={() => hadleClick("산책")} type="button">
+             <ul className="flex w-full justify-evenly">
+              <li key={`${item.id}-walk`} >
                   <Image
                     src={item.walkimg}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     alt={item.walk}
                   />
-                  {item.walk}
-                </button>
+                  <p className="text-center">{item.walk}</p>
               </li>
-              <li>
-                <button onClick={() => hadleClick("밥")} type="button">
+              <li key={`${item.id}-eat`}>
                   <Image
                     src={item.eatimg}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     alt={item.eat}
                   />
-                  {item.eat}
-                </button>
+                  <p className="text-center">{item.eat}</p>
               </li>
-              <li>
-                <button onClick={() => hadleClick("약")} type="button">
+              <li key={`${item.id}-pill`}>
                   <Image
                     src={item.pillimg}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     alt={item.pill}
                   />
-                  {item.pill}
-                </button>
+                  <p className="text-center">{item.pill}</p>
               </li>
-              <li>
-                <button onClick={() => hadleClick("병원")} type="button">
+              <li key={`${item.id}-hos`}>
                   <Image
                     src={item.hospitalimg}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     alt={item.hospital}
                   />
-                  {item.hospital}
-                </button>
+                 <p className="text-center">{item.hospital}</p>
               </li>
-              <li>
-                <button onClick={() => hadleClick("미용")} type="button">
+              <li key={`${item.id}-b`}>
                   <Image
                     src={item.beautyimg}
-                    width={100}
-                    height={100}
+                    width={80}
+                    height={80}
                     alt={item.beauty}
                   />
-                  {item.beauty}
-                </button>
+                 <p className="text-center">{item.beauty}</p>
               </li>
             </ul>
           </li>
