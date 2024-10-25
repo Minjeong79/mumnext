@@ -65,58 +65,61 @@ export default function SearchCommunity() {
         </div>
       </div>
       {searchData.length > 0 ? (
-        <ul className="flex flex-wrap gap-4 justify-center">
-          {searchData.map((item) => (
-            <li
-              key={item.id}
-              className="w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
-            >
-              <Link href={`/community/${item.id}`} className="block">
-                <div className="w-full">
-                  {item.imgurl ? (
-                    <Image
-                      src={item.imgurl}
-                      layout="responsive"
-                      width={100}
-                      height={100}
-                      alt="이미지"
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <p>{item.title}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="max-h-96 p-2.5 overflow-y-scroll mb-3">
+          <ul className="flex flex-wrap gap-4 justify-center">
+            {searchData.map((item) => (
+              <li
+                key={item.id}
+                className="w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
+              >
+                <Link href={`/community/${item.id}`} className="block">
+                  <div className="w-full">
+                    {item.imgurl ? (
+                      <Image
+                        src={item.imgurl}
+                        layout="responsive"
+                        width={100}
+                        height={100}
+                        alt="이미지"
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  <p>{item.title}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : (
-        <ul className="flex flex-wrap gap-4 justify-center">
-          {dataCommunity?.map((item) => (
-            <li
-              key={item.id}
-              className="w-44 h-auto bg-white p-3.5 rounded-lg h-full"
-            >
-              <Link href={`/community/${item.id}`} className="block">
-                
-                <div className="w-full">
-                  {item.imgurl ? (
-                    <Image
-                      src={item.imgurl}
-                      layout="responsive"
-                      width={100}
-                      height={100}
-                      alt="이미지"
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <p>{item.title}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="max-h-96 p-2.5 overflow-y-scroll mb-3">
+          <ul className="flex flex-wrap gap-4 justify-center">
+            {dataCommunity?.map((item) => (
+              <li
+                key={item.id}
+                className="w-44 h-auto bg-white p-3.5 rounded-lg h-full"
+              >
+                <Link href={`/community/${item.id}`} className="block">
+                  <div className="w-full">
+                    {item.imgurl ? (
+                      <Image
+                        src={item.imgurl}
+                        layout="responsive"
+                        width={100}
+                        height={100}
+                        alt="이미지"
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  <p>{item.title}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </section>
   );

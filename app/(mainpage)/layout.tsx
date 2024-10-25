@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <HeaderPage />
       </div>
       {children}
-      <BottomMenu />
+      {/* <BottomMenu /> */}
       {/* <Suspense fallback={<div>Loading..</div>}>
            
         </Suspense> */}

@@ -145,7 +145,7 @@ export default function Cwrite() {
           className="hidden"
           id="file-input"
         />
-        <label htmlFor="file-input" style={{ cursor: "pointer" }}>
+        <label htmlFor="file-input" >
           <Image
             src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload.png"
             width={30}

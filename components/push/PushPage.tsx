@@ -1,13 +1,11 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { subscribeUser, unsubscribeUser } from '../../app/actions'
+import { useState, useEffect } from "react";
+import { subscribeUser, unsubscribeUser } from "../../app/actions";
 
 function urlBase64ToUint8Array(base64String: string) {
-  const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')  
-    .replace(/_/g, '/');
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
 
   try {
     // Base64 디코딩
@@ -25,88 +23,98 @@ function urlBase64ToUint8Array(base64String: string) {
   }
 }
 
-function PushNotificationManager({textValue} : {textValue:string;}) {
-  const [isSupported, setIsSupported] = useState(false)
-  const [subscription, setSubscription] = useState<PushSubscription | null>(null)
-  const [message, setMessage] = useState('')
+function PushNotificationManager({
+  textValue,
+  click,
+}: {
+  textValue: string;
+  click: boolean;
+}) {
+  const [isSupported, setIsSupported] = useState(false);
+  const [subscription, setSubscription] = useState<PushSubscription | null>(
+    null
+  );
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setMessage(textValue);
-    if ('serviceWorker' in navigator && 'PushManager' in window) {
-      setIsSupported(true)
-      registerServiceWorker()
+    if ("serviceWorker" in navigator && "PushManager" in window) {
+      setIsSupported(true);
+      registerServiceWorker();
     }
 
     async function registerServiceWorker() {
       try {
-        const registration = await navigator.serviceWorker.register('/sw.js', {
-          scope: '/',
-          updateViaCache: 'none',
-        })
-        const sub = await registration.pushManager.getSubscription()
-        setSubscription(sub)
+        const registration = await navigator.serviceWorker.register("/sw.js", {
+          scope: "/",
+          updateViaCache: "none",
+        });
+        const sub = await registration.pushManager.getSubscription();
+        setSubscription(sub);
       } catch (error) {
-        console.error('Service worker registration failed:', error)
+        console.error("Service worker registration failed:", error);
       }
     }
-    
-  }, [])
+  }, []);
 
   async function subscribeToPush() {
     try {
-      const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+      const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
       if (!vapidPublicKey) {
-        console.error('VAPID public key is missing!')
-        return
+        console.error("VAPID public key is missing!");
+        return;
       }
 
-      const registration = await navigator.serviceWorker.ready
+      const registration = await navigator.serviceWorker.ready;
       const sub = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
-      })
-      setSubscription(sub)
+      });
+      setSubscription(sub);
       const subscriptionJson = sub.toJSON();
-      await subscribeUser(subscriptionJson as any)
+      await subscribeUser(subscriptionJson as any);
     } catch (error) {
-      console.error('Failed to subscribe to push notifications:', error)
+      console.error("Failed to subscribe to push notifications:", error);
     }
   }
 
   async function unsubscribeFromPush() {
     try {
-      await subscription?.unsubscribe()
-      setSubscription(null)
-      await unsubscribeUser()
+      await subscription?.unsubscribe();
+      setSubscription(null);
+      await unsubscribeUser();
     } catch (error) {
-      console.error('Failed to unsubscribe from push notifications:', error)
+      console.error("Failed to unsubscribe from push notifications:", error);
     }
   }
 
-  async function sendNotification() {
+  async function sendNotification(click: boolean) {
     const registration = await navigator.serviceWorker.getRegistration();
 
     // registration이 undefined가 아닐 경우에만 showNotification 호출
-    if (Notification.permission === 'granted' && registration) {
+    if (Notification.permission === "granted" && registration) {
       showNotification(message, registration);
     } else {
-      if (Notification.permission !== 'denied') {
+      if (Notification.permission !== "denied") {
         const permission = await Notification.requestPermission();
-        if (permission === 'granted' && registration) {
+        if (permission === "granted" && registration) {
           showNotification(message, registration);
         }
       }
     }
-}
+  }
 
-  const showNotification = (body: string, registration: ServiceWorkerRegistration) => {
-    const title = 'What PWA Can Do Today';
+  const showNotification = (
+    body: string,
+    registration: ServiceWorkerRegistration
+  ) => {
+    const title = "What PWA Can Do Today";
     const payload = {
       body,
-      icon: '/icon/1.png',
+      icon: "/icon/1.png",
     };
 
-    if ('showNotification' in registration) {
+    if ("showNotification" in registration) {
       registration.showNotification(title, payload);
     } else {
       new Notification(title, payload);
@@ -114,29 +122,30 @@ function PushNotificationManager({textValue} : {textValue:string;}) {
   };
 
   if (!isSupported) {
-    return <p>Push notifications are not supported in this browser.</p>
+    return <p>Push notifications are not supported in this browser.</p>;
   }
 
   return (
     <div>
       {subscription ? (
         <>
-          <button onClick={unsubscribeFromPush}>구독취소</button>
-          <input
-            type="text"
-            placeholder="댓글 푸시 내용"
-            value={message}
+          <button onClick={unsubscribeFromPush}>댓글 알림 취소</button>
+          <textarea
+            name="content"
+            className="w-full p-2.5 outline-none rounded-md"
+            placeholder="내용을 입력해주세요"
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
-          <button onClick={sendNotification}>Send Test</button>
+          <button onClick={() => sendNotification(click)}>Send Test</button>
         </>
       ) : (
         <>
-          <button onClick={subscribeToPush}>구독</button>
+          <button onClick={subscribeToPush}>댓글 알림</button>
         </>
       )}
     </div>
-  )
+  );
 }
 
-export default PushNotificationManager
+export default PushNotificationManager;

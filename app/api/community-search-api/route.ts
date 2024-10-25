@@ -7,7 +7,8 @@ export async function POST(request: Request) {
   let { data, error } = await supabase
     .from("community")
     .select("*")
-    .ilike("content", `%${search}%`);
+    .ilike("content", `%${search}%`)
+    .ilike("title", `%${search}%`)
   if (error) {
     return NextResponse.json({ message: "검색 실패", error }, { status: 500 });
   }

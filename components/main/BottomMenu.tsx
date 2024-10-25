@@ -19,7 +19,7 @@ export default function BottomMenu() {
         router.push("/map");
         break;
       case "커뮤":
-        router.push("community");
+        router.push("/community");
         break;
       case "설정":
         router.push("/setting");
