@@ -18,6 +18,7 @@ export default function WriteDiary() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    window.confirm("작성 할래 멈?");
     const walkTxt = value.filter((item) => item === "산책")[0] ?? "";
     const eatTxt = value.filter((item) => item === "밥")[0] ?? "";
     const pillTxt = value.filter((item) => item === "약")[0] ?? "";
@@ -54,7 +55,7 @@ export default function WriteDiary() {
     const setArr = new Set(newArr);
     setValue(Array.from(setArr));
   }, [pickWIcon]);
-  console.log(dataUid);
+  
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
       {/* <Suspense fallback={<p>로딩중...</p>}> */}
@@ -69,9 +70,9 @@ export default function WriteDiary() {
         onChange={(e) => setTextValue(e.target.value)}
         required
       ></textarea>
-      <div className="flex justify-center">
-        <button type="submit" className="ml-4 p-3 px-6 bg-orange-600 text-white rounded-lg text-base">등록</button>
-        <button type="button" className="ml-4 p-3 px-6 bg-neutral-400 text-white rounded-lg text-base" onClick={handelCancle}>
+      <div className="flex justify-center gap-x-2">
+        <button type="submit" className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base">등록</button>
+        <button type="button" className="p-2 px-6 bg-neutral-400 text-white rounded-lg text-base" onClick={handelCancle}>
           취소
         </button>
       </div>

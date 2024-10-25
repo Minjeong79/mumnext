@@ -16,7 +16,7 @@ import Deditwritebottomicon from "./Dediticon";
 export default function EditWriteDiary() {
   //수정 id
   const pathname = usePathname();
-  const pathId = Number(pathname.split("/")[4]);
+  const pathId = Number(pathname.split("/")[3]);
 
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
@@ -28,6 +28,7 @@ export default function EditWriteDiary() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    window.confirm("등록 할래 멈?");
     const requestBody = {
       id: pathId,
       content: textValue,
@@ -37,16 +38,15 @@ export default function EditWriteDiary() {
         method: "PUT",
         body: JSON.stringify(requestBody),
       });
-      router.push("/main/diary");
+      router.push("/diary");
     } catch (error) {
       console.error("수정 못 함:", error);
     }
-  
   };
 
   const handelCancle = () => {
     window.confirm("작성 취소 멈?");
-    router.push("/main/diary");
+    router.push("/diary");
   };
   useEffect(() => {
     const newArr = Object.values(pickWIcon);
@@ -57,7 +57,7 @@ export default function EditWriteDiary() {
   useEffect(() => {
     const handleAllData = async () => {
       try {
-        const fetchData = await fetchDiaryData();
+        const fetchData = await fetchDiaryData(dataUid.uid);
         setData(fetchData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -65,13 +65,15 @@ export default function EditWriteDiary() {
     };
     handleAllData();
   }, []);
+  
   useEffect(() => {}, [dataIcons]);
+
   return (
     <div>
-      <h3>날짜</h3>
-      {data?.map((item) =>
+      
+      {data!.map((item) =>
         item.id === pathId ? (
-          <form onSubmit={handleSubmit} key={item.id}>
+          <form onSubmit={handleSubmit} key={item.id} className="flex flex-col gap-y-6">
             {/* <Suspense fallback={<p>로딩중...</p>}> */}
             <Deditwritebottomicon pathId={pathId} />
             {/* </Suspense> */}
@@ -83,10 +85,21 @@ export default function EditWriteDiary() {
               onChange={(e) => setTextValue(e.target.value)}
               required
             ></textarea>
-            <button type="submit">등록999</button>
-            <button type="button" onClick={handelCancle}>
-              취소
-            </button>
+            <div className="flex justify-center gap-x-2">
+              <button
+                type="submit"
+                className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base"
+              >
+                등록
+              </button>
+              <button
+                type="button"
+                className="p-2 px-6 bg-neutral-400 text-white rounded-lg text-base"
+                onClick={handelCancle}
+              >
+                취소
+              </button>
+            </div>
           </form>
         ) : null
       )}

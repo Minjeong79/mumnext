@@ -23,8 +23,6 @@ export default function CommunityPage() {
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
   const [data, setData] = useState<CommunityType[]>([]);
-  const [likeList, setLikeList] = useState<LikeType[]>([]);
-  const [likeListAll, setLikeListAll] = useState<LikeType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,23 +34,11 @@ export default function CommunityPage() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchLike = async () => {
-  //     const likeData = await fetchCommunityLike(partId);
-  //     const likeAllData = await fetchAllLike(partId);
-  //     if (likeData && likeAllData) {
-  //       setLikeList(likeData);
-  //       setLikeListAll(likeAllData);
-  //     }
-  //   };
-  //   fetchLike();
-  // }, [likeList]);
-
   const handleEdit = () => {
-    router.push(`/main/community/write/${lastParts}`);
+    router.push(`/community/write/${lastParts}`);
   };
 
-  const handleCancle = () => {
+  const handledelete = () => {
     window.confirm("삭제 할래 멈?");
     try {
       fetch("/api/community-delete-api", {
@@ -62,48 +48,70 @@ export default function CommunityPage() {
     } catch (error) {
       console.log(error);
     }
-    router.push(`/main/community`);
+    router.push(`/community`);
   };
 
   return (
-    <div>
+    <section className="w-3/4 mx-auto">
       {data?.map((item, index) => (
         <div key={index}>
-          {item.id === partId ? (
-            <div>
-              <h3>{item.title}</h3>
+          {item.id === partId && (
+            <div className="flex flex-col gap-y-4">
+              <h3 className="text-xl text-center p-9">
+                {item.date.toString()}
+              </h3>
               <div>
-                {item.imgurl ? (
-                  <Image src={item.imgurl} width={250} height={250} alt="img" />
-                ) : (
-                  <div></div>
-                )}
+                <span className="text-xs">제목</span>
+                <h3 className="text-xl p-2.5 border-b">{item.title}</h3>
               </div>
 
-              <p>{item.content}</p>
-              <CommunityLike id={item.id} likes={likeListAll} />
-              {likeList.length}
+              <div className="border-b">
+                <span className=" text-xs">내용</span>
+                <div className=" h-48 p-2.5 overflow-y-scroll mb-3">
+                  {item.imgurl ? (
+                    <div className="w-full">
+                      <Image
+                        src={item.imgurl}
+                        width={250}
+                        height={250}
+                        alt="img"
+                      />
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                  <p>{item.content}</p>
+                </div>
+              </div>
+              <CommunityLike id={item.id} />
+
               <div>
                 {dataUid.uid === item.uuid ? (
-                  <div>
-                    <button type="button" onClick={handleEdit}>
+                  <div className="flex justify-center gap-x-2">
+                    <button
+                      type="button"
+                      className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base"
+                      onClick={handleEdit}
+                    >
                       수정
                     </button>
-                    <button type="button" onClick={handleCancle}>
+                    <button
+                      type="button"
+                      className="p-2 px-6 bg-neutral-400 text-white rounded-lg text-base"
+                      onClick={handledelete}
+                    >
                       삭제
                     </button>
                   </div>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>
-          ) : (
-            <></>
           )}
-          <CommentPage partId={partId} />
         </div>
       ))}
-    </div>
+       <CommentPage partId={partId} />
+    </section>
   );
 }

@@ -11,23 +11,27 @@ import PushNotificationManager from "../push/PushPage";
 import dynamic from "next/dynamic";
 
 export default function CommentPage({ partId }: { partId: number }) {
-  const PushNotificationManager = dynamic(() => import("../push/PushPage"), { ssr: false });
+  const PushNotificationManager = dynamic(() => import("../push/PushPage"), {
+    ssr: false,
+  });
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
   const dataUid = useRecoilValue(LoginState);
   const [dataComment, setDataComment] = useState<CommentType[]>([]);
   const [textValue, setTextValue] = useState("");
   const [editClick, setEditClick] = useState(0);
+  const [click, serClick] = useState(false);
 
   const fetchComment = async () => {
     const data = await fetchCommentData(partId);
-    if (data ) {
+    if (data) {
       setDataComment(data); // 새로운 댓글 데이터로 상태 업데이트
     }
   };
 
   const handleComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    serClick(true);
     const requestBody = {
       mainid: numId,
       id: partId,
@@ -35,7 +39,7 @@ export default function CommentPage({ partId }: { partId: number }) {
       username: dataUid.fullName,
       content: textValue,
     };
-  
+
     try {
       const response = await fetch("/api/comment-create", {
         method: "POST",
@@ -44,10 +48,10 @@ export default function CommentPage({ partId }: { partId: number }) {
           "Content-Type": "application/json",
         },
       });
-      
+
       if (response.ok) {
-        setTextValue(""); 
-        fetchComment(); 
+        setTextValue("");
+        fetchComment();
       } else {
         console.error("Failed to create comment", response);
       }
@@ -55,7 +59,6 @@ export default function CommentPage({ partId }: { partId: number }) {
       console.log(error);
     }
   };
-  
 
   const handleEditComment = (mainid: number) => {
     setEditClick(mainid);
@@ -117,21 +120,21 @@ export default function CommentPage({ partId }: { partId: number }) {
           </li>
         ))}
       </div>
-      <br />
-      <br /> 
-     
-     
-      
-      <form onSubmit={handleComment} >
-      <PushNotificationManager textValue={textValue} />
-        <textarea
-          name="content"
-          value={textValue}
-          onChange={(e) => setTextValue(e.target.value)}
-          placeholder="내용을 입력해주세요"
-          required
-        ></textarea>
-        <button type="submit">등록</button>
+
+      <form onSubmit={handleComment} className="mt-7 ">
+        <div className="flex hidden">
+          <textarea
+            name="content"
+            className="w-full p-2.5 outline-none rounded-md"
+            value={textValue}
+            onChange={(e) => setTextValue(e.target.value)}
+            placeholder="내용을 입력해주세요"
+            required
+          ></textarea>
+          
+        </div>
+
+        <PushNotificationManager textValue={textValue} click={click} />
       </form>
     </div>
   );

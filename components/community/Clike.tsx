@@ -4,19 +4,16 @@ import { customAlphabet } from "nanoid";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import { LikeType } from "@/lib/typs";
-import { fetchCommunityLike } from "@/lib/db";
+import { fetchAllLike, fetchCommunityLike } from "@/lib/db";
 
-export default function CommunityLike({
-  id,
-  likes,
-}: {
-  id: number;
-  likes: LikeType[];
-}) {
+export default function CommunityLike({ id }: { id: number }) {
   const dataUid = useRecoilValue(LoginState);
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
 
+  const [likeList, setLikeList] = useState<LikeType[]>([]);
+  const [likeListAll, setLikeListAll] = useState<LikeType[]>([]);
+  
   const handleLike = (id: number) => {
     const requestBody = {
       mainid: numId,
@@ -25,10 +22,7 @@ export default function CommunityLike({
       like: true,
     };
 
-    console.log(dataUid.uid);
-    console.log(likes);
-    const userLikeUid = likes?.find((item) => item.uuid === dataUid.uid);
-    console.log(userLikeUid);
+    const userLikeUid = likeListAll?.find((item) => item.uuid === dataUid.uid);
     if (userLikeUid) {
       const requestBodyEdit = {
         mainid: userLikeUid.mainid,
@@ -45,7 +39,6 @@ export default function CommunityLike({
         console.log(error);
       }
     } else {
-      console.log(111111111);
       try {
         fetch("/api/community-like", {
           method: "POST",
@@ -57,16 +50,23 @@ export default function CommunityLike({
     }
   };
 
+  
+  useEffect(() => {
+    const fetchLike = async () => {
+      const likeData = await fetchCommunityLike(id);
+      const likeAllData = await fetchAllLike(id);
+      if (likeData && likeAllData) {
+        setLikeList(likeData);
+        setLikeListAll(likeAllData);
+      }
+    };
+    fetchLike();
+  }, [likeList]);
+
   return (
-    <div>
-      <ul>
-        {likes.map((item) => (
-          <li key={item.mainid}>{item.id}</li>
-        ))}
-      </ul>
-      <div style={{ background: "skyblue" }}>
-        <button onClick={() => handleLike(id)}>좋아요</button>
-      </div>
+    <div className="flex gap-x-2">
+      <button onClick={() => handleLike(id)}>좋아요</button>
+      <p>{likeList.length}</p>
     </div>
   );
 }

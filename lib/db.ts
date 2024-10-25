@@ -84,8 +84,8 @@ export function dateFunc() {
   return dateString;
 }
 //일기 데이터 조회
-export async function fetchDiaryData() {
-  let { data, error } = await supabase.from("zwritedb").select("*");
+export async function fetchDiaryData(uuid:string) {
+  let { data, error } = await supabase.from("zwritedb").select("*") .eq("uuid", uuid);
   if (error) {
     throw error;
   }
