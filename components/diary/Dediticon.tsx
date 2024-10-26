@@ -10,7 +10,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
   const [data, setData] = useState<DataType[] | null>([]);
   const dataUid = useRecoilValue(LoginState);
-  
 
   useEffect(() => {
     const handleAllData = async () => {
@@ -29,51 +28,51 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
       {data!.map((item, index) =>
         item.id === pathId ? (
           <li key={item.id}>
-             <ul className="flex w-full justify-evenly">
-              <li key={`${item.id}-walk`} >
-                  <Image
-                    src={item.walkimg}
-                    width={80}
-                    height={80}
-                    alt={item.walk}
-                  />
-                  <p className="text-center">{item.walk}</p>
+            <ul className="flex w-full justify-evenly">
+              <li key={`${item.id}-walk`}>
+                <Image
+                  src={item.walkimg}
+                  width={70}
+                  height={70}
+                  alt={item.walk}
+                />
+                <p className="text-center mt-2.5">{item.walk}</p>
               </li>
               <li key={`${item.id}-eat`}>
-                  <Image
-                    src={item.eatimg}
-                    width={80}
-                    height={80}
-                    alt={item.eat}
-                  />
-                  <p className="text-center">{item.eat}</p>
+                <Image
+                  src={item.eatimg}
+                  width={70}
+                  height={70}
+                  alt={item.eat}
+                />
+                <p className="text-center mt-2.5">{item.eat}</p>
               </li>
               <li key={`${item.id}-pill`}>
-                  <Image
-                    src={item.pillimg}
-                    width={80}
-                    height={80}
-                    alt={item.pill}
-                  />
-                  <p className="text-center">{item.pill}</p>
+                <Image
+                  src={item.pillimg}
+                  width={70}
+                  height={70}
+                  alt={item.pill}
+                />
+                <p className="text-center mt-2.5">{item.pill}</p>
               </li>
               <li key={`${item.id}-hos`}>
-                  <Image
-                    src={item.hospitalimg}
-                    width={80}
-                    height={80}
-                    alt={item.hospital}
-                  />
-                 <p className="text-center">{item.hospital}</p>
+                <Image
+                  src={item.hospitalimg}
+                  width={70}
+                  height={70}
+                  alt={item.hospital}
+                />
+                <p className="text-center mt-2.5">{item.hospital}</p>
               </li>
               <li key={`${item.id}-b`}>
-                  <Image
-                    src={item.beautyimg}
-                    width={80}
-                    height={80}
-                    alt={item.beauty}
-                  />
-                 <p className="text-center">{item.beauty}</p>
+                <Image
+                  src={item.beautyimg}
+                  width={70}
+                  height={70}
+                  alt={item.beauty}
+                />
+                <p className="text-center mt-2.5">{item.beauty}</p>
               </li>
             </ul>
           </li>

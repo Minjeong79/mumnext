@@ -37,14 +37,14 @@ export default function DeleteDiaryButton({ pathId }: { pathId: number }) {
   return (
     <div className="w-full flex gap-x-2 justify-center">
       <button
-        className="p-2 px-6 bg-[#FD943F] text-white rounded-lg text-base"
+        className="p-1.5 px-5 bg-[#FD943F] text-white rounded-lg text-base"
         type="button"
         onClick={handleUpdate}
       >
         수정
       </button>
       <button
-        className="p-2 px-6 bg-[#D9D9D9] rounded-lg text-base"
+        className="p-1.5 px-5 bg-slate-400 text-white rounded-lg text-base"
         type="button"
         onClick={handleDelete}
       >

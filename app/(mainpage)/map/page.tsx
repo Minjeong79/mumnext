@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-
+import Image from "next/image";
 interface Position {
   lat: number;
   lng: number;
@@ -121,19 +121,25 @@ const MapPage = () => {
       <div className="flex flex-col justify-center items-center mt-6 gap-y-12">
         <h3>검색어를 자세 하게 입력 해주세요</h3>
         <form onSubmit={handleKeywordSubmit} className="flex gap-3">
-          <input
-            type="text"
-            value={keywordTxt}
-            onChange={(e) => setKeyWordTxt(e.target.value)}
-            placeholder="장소를 검색하세요"
-            className="p-2 rounded-lg invalid:border-pink-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-          />
-          <button
-            type="submit"
-            className="bg-[#FD943F] text-white rounded-lg px-4 py-2"
-          >
-            검색
-          </button>
+          <div className="mx-auto bg-white rounded-full h-10 overflow-hidden">
+            <div className="flex items-center">
+              <input
+                className="h-10 outline-none w-full pl-3 "
+                type="text"
+                value={keywordTxt}
+                onChange={(e) => setKeyWordTxt(e.target.value)}
+                placeholder="장소를 검색하세요"
+              />
+              <button type="submit" className="pr-3">
+                <Image
+                  src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/search.png"
+                  width={30}
+                  height={30}
+                  alt="검색 아이콘"
+                />
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

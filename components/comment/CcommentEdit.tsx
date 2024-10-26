@@ -31,18 +31,33 @@ export default function CommentEdit({
   };
 
   return (
-    <form onSubmit={handleComment} style={{ border: "1px solid #999" }}>
-      <textarea
-        name="content"
-        defaultValue={content}
-        onChange={(e) => setTextValue(e.target.value)}
-        placeholder="내용을 입력해주세요"
-        required
-      ></textarea>
-      <button type="submit">등록</button>
-      <button type="button" onClick={onEditComplete}>
-        취소
-      </button>
+    <form onSubmit={handleComment} className="border">
+      <div className="flex gap-2.5">
+        <textarea
+          name="content"
+          className="resize-none w-full p-2 outline-none rounded-md"
+          defaultValue={content}
+          onChange={(e) => setTextValue(e.target.value)}
+          placeholder="내용을 입력해주세요"
+          maxLength={50}
+          required
+        ></textarea>
+        <div className="flex flex-col">
+          <button
+            type="submit"
+            className="w-16 py-1 px-4 bg-orange-600 text-white text-base"
+          >
+            등록
+          </button>
+          <button
+            type="button"
+            className="w-16 py-1 px-4 bg-neutral-400 text-white text-base"
+            onClick={onEditComplete}
+          >
+            취소
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

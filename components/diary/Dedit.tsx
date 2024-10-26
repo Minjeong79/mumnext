@@ -65,22 +65,25 @@ export default function EditWriteDiary() {
     };
     handleAllData();
   }, []);
-  
+
   useEffect(() => {}, [dataIcons]);
 
   return (
     <div>
-      
       {data!.map((item) =>
         item.id === pathId ? (
-          <form onSubmit={handleSubmit} key={item.id} className="flex flex-col gap-y-6">
+          <form
+            onSubmit={handleSubmit}
+            key={item.id}
+            className="flex flex-col gap-y-6"
+          >
             {/* <Suspense fallback={<p>로딩중...</p>}> */}
             <Deditwritebottomicon pathId={pathId} />
             {/* </Suspense> */}
 
             <textarea
               name="content"
-              className="resize-none border border-[#F5BB8C] w-full h-40 p-2.5 bg-transparent outline-none rounded-md"
+              className="resize-none border border-[#F5BB8C] w-full h-56 p-2.5 bg-transparent outline-none rounded-md"
               defaultValue={item.content}
               onChange={(e) => setTextValue(e.target.value)}
               required

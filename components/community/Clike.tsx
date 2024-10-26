@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import { LikeType } from "@/lib/typs";
 import { fetchAllLike, fetchCommunityLike } from "@/lib/db";
+import Image from "next/image";
 
 export default function CommunityLike({ id }: { id: number }) {
   const dataUid = useRecoilValue(LoginState);
@@ -13,7 +14,7 @@ export default function CommunityLike({ id }: { id: number }) {
 
   const [likeList, setLikeList] = useState<LikeType[]>([]);
   const [likeListAll, setLikeListAll] = useState<LikeType[]>([]);
-  
+
   const handleLike = (id: number) => {
     const requestBody = {
       mainid: numId,
@@ -50,7 +51,6 @@ export default function CommunityLike({ id }: { id: number }) {
     }
   };
 
-  
   useEffect(() => {
     const fetchLike = async () => {
       const likeData = await fetchCommunityLike(id);
@@ -65,7 +65,14 @@ export default function CommunityLike({ id }: { id: number }) {
 
   return (
     <div className="flex gap-x-2">
-      <button onClick={() => handleLike(id)}>좋아요</button>
+      <button onClick={() => handleLike(id)}>
+        <Image
+          src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/like-icon.png"
+          width={20}
+          height={20}
+          alt=""
+        />
+      </button>
       <p>{likeList.length}</p>
     </div>
   );

@@ -24,6 +24,9 @@ export default function BottomMenu() {
       case "설정":
         router.push("/setting");
         break;
+      case "메인":
+        router.push("/main");
+        break;
       default:
         console.log("완료");
     }
@@ -36,19 +39,24 @@ export default function BottomMenu() {
       }
     }
     urlList();
-    
   }, []);
   return (
-      <div className="absolute bottom-0 w-full">
-        <ul className="flex justify-around">
-          {bmenu.map((item, index) => (
-            <li key={index}>
-              <button onClick={() => imgClickhandle(item.menutext)}>
-                <Image src={item.backurl} width={110} height={130} alt="메뉴 아이콘" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="absolute bottom-0 w-full m-auto flex justify-center">
+      <ul className="flex gap-5">
+        {bmenu.map((item, index) => (
+          <li key={index}>
+            <button onClick={() => imgClickhandle(item.menutext)}>
+              <Image
+                src={item.backurl}
+                width={80}
+                height={80}
+                alt="메뉴 아이콘"
+              />
+            </button>
+            <p className="text-center text-sm">{item.menutext}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

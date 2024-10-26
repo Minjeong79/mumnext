@@ -55,7 +55,7 @@ export default function WriteDiary() {
     const setArr = new Set(newArr);
     setValue(Array.from(setArr));
   }, [pickWIcon]);
-  
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
       {/* <Suspense fallback={<p>로딩중...</p>}> */}
@@ -71,8 +71,17 @@ export default function WriteDiary() {
         required
       ></textarea>
       <div className="flex justify-center gap-x-2">
-        <button type="submit" className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base">등록</button>
-        <button type="button" className="p-2 px-6 bg-neutral-400 text-white rounded-lg text-base" onClick={handelCancle}>
+        <button
+          type="submit"
+          className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base"
+        >
+          등록
+        </button>
+        <button
+          type="button"
+          className="p-2 px-6 bg-slate-400 text-white rounded-lg text-base"
+          onClick={handelCancle}
+        >
           취소
         </button>
       </div>

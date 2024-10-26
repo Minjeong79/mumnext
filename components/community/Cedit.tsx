@@ -47,7 +47,6 @@ export default function CeditPage() {
       .then((data) => {
         console.log(data.message);
         setImageUrl("");
-        // router.push(`/main/diary`);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -117,10 +116,10 @@ export default function CeditPage() {
   };
   return (
     <form onSubmit={handleComSubmit} className="flex flex-col gap-y-4">
-     <h3 className="text-xl text-center p-9">수정</h3>
+      <h3 className="text-xl text-center p-9">수정</h3>
       <div>
         <input
-        className="border border-[#F5BB8C] w-full p-2.5 bg-transparent outline-none rounded-md"
+          className="border border-[#F5BB8C] w-full p-2.5 bg-transparent outline-none rounded-md"
           type="text"
           name="title"
           defaultValue={cData[0]?.title}
