@@ -84,8 +84,11 @@ export function dateFunc() {
   return dateString;
 }
 //일기 데이터 조회
-export async function fetchDiaryData(uuid:string) {
-  let { data, error } = await supabase.from("zwritedb").select("*") .eq("uuid", uuid);
+export async function fetchDiaryData(uuid: string) {
+  let { data, error } = await supabase
+    .from("zwritedb")
+    .select("*")
+    .eq("uuid", uuid);
   if (error) {
     throw error;
   }
@@ -124,10 +127,20 @@ export async function fetchMainImg(uuid: string) {
     .from("dogthemaname")
     .select("*")
     .eq("uuid", uuid);
-    if (error) {
-      throw error;
-    }
-    return data;
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+export async function fetchUserMainImg(uuid: string) {
+  let { data, error } = await supabase
+    .from("dogthemaname")
+    .select("mainimg")
+    .eq("uuid", uuid);
+  if (error) {
+    throw error;
+  }
+  return data;
 }
 
 //스토리 메인이미지 url
@@ -233,8 +246,6 @@ export async function fetchCommunityLike(id: number) {
 }
 
 //유저 탈퇴
-export async function userDelete(uuid:string) {
-  const { data, error } = await supabase.auth.admin.deleteUser(
-    uuid
-  )
+export async function userDelete(uuid: string) {
+  const { data, error } = await supabase.auth.admin.deleteUser(uuid);
 }

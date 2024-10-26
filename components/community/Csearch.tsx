@@ -1,6 +1,5 @@
 "use client";
 import { CommunityType } from "@/lib/typs";
-import CommunityList from "./Clist";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchCommunityData } from "@/lib/db";
@@ -41,7 +40,8 @@ export default function SearchCommunity() {
       }
     };
     fetchDatas();
-  }, []);
+  }, [dataCommunity]);
+
   return (
     <section className="w-10/12 mx-auto flex flex-col gap-y-6">
       <div className="w-2/3 mx-auto bg-white rounded-full h-10 overflow-hidden">

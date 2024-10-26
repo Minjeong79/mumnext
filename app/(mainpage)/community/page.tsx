@@ -1,4 +1,3 @@
-import CommunityList from "@/components/community/Clist";
 import SearchCommunity from "@/components/community/Csearch";
 import Link from "next/link";
 

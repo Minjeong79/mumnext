@@ -69,25 +69,27 @@ export default function MainImg() {
             />
             <TopMenu dogName={item.name} />
             <div className="absolute top-0 right-0 left-0">
-              <div className="flex flex-col items-center justify-around min-h-screen">
+              <div className="flex flex-col items-center justify-around min-h-screen relative">
                 {item.mainimg ===
-                "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/test.PNG" ? (
-                  <div className="flex items-center">
-                   <div className="w-36 h-36 rounded-full mx-auto ">
-                    <input
+                "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload-img.png" ? (
+                  <div className="flex items-center absolute top-20">
+                    <div className="w-36 h-36 rounded-full mx-auto ">
+                      <input
                         type="file"
                         onChange={handleFileChange}
                         className="hidden"
                         id="file-input"
                       />
-                      <label htmlFor="file-input" className="cursor-pointer">
-                        <Image
-                          className="w-36 h-36 rounded-full mx-auto "
-                          src={item.mainimg}
-                          width={40}
-                          height={40}
-                          alt="유저 프로필 이미지"
-                        />
+                      <label htmlFor="file-input" className="cursor-pointer ">
+                        <div className="w-36 h-36 mx-auto rounded-full">
+                          <Image
+                            className="w-full"
+                            src={item.mainimg}
+                            width={140}
+                            height={140}
+                            alt="유저 프로필 이미지"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div className="flex flex-col">
@@ -96,14 +98,17 @@ export default function MainImg() {
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <Image
-                      src={item.mainimg}
-                      width={40}
-                      height={40}
-                      alt="유저 프로필 이미지"
-                    />{" "}
-                  </>
+                  <div className="flex items-center absolute top-20">
+                    <div className="w-36 h-36 mx-auto rounded-full overflow-hidden">
+                      <Image
+                        className="w-full"
+                        src={item.mainimg}
+                        width={140}
+                        height={140}
+                        alt="유저 프로필 이미지"
+                      />
+                    </div>
+                  </div>
                 )}
 
                 <div className="">

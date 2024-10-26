@@ -4,12 +4,12 @@ import { ReactNode, Suspense } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="max-w-[800px] max-h-[800px] min-h-[800px] mx-auto relative">
+    <div className="max-w-[800px] max-h-[800px] min-h-[800px] m-auto relative my-auto w-full">
       <div className="absolute right-0 p-4 z-10">
         <HeaderPage />
       </div>
       {children}
-      {/* <BottomMenu /> */}
+      <BottomMenu />
       {/* <Suspense fallback={<div>Loading..</div>}>
            
         </Suspense> */}
