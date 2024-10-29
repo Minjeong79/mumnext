@@ -4,11 +4,8 @@ import { useRecoilState } from "recoil";
 import { useEffect, useRef, useState } from "react";
 import { countState } from "@/app/recoil/atom";
 import Image from "next/image";
+import { UrlType } from "@/lib/typs";
 
-interface UrlType {
-  name: string;
-  url: string;
-}
 export default function DogSelectImg() {
   const [dogPick, setDogPick] = useState<UrlType[]>([]);
 

@@ -1,11 +1,10 @@
 "use client";
-import { writeIconState } from "@/app/recoil/atom";
 import { LoginState } from "@/app/recoil/selectors";
-import { fetchDiaryData, fetchDiaryDate, fetchWriteiconBottom } from "@/lib/db";
-import { DataType, ImgType } from "@/lib/typs";
+import { fetchDiaryData } from "@/lib/db";
+import { DataType } from "@/lib/typs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
   const [data, setData] = useState<DataType[] | null>([]);

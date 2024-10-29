@@ -1,4 +1,3 @@
-import BottomMenu from "@/components/main/BottomMenu";
 import MainImg from "@/components/main/MainImg";
 
 export default function MainPage() {

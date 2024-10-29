@@ -11,8 +11,7 @@ export default function NameForm() {
   const themaPick = useRecoilValue(themaSelectState);
   const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
-
-  console.log(dataUid);
+  
   const handleSumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

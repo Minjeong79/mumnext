@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { MainType } from "@/lib/typs";
-// import { useSession, SessionProvider } from 'next-auth/react';
 
 export default function LoginPage() {
   const [uid, setUid] = useRecoilState(loginUid);

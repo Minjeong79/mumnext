@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginState } from "@/app/recoil/selectors";
-import { fetchDiaryData, fetchDiaryNoIcons, supabase } from "@/lib/db";
+import { fetchDiaryData, fetchDiaryNoIcons } from "@/lib/db";
 import { DataType, IconType } from "@/lib/typs";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,14 +12,9 @@ import DeleteDiaryButton from "./Ddelete";
 export default function DiaryDetailPage() {
   const dataUid = useRecoilValue(LoginState);
   const pathname = usePathname();
-  const router = useRouter();
   const pathId = Number(pathname.split("/")[2]);
   const [data, setData] = useState<DataType[] | null>([]);
   const [dataIcons, setDataIcons] = useState<IconType[]>([]);
-
-  const handelCancle = () => {
-    router.push("/diary");
-  };
 
   useEffect(() => {
     const handleAllData = async () => {

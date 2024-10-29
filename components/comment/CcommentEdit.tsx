@@ -1,7 +1,5 @@
 "use client";
-import { LoginState } from "@/app/recoil/selectors";
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useState } from "react";
 
 export default function CommentEdit({
   mainId,

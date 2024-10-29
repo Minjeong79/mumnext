@@ -1,20 +1,15 @@
 "use client";
 import { customAlphabet } from "nanoid";
 import { fetchCommentData } from "@/lib/db";
-import { CommentType, UserType } from "@/lib/typs";
-import { useEffect, useRef, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { CommentType } from "@/lib/typs";
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import CommentEdit from "./CcommentEdit";
-import Head from "next/head";
-import PushNotificationManager from "../push/PushPage";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 
 export default function CommentPage({ partId }: { partId: number }) {
-  // const PushNotificationManager = dynamic(() => import("../push/PushPage"), {
-  //   ssr: false,
-  // });
+
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
   const dataUid = useRecoilValue(LoginState);
@@ -43,7 +38,6 @@ export default function CommentPage({ partId }: { partId: number }) {
 
       if (response.ok) {
         setTextValue("");
-        fetchComment();
       } else {
         console.error("Failed to create comment", response);
       }
@@ -75,7 +69,7 @@ export default function CommentPage({ partId }: { partId: number }) {
     const fetchComment = async () => {
       const data = await fetchCommentData(partId);
       if (data) {
-        setDataComment(data); // 새로운 댓글 데이터로 상태 업데이트
+        setDataComment(data); 
       }
     };
     fetchComment();
@@ -93,7 +87,6 @@ export default function CommentPage({ partId }: { partId: number }) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // setMessage(textValue);
     if ("serviceWorker" in navigator && "PushManager" in window) {
       setIsSupported(true);
       registerServiceWorker();
