@@ -122,3 +122,8 @@ export interface LikeType {
   uuid: string;
   like: boolean;
 }
+
+export interface UrlType {
+  name: string;
+  url: string;
+}

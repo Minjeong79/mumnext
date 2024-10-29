@@ -1,20 +1,13 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState, writePickState } from "@/app/recoil/selectors";
-import {
-  dateFunc,
-  fetchDiaryData,
-  fetchDiaryNoIcons,
-  supabase,
-} from "@/lib/db";
-import { customAlphabet } from "nanoid";
+import { fetchDiaryData } from "@/lib/db";
 import { usePathname, useRouter } from "next/navigation";
 import { DataType, IconType } from "@/lib/typs";
 import Deditwritebottomicon from "./Dediticon";
 
 export default function EditWriteDiary() {
-  //수정 id
   const pathname = usePathname();
   const pathId = Number(pathname.split("/")[3]);
 

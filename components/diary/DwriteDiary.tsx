@@ -1,10 +1,9 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState, writePickState } from "@/app/recoil/selectors";
-import { dateFunc, supabase } from "@/lib/db";
 import { customAlphabet } from "nanoid";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Dwritebottomicon from "./Dwriteicon";
 
 export default function WriteDiary() {

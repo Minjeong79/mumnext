@@ -1,11 +1,6 @@
 "use client";
-import {
-  fetchAllLike,
-  fetchCommentData,
-  fetchCommunityData,
-  fetchCommunityLike,
-} from "@/lib/db";
-import { CommentType, CommunityType, LikeType } from "@/lib/typs";
+import { fetchCommunityData } from "@/lib/db";
+import { CommunityType } from "@/lib/typs";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
