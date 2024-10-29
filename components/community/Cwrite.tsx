@@ -166,13 +166,13 @@ export default function Cwrite() {
       <div className="flex justify-center gap-x-2">
         <button
           type="submit"
-          className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base"
+           className="p-1.5 px-5 bg-orange-600 text-white rounded-lg text-base"
         >
           등록
         </button>
         <button
           type="button"
-          className="p-2 px-6 bg-neutral-400 text-white rounded-lg text-base"
+          className="p-1.5 px-5 bg-slate-400 text-white rounded-lg text-base"
           onClick={handelCancle}
         >
           취소

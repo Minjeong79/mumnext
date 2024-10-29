@@ -21,8 +21,8 @@ export default function SettingCommentList(){
         fetch();
     },[])
     return(
-    <div> 
-        내가 작성한 글{datas}<br/>
-        내가 작성 한 댓글 {dataComments}
+    <div className="flex flex-col"> 
+        <p>내가 작성한 글{datas}</p>
+        <p>내가 작성 한 댓글 {dataComments}</p>
     </div>)
 }

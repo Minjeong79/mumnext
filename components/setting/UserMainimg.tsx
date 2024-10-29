@@ -20,7 +20,7 @@ export default function UserMainImgPage() {
     };
     fetchDat();
   }, []);
-  console.log(url);
+
   return (
     <div>
       <Image src={url} width={140} height={140} alt="유저 프로필" />

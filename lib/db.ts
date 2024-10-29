@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
+
 export const WeatherURL =
   "https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst";
 
@@ -246,6 +247,11 @@ export async function fetchCommunityLike(id: number) {
 }
 
 //유저 탈퇴
-export async function userDelete(uuid: string) {
+export const userDelete = async (uuid:string) => {
   const { data, error } = await supabase.auth.admin.deleteUser(uuid);
-}
+  if (error) {
+    console.error('User deletion error:', error);
+    return { success: false, error: error.message };
+  }
+  return { success: true, data };
+};
