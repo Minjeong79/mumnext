@@ -1,6 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { LoginState, dogSelectState, themaSelectState } from "@/app/recoil/selectors";
+import {
+  LoginState,
+  dogSelectState,
+  themaSelectState,
+} from "@/app/recoil/selectors";
 import { useRecoilValue } from "recoil";
 import { supabase } from "@/lib/db";
 import { useState } from "react";
@@ -11,7 +15,7 @@ export default function NameForm() {
   const themaPick = useRecoilValue(themaSelectState);
   const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
-  
+
   const handleSumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -40,7 +44,7 @@ export default function NameForm() {
     <div className="w-1/2 mx-auto">
       <form onSubmit={handleSumit} className="flex gap-x-3">
         <input
-        className="w-full h-12 rounded-lg"
+          className="w-full h-12 rounded-lg FD943F pl-2"
           type="text"
           name="textname"
           id="name"
@@ -48,7 +52,12 @@ export default function NameForm() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <button type="submit" className="rounded-lg bg-slate-400 text-white w-28 h-12">등록</button>
+        <button
+          type="submit"
+          className="rounded-lg bg-[#FD943F] text-white w-28 h-12"
+        >
+          등록
+        </button>
       </form>
     </div>
   );

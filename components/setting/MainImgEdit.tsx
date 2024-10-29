@@ -70,7 +70,7 @@ export default function MainImgEditPage() {
             <input
               type="file"
               onChange={handleFileChange}
-             className="hidden"
+              className="hidden"
               id="file-input"
             />
             <label htmlFor="file-input" className="cursor-pointer">
@@ -81,9 +81,11 @@ export default function MainImgEditPage() {
                 alt="유저 프로필 이미지"
               />
             </label>
-            <p className="text-xs text-slate-700">이미지를 클릭 해서 변경 해 줘 멈!</p>
-            <p className="">{item.name}</p>
-            <div className="flex gap-x-2">
+            <p className="text-xs text-slate-700">
+              이미지를 클릭 해서 변경 해 줘 멈!
+            </p>
+            <p className="">이름 : {item.name}</p>
+            {/* <div className="flex gap-x-2">
               <button
                 type="submit"
                 className="p-1.5 px-5 bg-orange-600 text-white rounded-lg text-base"
@@ -97,7 +99,7 @@ export default function MainImgEditPage() {
               >
                 취소
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       ))}

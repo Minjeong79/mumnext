@@ -39,7 +39,6 @@ export default function Cwrite() {
         });
 
         if (!response.ok) {
-         
           throw new Error("이미지를 업로드 하지 못했습니다.");
         }
 
@@ -145,7 +144,7 @@ export default function Cwrite() {
           className="hidden"
           id="file-input"
         />
-        <label htmlFor="file-input" >
+        <label htmlFor="file-input">
           <Image
             src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload.png"
             width={30}
@@ -166,7 +165,7 @@ export default function Cwrite() {
       <div className="flex justify-center gap-x-2">
         <button
           type="submit"
-           className="p-1.5 px-5 bg-orange-600 text-white rounded-lg text-base"
+          className="p-1.5 px-5 bg-[#FD943F] text-white rounded-lg text-base"
         >
           등록
         </button>

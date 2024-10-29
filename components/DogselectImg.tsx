@@ -38,7 +38,7 @@ export default function DogSelectImg() {
             <li
               key={index}
               className={`rounded-lg p-2 ${
-                selectedIndex === index ? "bg-[#EB934B]" : "hover:bg-[#EB934B]"
+                selectedIndex === index ? "bg-[#FD943F]" : "hover:bg-[#FD943F]"
               }`}
             >
               <button ref={btnref} onClick={() => imgClickhandle(index)}>

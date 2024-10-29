@@ -56,7 +56,7 @@ export default function CommunityPage() {
   return (
     <div
       ref={ref}
-      className={`mx-auto w-[600px] h-[675px] mb-5 h-[${divH}]px ${
+      className={`mx-auto w-[600px] h-[655px] mb-5 h-[${divH}]px ${
         divH >= 700 ? "overflow-y-scroll" : "overflow-hidden"
       }  `}
     >
@@ -99,7 +99,7 @@ export default function CommunityPage() {
                   <div className="flex justify-center gap-x-2">
                     <button
                       type="button"
-                      className="p-1.5 px-5 bg-orange-600 text-white rounded-lg text-base"
+                      className="p-1.5 px-5 bg-[#FD943F] text-white rounded-lg text-base"
                       onClick={handleEdit}
                     >
                       수정

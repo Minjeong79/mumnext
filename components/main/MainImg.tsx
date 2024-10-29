@@ -69,7 +69,7 @@ export default function MainImg() {
             />
             <TopMenu dogName={item.name} />
             <div className="absolute top-0 right-0 left-0">
-              <div className="flex flex-col items-center justify-around min-h-screen relative">
+              <div className="flex flex-col items-center justify-around h-[670px] relative">
                 {item.mainimg ===
                 "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload-img.png" ? (
                   <div className="flex items-center absolute top-20">
@@ -92,10 +92,6 @@ export default function MainImg() {
                         </div>
                       </label>
                     </div>
-                    <div className="flex flex-col">
-                      <button type="submit">등록</button>
-                      <button type="button">취소</button>
-                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center absolute top-20">
@@ -111,7 +107,7 @@ export default function MainImg() {
                   </div>
                 )}
 
-                <div className="">
+                <div className="absolute bottom-0">
                   <Image
                     src={item.dog}
                     width={220}

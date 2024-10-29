@@ -63,7 +63,7 @@ export default function WriteDiary() {
 
       <textarea
         name="content"
-        className="resize-none border border-[#F5BB8C] w-full h-56 p-2.5 bg-transparent outline-none rounded-md"
+        className="resize-none border border-[#F5BB8C] w-full h-56 p-2.5 bg-transparent FD943F rounded-md"
         value={textValue}
         placeholder="내용을 입력해주세요"
         onChange={(e) => setTextValue(e.target.value)}
@@ -72,13 +72,13 @@ export default function WriteDiary() {
       <div className="flex justify-center gap-x-2">
         <button
           type="submit"
-          className="p-2 px-6 bg-orange-600 text-white rounded-lg text-base"
+          className="p-1.5 px-5 bg-[#FD943F] text-white rounded-lg text-base"
         >
           등록
         </button>
         <button
           type="button"
-          className="p-2 px-6 bg-slate-400 text-white rounded-lg text-base"
+          className="p-1.5 px-5 bg-slate-400 text-white rounded-lg text-base"
           onClick={handelCancle}
         >
           취소
