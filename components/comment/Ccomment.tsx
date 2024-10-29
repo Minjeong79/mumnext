@@ -9,7 +9,6 @@ import CommentEdit from "./CcommentEdit";
 import Image from "next/image";
 
 export default function CommentPage({ partId }: { partId: number }) {
-
   const nanoid = customAlphabet("123456789", 9);
   const numId = Number(nanoid());
   const dataUid = useRecoilValue(LoginState);
@@ -69,7 +68,7 @@ export default function CommentPage({ partId }: { partId: number }) {
     const fetchComment = async () => {
       const data = await fetchCommentData(partId);
       if (data) {
-        setDataComment(data); 
+        setDataComment(data);
       }
     };
     fetchComment();
@@ -185,8 +184,8 @@ export default function CommentPage({ partId }: { partId: number }) {
           </li>
         ))}
       </ul>
-
-      <form onSubmit={handleComment} className="mt-7 relative">
+      <p className="mt-7 text-sm text-slate-800">댓글</p>
+      <form onSubmit={handleComment} className=" mt-2 relative">
         <div className="flex absolute top-0 w-full gap-2.5">
           <textarea
             name="content"
@@ -200,7 +199,7 @@ export default function CommentPage({ partId }: { partId: number }) {
 
           <button
             type="submit"
-            className="w-20 p-5 bg-orange-600 text-white rounded-lg text-base"
+            className="w-20 p-5 bg-[#FD943F] text-white rounded-lg text-base"
           >
             등록
           </button>
@@ -215,7 +214,7 @@ export default function CommentPage({ partId }: { partId: number }) {
           />
           <button
             type="submit"
-            className="w-20 p-5 bg-orange-600 text-white rounded-lg text-base absoltue right-0 z-10"
+            className="w-20 p-5 bg-[#FD943F] text-white rounded-lg text-base absoltue right-0 z-10"
             onClick={() => sendNotification(textValue)}
           >
             등록

@@ -12,7 +12,6 @@ import { MainType } from "@/lib/typs";
 export default function LoginPage() {
   const [uid, setUid] = useRecoilState(loginUid);
   const [value, setValue] = useState(false);
-  const [data, setData] = useState<MainType[]>([]);
   const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
   // const session = useSession();
@@ -32,7 +31,7 @@ export default function LoginPage() {
   }, [setUid]);
 
   useEffect(() => {
-    if(dataUid){
+    if (dataUid) {
       async function fetchData() {
         const data = await fetchMainImg(dataUid.uid);
         const dataFind = data?.find((item) => item.uuid === dataUid.uid);
@@ -42,8 +41,6 @@ export default function LoginPage() {
       }
       fetchData();
     }
-   
-   
   }, [value]);
 
   async function signInWithKakao() {
@@ -74,7 +71,6 @@ export default function LoginPage() {
           >
             강아지 선택하기
           </Link>
-
         </div>
       ) : (
         <button

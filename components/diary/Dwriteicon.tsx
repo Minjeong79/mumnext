@@ -38,7 +38,7 @@ export default function Dwritebottomicon() {
         <li
           key={item.id}
           className={`rounded-lg p-2 ${
-            pickIcon.includes(item.name) ? "bg-[#EB934B]" : "hover:bg-[#EB934B]"
+            pickIcon.includes(item.name) ? "bg-[#FD943F]" : "hover:bg-[#FD943F]"
           }`}
         >
           <button onClick={() => hadleClick(item.name)} type="button">

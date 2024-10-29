@@ -81,7 +81,7 @@ export function dateFunc() {
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString().padStart(2, "0"); // 06
   const day = today.getDate().toString().padStart(2, "0");
-  const dateString = year + "." + month + "." + day;
+  const dateString = year + "-" + month + "-" + day;
   return dateString;
 }
 //일기 데이터 조회
@@ -247,10 +247,10 @@ export async function fetchCommunityLike(id: number) {
 }
 
 //유저 탈퇴
-export const userDelete = async (uuid:string) => {
+export const userDelete = async (uuid: string) => {
   const { data, error } = await supabase.auth.admin.deleteUser(uuid);
   if (error) {
-    console.error('User deletion error:', error);
+    console.error("User deletion error:", error);
     return { success: false, error: error.message };
   }
   return { success: true, data };
