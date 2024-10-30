@@ -48,12 +48,8 @@ export default function SearchCommunity() {
     if (ref.current) {
       setDivH(ref.current.offsetHeight);
     }
-  }, [ref])
+  }, [ref]);
 
-  const filteredSearchData = searchData.filter((item) =>
-    item.title.includes(search)
-  );
-  console.log(searchData);
   return (
     <section className="w-10/12 mx-auto flex flex-col gap-y-6">
       <div className="w-2/3 mx-auto bg-white rounded-full h-10 overflow-hidden">
@@ -86,8 +82,9 @@ export default function SearchCommunity() {
         >
           <ul className="flex flex-wrap gap-4 justify-center">
             {searchData.map((item) => {
-             
-              return  (
+              const istitle = item.title.includes(search);
+              const iscontent = item.content.includes(search);
+              return (
                 <li
                   key={item.id}
                   className="w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
@@ -109,7 +106,7 @@ export default function SearchCommunity() {
                     <p>{item.title}</p>
                   </Link>
                 </li>
-              ) 
+              );
             })}
           </ul>
         </div>
