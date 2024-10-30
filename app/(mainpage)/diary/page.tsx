@@ -1,10 +1,11 @@
 import DiaryDataList from "@/components/diary/DiaryDataList";
+import DiaryListSkeeleton from "@/components/skeleton/diary-skeleton-list";
 import { fetchDiaryData, fetchDiaryListIcons } from "@/lib/db";
 import { DataType, IconsType } from "@/lib/typs";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Page() {
-  
   const iconsData: IconsType[] = (await fetchDiaryListIcons()) ?? [];
   return (
     <section className="flex flex-col h-[80vh] justify-around gap-y-7">
@@ -19,7 +20,15 @@ export default async function Page() {
           </Link>
         </div>
       </div>
-      <DiaryDataList iconsData={iconsData} />
+      <Suspense
+        fallback={
+          <>
+            <DiaryListSkeeleton />
+          </>
+        }
+      >
+        <DiaryDataList iconsData={iconsData} />
+      </Suspense>
     </section>
   );
 }

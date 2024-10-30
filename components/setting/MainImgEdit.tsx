@@ -81,8 +81,8 @@ export default function MainImgEditPage() {
                 alt="유저 프로필 이미지"
               />
             </label>
-            <p className="text-xs text-slate-700">
-              이미지를 클릭 해서 변경 해 줘 멈!
+            <p className="text-xs text-slate-700 text-center">
+              이미지를 클릭 해서 변경 해 줘 멈!<br/>이미지명은 영어로 설정!
             </p>
             <p className="">이름 : {item.name}</p>
             {/* <div className="flex gap-x-2">
