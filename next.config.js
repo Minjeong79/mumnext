@@ -26,6 +26,10 @@ const nextConfig = {
                         key: 'Referrer-Policy',
                         value: 'strict-origin-when-cross-origin',
                     },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: "connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr", // 원하는 출처 추가
+                      },
                 ],
             },
             {

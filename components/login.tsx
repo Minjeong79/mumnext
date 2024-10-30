@@ -31,7 +31,8 @@ export default function LoginPage() {
   }, [setUid]);
 
   useEffect(() => {
-    if (dataUid) {
+    const savedUid = localStorage.getItem("user");
+    if (dataUid && savedUid) {
       async function fetchData() {
         const data = await fetchMainImg(dataUid.uid);
         const dataFind = data?.find((item) => item.uuid === dataUid.uid);

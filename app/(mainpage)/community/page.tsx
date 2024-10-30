@@ -1,5 +1,7 @@
 import SearchCommunity from "@/components/community/Csearch";
+import CommunityListSkeeleton from "@/components/skeleton/community-skeleton-list";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Page() {
   return (
@@ -15,8 +17,15 @@ export default async function Page() {
           </Link>
         </div>
       </div>
-
-      <SearchCommunity />
+      <Suspense
+        fallback={
+          <>
+            <CommunityListSkeeleton />
+          </>
+        }
+      >
+        <SearchCommunity />
+      </Suspense>
     </section>
   );
 }
