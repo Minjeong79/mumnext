@@ -28,8 +28,8 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr", // 원하는 출처 추가
-                      },
+                        value: "connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr https://*.pusher.com wss://*.pusher.com",
+                    },
                 ],
             },
             {
