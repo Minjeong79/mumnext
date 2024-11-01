@@ -28,7 +28,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "Content-Security-Policy: connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr https://sockjs-us3.pusher.com",
+                        value: "connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr https://sockjs-us3.pusher.com wss://ws-us3.pusher.com",
                     },
                 ],
             },
