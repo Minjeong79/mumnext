@@ -16,6 +16,7 @@ export default function NameForm() {
   const dataUid = useRecoilValue(LoginState);
   const router = useRouter();
 
+  console.log(dataUid.uid);
   const handleSumit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
