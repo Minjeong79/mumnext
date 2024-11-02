@@ -2,7 +2,7 @@
 import { customAlphabet } from "nanoid";
 import { fetchCommentData } from "@/lib/db";
 import { CommentType } from "@/lib/typs";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
 import CommentEdit from "./CcommentEdit";
@@ -15,6 +15,8 @@ export default function CommentPage({ partId }: { partId: number }) {
   const [dataComment, setDataComment] = useState<CommentType[]>([]);
   const [textValue, setTextValue] = useState("");
   const [editClick, setEditClick] = useState(0);
+  const [divH, setDivH] = useState<number>(0);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,6 +74,9 @@ export default function CommentPage({ partId }: { partId: number }) {
       }
     };
     fetchComment();
+    if (ref.current) {
+      setDivH(ref.current.offsetHeight);
+    }
   }, [dataComment]);
 
   const handleEditComplete = () => {
@@ -139,8 +144,13 @@ export default function CommentPage({ partId }: { partId: number }) {
   };
 
   return (
-    <div className="mt-8">
-      <ul>
+    <div
+      ref={ref}
+      className={`mt-8 p-5 ${divH >= 250 ? "h-[250px]" : "h-auto"} ${
+        divH >= 250 ? "overflow-y-scroll" : "overflow-hidden"
+      }`}
+    >
+      <ul className="space-y-2.5">
         {dataComment.map((item) => (
           <li key={item.mainid} className="bg-white rounded-lg w-full p-2.5">
             {item.mainid === editClick ? (

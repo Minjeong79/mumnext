@@ -15,7 +15,6 @@ export default function DogSelectImg() {
   const btnref = useRef<HTMLButtonElement>(null);
 
   const imgClickhandle = async (index: number) => {
-    console.log(index);
     setDogPickState(index);
     setSelectedIndex(index);
   };
