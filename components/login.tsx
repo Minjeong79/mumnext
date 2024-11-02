@@ -17,24 +17,17 @@ export default function LoginPage() {
   // const session = useSession();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        console.log("메인으로 가기1111");
-        const data = await fetchMainImg(dataUid.uid);
-
-        const dataFind = data?.find((item) => item.uuid === dataUid.uid);
-        console.log(`${dataFind} 여긴 uid`);
-        if (dataFind) {
-          router.push("/main");
-          console.log("메인으로 가기222222222");
-        } else {
-          console.log("새로운 유저");
-        }
-      } catch (error) {
-        console.error("Error in fetchData:", error);
+    async function userUidFunc() {
+      const loginUser: User | null = await LoginUserUid();
+      const fullName = loginUser?.user_metadata.full_name;
+      if (loginUser) {
+        setValue(true);
+        const userInfo = { uid: loginUser.id, fullName };
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        setUid(userInfo);
       }
     }
-    fetchData();
+    userUidFunc();
   }, [setUid]);
 
   useEffect(() => {
@@ -45,7 +38,7 @@ export default function LoginPage() {
         const data = await fetchMainImg(dataUid.uid);
 
         const dataFind = data?.find((item) => item.uuid === dataUid.uid);
-        console.log(dataFind);
+        console.log(`${dataFind} uid------------`);
         if (dataFind) {
           router.push("/main");
           console.log("메인으로 가기222222222");
