@@ -3,12 +3,12 @@ import { atom } from "recoil";
 //강아지 선택
 export const countState = atom<any>({
   key: "countState ",
-  default: null,
+  default: 0,
 });
 //테마 선택
 export const themaSate = atom<any>({
   key: "themaState",
-  default: null,
+  default: 0,
 });
 //uid
 export const loginUid = atom({

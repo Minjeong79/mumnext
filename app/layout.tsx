@@ -17,10 +17,10 @@ export default function RootLayout({
       <body className="">
         <Head>
           <link rel="manifest" href="/manifest.ts" />
-          <meta
+          {/* <meta
             http-equiv="Content-Security-Policy"
-            content="connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr https://sockjs-us3.pusher.com wss://ws-us3.pusher.com;"
-          />
+            content="connect-src 'self' https://trtwwyqzkqlqebdiiujp.supabase.co https://apis.data.go.kr https://sockjs-us3.pusher.com https://ws-us3.pusher.com;"
+          /> */}
         </Head>
         <ClientLayout>{children}</ClientLayout>
       </body>
