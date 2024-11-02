@@ -16,6 +16,7 @@ export default function ThemaSelectImg() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const imgClickhandle = async (index: number) => {
+    console.log(index);
     setThemaPickState(index);
     setSelectedIndex(index);
   };
