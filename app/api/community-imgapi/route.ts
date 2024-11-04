@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { fetchStroageImg, supabase } from "@/lib/db";
 
 export async function POST(request: Request) {
+  const formData = await request.formData();
+  const randomNum = Math.random();
   try {
-    const formData = await request.formData();
-
     const file = formData.get("file");
     if (!file) {
       // 파일이 없는 경우
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    const filePath = `write/${(file as File).name}`;
+    const filePath = `write/${randomNum}${(file as File).name}`;
     const { data, error } = await supabase.storage
       .from("communityimg")
       .upload(filePath, file, {

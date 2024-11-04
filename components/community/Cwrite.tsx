@@ -1,7 +1,7 @@
 "use client";
 import { customAlphabet } from "nanoid";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { LoginState } from "@/app/recoil/selectors";
 import { useRecoilValue } from "recoil";
 import Image from "next/image";
@@ -72,9 +72,8 @@ export default function Cwrite() {
         return response.json();
       })
       .then((data) => {
-        console.log(data.message); // 서버에서 보낸 메시지
+        console.log(data.message);
         setImageUrl("");
-        // router.push('/main/diary');
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -144,7 +143,7 @@ export default function Cwrite() {
           className="hidden"
           id="file-input"
         />
-        <label htmlFor="file-input">
+        <label htmlFor="file-input" className="cursor-pointer">
           <Image
             src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload.png"
             width={30}
