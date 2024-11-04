@@ -48,10 +48,10 @@ export interface Address {
 
 export interface MainType {
   uuid: string;
-  dog:string;
-  thema:string;
-  name:string;
-  mainimg:string;
+  dog: string;
+  thema: string;
+  name: string;
+  mainimg: string;
 }
 
 export interface ImgType {
@@ -105,6 +105,7 @@ export interface CommunityType {
   content: string;
   imgurl: string;
   date: Date;
+  username: string;
 }
 
 export interface CommentType {
