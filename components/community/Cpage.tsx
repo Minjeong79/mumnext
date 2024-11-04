@@ -68,7 +68,12 @@ export default function CommunityPage() {
                 {item.date.toString()}
               </h3>
               <div>
-                <span className="text-xs text-slate-500">제목</span>
+                <div className="flex justify-between">
+                  <div className="text-xs text-slate-500">제목</div>
+                  <div className="text-xs text-slate-500">
+                    작성자 {item.username}
+                  </div>
+                </div>
                 <h3 className="text-xl p-2.5 border-b">{item.title}</h3>
               </div>
 
