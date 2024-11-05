@@ -86,7 +86,7 @@ export default function TopMenu({ dogName }: { dogName: string }) {
   }, [data, addr]);
 
   return (
-    <div className="absolute w-full top-44 z-10">
+    <div className="absolute w-full top-36 sm:top-44 z-10">
       <div className="relative">
         <div className="rounded-lg w-56 min-h-32 opacity-65 bg-black mx-auto"></div>
         <div className="absolute top-0 right-0 left-0 w-56 min-h-32 mx-auto text-white">
@@ -113,7 +113,7 @@ export default function TopMenu({ dogName }: { dogName: string }) {
               </div>
             </div>
           ) : (
-            <>안나와요</>
+            <div className="flex justify-center items-center">로딩중...</div>
           )}
         </div>
       </div>
