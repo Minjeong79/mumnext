@@ -42,8 +42,8 @@ export default function BottomMenu() {
   }, []);
   return (
     <div className="absolute bottom-0 w-full m-auto flex justify-center">
-      <div className="bg-slate-800 w-full absolute bottom-0 h-36 opacity-65"></div>
-      <ul className="flex gap-5 z-10 absolute bottom-3.5">
+      <div className="bg-slate-800 w-full absolute bottom-0 h-28 sm:h-36 opacity-65"></div>
+      <ul className="flex gap-5 z-10 absolute bottom-3.5 px-2.5 sm:p-0">
         {bmenu.map((item, index) => (
           <li key={index}>
             <button onClick={() => imgClickhandle(item.menutext)}>

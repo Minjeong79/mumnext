@@ -56,17 +56,19 @@ export default function MainImg() {
   }, [imageDataUrl]);
 
   return (
-    <div className="min-w-[800px] min-h-[800px]">
+    <div className="sm:min-w-[800px] sm:min-h-[800px]">
       {imageDataUrl.map((item, index) => (
         <div key={index}>
           <div className="relative">
-            <Image
-              layout="fixed"
-              src={item.thema}
-              width={800}
-              height={800}
-              alt="유저 테마 이미지"
-            />
+            <div className="w-screen h-screen">
+              <Image
+                layout="fixed"
+                src={item.thema}
+                fill
+                className="object-cover"
+                alt="유저 테마 이미지"
+              />
+            </div>
             <TopMenu dogName={item.name} />
             <div className="absolute top-0 right-0 left-0">
               <div className="flex flex-col items-center justify-around h-[670px] relative">
@@ -94,7 +96,7 @@ export default function MainImg() {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center absolute top-20">
+                  <div className="flex items-center absolute top-8 sm:top-20">
                     <div className="w-36 h-36 mx-auto rounded-full overflow-hidden">
                       <Image
                         className="w-full"
@@ -107,7 +109,7 @@ export default function MainImg() {
                   </div>
                 )}
 
-                <div className="absolute bottom-0">
+                <div className="absolute bottom-32 sm:bottom-0">
                   <Image
                     src={item.dog}
                     width={220}
