@@ -6,7 +6,7 @@ export default function MainPage() {
   return (
     <div className="flex justify-center items-center">
       <div className="relative">
-        <div className="sm:min-w-[800px] sm:min-h-[800px] flex flex-col justify-between relative">
+        <div className="sm:max-w-[800px] sm:max-h-[800px] flex flex-col justify-between relative">
           <Suspense
             fallback={
               <>

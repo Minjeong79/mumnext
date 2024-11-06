@@ -42,8 +42,8 @@ export default function BottomMenu() {
   }, []);
   return (
     <div className="absolute bottom-0 w-full m-auto flex justify-center">
-      <div className="bg-slate-800 w-full absolute bottom-0 h-28 sm:h-36 opacity-65"></div>
-      <ul className="flex gap-5 z-10 absolute bottom-3.5 px-2.5 sm:p-0">
+      <div className="bg-slate-800 z-30 w-full absolute bottom-0 h-24 sm:h-36 opacity-65"></div>
+      <ul className="flex gap-5 z-30 absolute bottom-1.5 sm:bottom-3.5 px-2.5 sm:p-0">
         {bmenu.map((item, index) => (
           <li key={index}>
             <button onClick={() => imgClickhandle(item.menutext)}>
@@ -54,7 +54,7 @@ export default function BottomMenu() {
                 alt="메뉴 아이콘"
               />
             </button>
-            <p className="text-center text-sm text-white">{item.menutext}</p>
+            <p className="text-center text-xs sm:text-sm text-white">{item.menutext}</p>
           </li>
         ))}
       </ul>

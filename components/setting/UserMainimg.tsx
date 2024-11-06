@@ -18,11 +18,11 @@ export default function UserMainImgPage() {
         setUrl(data[0].mainimg);
       }
     };
-    fetchDat();
+    fetchDat(); 
   }, []);
 
   return (
-    <div>
+    <div className="w-36 h-36 mx-auto rounded-full overflow-hidden">
       <Image src={url} width={140} height={140} alt="유저 프로필" />
     </div>
   );
