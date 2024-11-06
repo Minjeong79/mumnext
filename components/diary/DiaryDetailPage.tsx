@@ -43,7 +43,7 @@ export default function DiaryDetailPage() {
               <h3 className="text-xl text-center p-9">
                 {item.date.toString()}
               </h3>
-              <div className="flex w-full justify-evenly">
+              <div className="flex w-full gap-x-2 sm:justify-evenly">
                 {item.walk ? (
                   <div>
                     <Image
@@ -151,7 +151,7 @@ export default function DiaryDetailPage() {
                 )}
               </div>
               <section className="w-full">
-                <div className=" h-48 p-2.5 overflow-y-scroll mb-3">
+                <div className="h-36 sm:h-48 p-2.5 overflow-y-scroll mb-3">
                   {item.content}
                 </div>
                 {item.uuid === dataUid.uid && (

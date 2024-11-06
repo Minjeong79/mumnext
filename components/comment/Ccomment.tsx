@@ -144,11 +144,15 @@ export default function CommentPage({ partId }: { partId: number }) {
   };
 
   return (
-    <div
+    // <div
+    //   ref={ref}
+    //   className={`pt-2 px-5 sm:mt-8 sm:p-5 ${divH >= 250 ? "h-[250px]" : "h-auto"} ${
+    //     divH >= 250 ? "overflow-y-scroll" : "overflow-hidden"
+    //   }`}
+    // >
+      <div
       ref={ref}
-      className={`mt-8 p-5 ${divH >= 250 ? "h-[250px]" : "h-auto"} ${
-        divH >= 250 ? "overflow-y-scroll" : "overflow-hidden"
-      }`}
+      className={`pt-2 px-5 mb-28 sm:mb-0 sm:mt-8 sm:p-5`}
     >
       <ul className="space-y-2.5">
         {dataComment.map((item) => (

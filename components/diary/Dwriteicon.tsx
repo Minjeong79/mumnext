@@ -37,7 +37,7 @@ export default function Dwritebottomicon() {
       {datas.map((item: ImgType) => (
         <li
           key={item.id}
-          className={`rounded-lg p-2 ${
+          className={`rounded-lg p-1 ${
             pickIcon.includes(item.name) ? "bg-[#FD943F]" : "hover:bg-[#FD943F]"
           }`}
         >

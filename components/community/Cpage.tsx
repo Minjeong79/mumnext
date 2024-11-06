@@ -53,18 +53,23 @@ export default function CommunityPage() {
     setDivH(ref.current!.offsetHeight);
   }, [ref.current]);
 
+  console.log(divH);
   return (
     <div
       ref={ref}
-      className={`mx-auto w-[600px] h-[655px] mb-5 h-[${divH}]px ${
-        divH >= 700 ? "overflow-y-scroll" : "overflow-hidden"
+      className={`mx-auto h-screen 
+        :h-[${divH}]px ${
+        divH >= 660 ? "overflow-y-scroll" : "overflow-hidden"
+      }
+        sm:w-[600px] sm:h-[655px] mb-5 sm:h-[${divH}]px ${
+        divH >= 655 ? "overflow-y-scroll" : "overflow-hidden"
       }  `}
     >
       {data?.map((item, index) => (
         <div key={index}>
           {item.id === partId && (
-            <div className="flex flex-col gap-y-3">
-              <h3 className="text-xl text-center p-3.5">
+            <div className="flex flex-col gap-y-3 p-5 sm:p-0">
+              <h3 className="text-xl text-center pt-6 sm:p-3.5">
                 {item.date.toString()}
               </h3>
               <div>
@@ -80,7 +85,7 @@ export default function CommunityPage() {
               <div className="border-b">
                 <span className=" text-xs text-slate-500">내용</span>
                 <div
-                  className={`h-36 p-2.5 mb-3  overflow-y-scroll overflow-x-hidden`}
+                  className={`h-36 sm:h-44 p-2.5 mb-3  overflow-y-scroll overflow-x-hidden`}
                 >
                   {item.imgurl ? (
                     <div className="w-full">

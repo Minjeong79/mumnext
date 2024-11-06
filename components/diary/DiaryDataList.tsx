@@ -27,10 +27,10 @@ export default function DiaryDataList({
   }, [data]);
 
   return (
-    <section className="w-[600px] mx-auto">
+    <section className="sm:w-[600px] mx-auto w-4/5">
       <ul
-        className={`h-[480px]  mx-auto flex flex-col gap-y-3 ${
-          data.length >= 8 ? "overflow-y-scroll" : ""
+        className={`h-[400px] mx-auto flex flex-col gap-y-3 ${
+          data.length >= 8 ? "overflow-y-scroll" : "overflow-y-hideen"
         } `}
       >
         {data.map((item) => (

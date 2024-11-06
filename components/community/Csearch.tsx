@@ -77,14 +77,14 @@ export default function SearchCommunity() {
         }`}
       >
         {searchData.length > 0 ? (
-          <ul className="flex flex-wrap gap-4 justify-center">
+          <ul className="flex flex-wrap gap-4 justify-center w-full">
             {searchData.map((item) => {
               const istitle = item.title.includes(search);
               const iscontent = item.content.includes(search);
               return (
                 <li
                   key={item.id}
-                  className="w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
+                  className=" w-32 sm:w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
                 >
                   <Link href={`/community/${item.id}`} className="block">
                     <div className="w-full">
@@ -107,11 +107,11 @@ export default function SearchCommunity() {
             })}
           </ul>
         ) : (
-          <ul className="flex flex-wrap gap-4 justify-center">
+          <ul className="flex flex-wrap gap-4 justify-center w-full">
             {dataCommunity.map((item) => (
               <li
                 key={item.id}
-                className="w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
+                className="w-32 sm:w-44 h-auto bg-white p-3.5 rounded-lg gap-4 h-full"
               >
                 <Link href={`/community/${item.id}`} className="block">
                   <div className="w-full">

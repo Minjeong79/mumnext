@@ -28,7 +28,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
         item.id === pathId ? (
           <li key={item.id}>
             <ul className="flex w-full justify-evenly">
-              <li key={`${item.id}-walk`}>
+              <li key={`${item.id}-walk`} className="p-1">
                 <Image
                   src={item.walkimg}
                   width={70}
@@ -37,7 +37,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                 />
                 <p className="text-center mt-2.5">{item.walk}</p>
               </li>
-              <li key={`${item.id}-eat`}>
+              <li key={`${item.id}-eat`} className="p-1">
                 <Image
                   src={item.eatimg}
                   width={70}
@@ -46,7 +46,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                 />
                 <p className="text-center mt-2.5">{item.eat}</p>
               </li>
-              <li key={`${item.id}-pill`}>
+              <li key={`${item.id}-pill`} className="p-1">
                 <Image
                   src={item.pillimg}
                   width={70}
@@ -55,7 +55,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                 />
                 <p className="text-center mt-2.5">{item.pill}</p>
               </li>
-              <li key={`${item.id}-hos`}>
+              <li key={`${item.id}-hos`} className="p-1">
                 <Image
                   src={item.hospitalimg}
                   width={70}
@@ -64,7 +64,7 @@ export default function Deditwritebottomicon({ pathId }: { pathId: number }) {
                 />
                 <p className="text-center mt-2.5">{item.hospital}</p>
               </li>
-              <li key={`${item.id}-b`}>
+              <li key={`${item.id}-b`} className="p-1">
                 <Image
                   src={item.beautyimg}
                   width={70}

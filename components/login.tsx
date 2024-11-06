@@ -34,14 +34,12 @@ export default function LoginPage() {
     const savedUid = localStorage.getItem("user");
     if (dataUid && savedUid) {
       async function fetchData() {
-        console.log("메인으로 가기1111");
         const data = await fetchMainImg(dataUid.uid);
 
         const dataFind = data?.find((item) => item.uuid === dataUid.uid);
         console.log(`${dataFind} uid------------`);
         if (dataFind) {
           router.push("/main");
-          console.log("메인으로 가기222222222");
         }
       }
       fetchData();

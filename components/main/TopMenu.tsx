@@ -113,7 +113,7 @@ export default function TopMenu({ dogName }: { dogName: string }) {
               </div>
             </div>
           ) : (
-            <div className="flex justify-center items-center">로딩중...</div>
+            <div className="flex justify-center items-center h-32">로딩중...</div>
           )}
         </div>
       </div>

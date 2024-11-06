@@ -73,7 +73,7 @@ export default function MainImgEditPage() {
               className="hidden"
               id="file-input"
             />
-            <label htmlFor="file-input" className="cursor-pointer">
+            <label htmlFor="file-input" className="cursor-pointer w-36 h-36 mx-auto rounded-full overflow-hidden">
               <Image
                 src={item.mainimg}
                 width={140}
@@ -84,22 +84,7 @@ export default function MainImgEditPage() {
             <p className="text-xs text-slate-700 text-center">
               이미지를 클릭 해서 변경 해 줘 멈!<br/>이미지명은 영어로 설정!
             </p>
-            <p className="">이름 : {item.name}</p>
-            {/* <div className="flex gap-x-2">
-              <button
-                type="submit"
-                className="p-1.5 px-5 bg-orange-600 text-white rounded-lg text-base"
-              >
-                등록
-              </button>
-              <button
-                type="button"
-                className="p-1.5 px-5 bg-neutral-400 text-white rounded-lg text-base"
-                onClick={handelCancle}
-              >
-                취소
-              </button>
-            </div> */}
+            <p className="">멈멈 이름 : {item.name}</p>
           </div>
         </div>
       ))}
