@@ -12,7 +12,7 @@ export default function HeaderPage() {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
     router.push("/");
     setUid({ uid: "", fullName: "" });
 

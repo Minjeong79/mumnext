@@ -23,7 +23,7 @@ export default function LoginPage() {
       if (loginUser) {
         setValue(true);
         const userInfo = { uid: loginUser.id, fullName };
-        localStorage.setItem("user", JSON.stringify(userInfo));
+        sessionStorage.setItem("user", JSON.stringify(userInfo));
         setUid(userInfo);
       }
     }
