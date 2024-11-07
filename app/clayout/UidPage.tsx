@@ -7,7 +7,7 @@ export default function InitializeUidState() {
   const [uid, setUid] = useRecoilState(loginUid);
 
   useEffect(() => {
-    const savedUid = localStorage.getItem("user");
+    const savedUid = sessionStorage.getItem("user");
     if (savedUid) {
       const parsedUid = JSON.parse(savedUid);
       setUid(parsedUid);
@@ -15,3 +15,4 @@ export default function InitializeUidState() {
   }, [setUid]);
   return null;
 }
+ 
