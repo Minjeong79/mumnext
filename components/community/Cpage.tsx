@@ -1,7 +1,7 @@
 "use client";
 import { fetchCommunityData } from "@/lib/db";
 import { CommunityType } from "@/lib/typs";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/app/recoil/selectors";
@@ -18,8 +18,6 @@ export default function CommunityPage() {
   const router = useRouter();
   const dataUid = useRecoilValue(LoginState);
   const [data, setData] = useState<CommunityType[]>([]);
-  const [divH, setDivH] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,22 +46,9 @@ export default function CommunityPage() {
     }
     router.push(`/community`);
   };
-
-  useEffect(() => {
-    setDivH(ref.current!.offsetHeight);
-  }, [ref.current]);
-
-  console.log(divH);
   return (
     <div
-      ref={ref}
-      className={`mx-auto h-screen 
-        :h-[${divH}]px ${
-        divH >= 660 ? "overflow-y-scroll" : "overflow-hidden"
-      }
-        sm:w-[600px] sm:h-[655px] mb-5 sm:h-[${divH}]px ${
-        divH >= 655 ? "overflow-y-scroll" : "overflow-hidden"
-      }  `}
+      className={`mx-auto h-screen sm:w-[600px] h-[655px] mb-5 overflow-y-scroll  `}
     >
       {data?.map((item, index) => (
         <div key={index}>

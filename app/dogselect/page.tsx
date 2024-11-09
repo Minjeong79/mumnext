@@ -7,7 +7,7 @@ import { Suspense } from "react";
 export default function DogSelectPage() {
   return (
     <div className="bg-[#FFEAD9] min-h-screen w-screen flex justify-center items-center">
-      <div className="w-7/12 flex flex-col justify-center gap-y-8">
+      <div className="p-5 sm:p-0 sm:w-7/12 flex flex-col justify-center gap-y-8">
         <Suspense
           fallback={
             <>

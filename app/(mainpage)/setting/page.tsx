@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default async function SettingPage() {
   return (
-    <div className="pt-9 flex flex-col justify-around items-center h-[500px]">
+    <div className="pt-9 flex flex-col justify-between  items-center h-[500px]">
       <div className="">
         <UserMainImgPage />
         <Link

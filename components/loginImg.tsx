@@ -5,7 +5,7 @@ export default async function LoginPageImg() {
   const fetcher = await fetchDogImageUrl();
 
   return (
-    <div>
+    <div className="w-52 my-0 mx-auto sm:w-64">
       <Image
         className=" mx-auto"
         src={fetcher}
