@@ -1,13 +1,13 @@
 "use client";
 import { fetchMainImg, LoginUserUid, supabase } from "@/lib/db";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { loginUid } from "@/app/recoil/atom";
 import { useRouter } from "next/navigation";
 import { LoginState } from "@/app/recoil/selectors";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { MainType } from "@/lib/typs";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [uid, setUid] = useRecoilState(loginUid);
@@ -79,8 +79,14 @@ export default function LoginPage() {
       ) : (
         <button
           onClick={signInWithKakao}
-          className="bg-white w-72 h-10 rounded-lg"
+          className="bg-white w-72 h-10 rounded-lg flex justify-center items-center gap-2 p-2 bg-[#F5E14B]"
         >
+          <Image
+            src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/kakao-icon.png"
+            width={16}
+            height={16}
+            alt="카카오 아이콘"
+          />
           카카오 로그인
         </button>
       )}
