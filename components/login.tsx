@@ -79,7 +79,7 @@ export default function LoginPage() {
       ) : (
         <button
           onClick={signInWithKakao}
-          className="bg-white w-72 h-10 rounded-lg flex justify-center items-center gap-2 p-2 bg-[#F5E14B]"
+          className="w-72 h-10 rounded-lg flex justify-center items-center gap-2 p-2 bg-[#F5E14B]"
         >
           <Image
             src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/kakao-icon.png"
