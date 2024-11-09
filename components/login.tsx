@@ -37,7 +37,6 @@ export default function LoginPage() {
         const data = await fetchMainImg(dataUid.uid);
 
         const dataFind = data?.find((item) => item.uuid === dataUid.uid);
-        console.log(`${dataFind} uid------------`);
         if (dataFind) {
           router.push("/main");
         }

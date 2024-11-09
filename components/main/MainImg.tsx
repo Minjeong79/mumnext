@@ -56,15 +56,14 @@ export default function MainImg() {
   }, [imageDataUrl]);
 
   return (
-    <div className="sm:min-w-[800px] sm:min-h-[800px]">
+    <div className="sm:min-w-[800px] sm:min-h-[800px] overflow-hidden">
       {imageDataUrl.map((item, index) => (
         <div key={index}>
           <div className="relative">
             <div className="w-screen h-screen">
               <Image
-                layout="fixed"
                 src={item.thema}
-                fill
+                fill={true}
                 className="object-cover"
                 alt="유저 테마 이미지"
               />
@@ -74,7 +73,7 @@ export default function MainImg() {
               <div className="flex flex-col items-center justify-around h-[670px] relative">
                 {item.mainimg ===
                 "https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/upload-img.png" ? (
-                  <div className="flex items-center absolute top-20">
+                  <div className="flex items-center absolute top-8 sm:top-20">
                     <div className="w-36 h-36 rounded-full mx-auto ">
                       <input
                         type="file"

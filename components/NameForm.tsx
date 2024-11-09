@@ -42,10 +42,10 @@ export default function NameForm() {
   };
 
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="sm:w-1/2 mx-auto">
       <form onSubmit={handleSumit} className="flex gap-x-3">
         <input
-          className="w-full h-12 rounded-lg FD943F pl-2"
+          className="w-44 sm:w-full h-12 rounded-lg FD943F pl-2"
           type="text"
           name="textname"
           id="name"
@@ -55,7 +55,7 @@ export default function NameForm() {
         />
         <button
           type="submit"
-          className="rounded-lg bg-[#FD943F] text-white w-28 h-12"
+          className="rounded-lg bg-[#FD943F] text-white w-20 sm:w-28 h-12"
         >
           등록
         </button>
