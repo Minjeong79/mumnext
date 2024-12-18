@@ -18,7 +18,7 @@
 <h3>기술 스택</h3>
 <ul>
 <li>
-  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon20.png" alt"nextjs">
+  <img width="50px" height="50px "src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon20.png" alt"nextjs">
 </li>
 <li>
   <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon18.png" alt"recoil">
