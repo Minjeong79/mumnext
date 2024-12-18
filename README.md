@@ -146,6 +146,7 @@
     ├── db.ts
     └── type.ts ```
 
+
 <h3>페이지 별 주요 기능</h3>
 <h4>[첫 페이지] </h4>
 <img src="https://github.com/user-attachments/assets/04a4a711-272b-46f3-8391-5f9345736143" alt="첫페이지"/>
