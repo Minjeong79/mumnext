@@ -157,7 +157,7 @@
 </ul>
 
 <h4>[강아지, 테마 , 이름 작성 페이지] </h4>
-<img src="[https://github.com/user-attachments/assets/04a4a711-272b-46f3-8391-5f9345736143](https://github.com/user-attachments/assets/7321db39-b0ed-4b15-b9ac-03a35d6114c7)" alt="강아지, 테마 , 이름 작성 페이지"/>
+<img src="https://github.com/user-attachments/assets/7321db39-b0ed-4b15-b9ac-03a35d6114c7" alt="강아지, 테마 , 이름 작성 페이지"/>
 <ul>
       <li>원하는 강아지, 테마 , 이름 작성 후 메인 페이지로 이동 됩니다.</li>
       <li>한번 선택 한 정보는 변경 불가합니다.</li>
