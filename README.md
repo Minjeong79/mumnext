@@ -17,11 +17,24 @@
 
 <h3>기술 스택</h3>
 <ul>
-        <li>https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon20.png</li>
-        <li>https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon18.png</li>
-        <li>https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon15.png</li>
-        <li>https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon3.png</li>
-        <li>https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon7.png</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon20.png" alt"nextjs">
+</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon18.png" alt"recoil">
+</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon15.png" alt"Typescript">
+</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon7.png" alt"Tailwind">
+</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon10.png" alt"supabase">
+</li>
+<li>
+  <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon7.png" alt"Tailwind">
+</li>
 </ul>
 
 
