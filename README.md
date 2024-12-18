@@ -9,9 +9,8 @@
 
 <h3>프로젝트 소개</h3>
 <ul>
-        <li>나만의 반려견을 위한 일기를 작성 할 수 있는 있습니다.</li>
-        <li>다양한 사용자들과의 소통 할 수 있으며 좋아요와 댓글을 작성 할 수 있습니다.</li>
-        <li>내 반려견을 프로필로 등록 할 수 있습니다.</li>
+        <li>나만의 반려견을 위한 일기를 작성 할 수 있습니다.</li>
+        <li>다양한 사용자들과의 소통 할 수 있으며 좋아요 와 댓글을 작성 할 수 있습니다.</li>
 </ul>
 
 
@@ -19,7 +18,7 @@
 <ul>
       <li>Front : Nextjs, Ts, Recoil, Tailwind</li>
       <li>Back : supabase, 공공데이터포털(https://www.data.go.kr/)</li>
-      <li>버전 및 이슈 관 : Github</li>
+      <li>버전 및 이슈 관리 : Github</li>
       <li>디자인 : Figma</li>
       <li>서비스 배포 환경 : vercel</li>
 </ul>
