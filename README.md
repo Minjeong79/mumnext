@@ -41,6 +41,111 @@
 </ul>
 
 
+<h3>프로젝트 구조</h3>
+/ (루트 디렉터리)
+│
+├── app/                            # 페이지 및 경로 관리 폴더
+│   ├── (mainpage)/
+│   │   ├── community/  
+│   │   │   ├── [pageid]/  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── write/  
+│   │   │       ├── [cid]/
+│   │   │       │   ├── page.tsx
+│   │   │       │   └── page.tsx  
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── diary/  
+│   │   │   ├── [id]/  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── write/
+│   │   │       ├── [id]/
+│   │   │           ├── page.tsx  
+│   │   │           ├── page.tsx  
+│   │   │           └── page.tsx  
+│   │   │
+│   │   ├── main/  
+│   │   │   └── page.tsx  
+│   │   ├── map/
+│   │   ├── setting/  
+│   │   │   ├── profile/  
+│   │   │       └── page.tsx
+│   │   ├── error.tsx  
+│   │   └── layout.tsx  
+│   │
+│   ├── api/                        # API 관련 폴더(수파베이스와 연동 된 routes.ts파일 모음 CRUD)
+│   │
+│   ├── clayout/                    # 클라이언트 레이아웃 관련
+│   │   ├── ClientLayout.tsx  
+│   │   └── UidPage.tsx  
+│   │
+│   ├── dogselect/                 
+│   │   └── page.tsx  
+│   │
+│   ├── recoil/                     # 상태관리 (Recoil)
+│   │   ├── atom.ts  
+│   │   ├── selectors.ts  
+│   │   └── actions.ts  
+│   │
+│   ├── favicon.ico                 
+│   ├── globals.css                 
+│   ├── layout.tsx  
+│   ├── manifest.ts  
+│   ├── page.tsx  
+│   └── style.css  
+│               
+│
+├── components/                  
+│   │
+│   ├── comment/  
+│   │   ├── Ccomment.tsx  
+│   │   └── CcommentEdit.tsx  
+│   │
+│   ├── community/  
+│   │   ├── Cedit.tsx  
+│   │   ├── Clike.tsx  
+│   │   ├── Cpage.tsx  
+│   │   ├── Csearch.tsx  
+│   │   └── Cwrite.tsx  
+│   │
+│   ├── diary/  
+│   │   ├── Ddelete.tsx  
+│   │   ├── Dedit.tsx  
+│   │   ├── Dediticon.tsx  
+│   │   ├── DiaryDataList.tsx  
+│   │   ├── DiaryDetailPage.tsx  
+│   │   ├── DwriteDiary.tsx  
+│   │   └── Dwriteicon.tsx  
+│   │
+│   ├── main/  
+│   │   ├── BottomMenu.tsx  
+│   │   ├── MainImg.tsx  
+│   │   └── TopMenu.tsx  
+│   │
+│   ├── setting/  
+│   │   ├── commentList.tsx  
+│   │   ├── MainImgEdit.tsx  
+│   │   ├── UserDelete.tsx  
+│   │   └── UserMaiming.tsx  
+│   │
+│   ├── skeleton/                   # 로딩 스켈레톤 UI
+│   │   ├── community-skeleton-list.tsx  
+│   │   ├── community-skeleton-page.tsx  
+│   │   ├── diary-skeleton-list.tsx  
+│   │   ├── diary-skeleton-page.tsx  
+│   │   ├── main-skeleton.tsx  
+│   │   ├── thema-skeleton.tsx  
+│   │   └── DogselectImg.tsx  
+│   │
+│   ├── Header.tsx  
+│   ├── login.tsx  
+│   ├── loginImg.tsx  
+│   └── NameForm.tsx  
+└── lig/
+    ├── db.ts
+    └── type.ts  
+
+
 <h3>페이지 별 주요 기능</h3>
 <h4>[첫 페이지] </h4>
 <img src="https://github.com/user-attachments/assets/04a4a711-272b-46f3-8391-5f9345736143" alt="첫페이지"/>
@@ -110,4 +215,6 @@
 </ul>
 
 
+
+<h3>프로젝트 후기</h3>
 
