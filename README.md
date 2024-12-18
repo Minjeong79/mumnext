@@ -19,8 +19,8 @@
 
 
 <h3>기술 스택</h3>
-<ul class="border_li">
-<li>
+<ul>
+<li style="border:1px solid #999; border-radius: 20px;">
   <img width="50px" height="50px "src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/language/l-icon20.png" alt"nextjs">
 </li>
 <li>
