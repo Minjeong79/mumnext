@@ -144,7 +144,7 @@
 │   └── NameForm.tsx  
 └── lig/
     ├── db.ts
-    └── type.ts ```
+    └── type.ts
 
 
 <h3>페이지 별 주요 기능</h3>
