@@ -43,7 +43,7 @@
 
 <h3>페이지 별 주요 기능</h3>
 <h4>[첫 페이지] </h4>
-![image](https://github.com/user-attachments/assets/04a4a711-272b-46f3-8391-5f9345736143)
+<img src="https://github.com/user-attachments/assets/04a4a711-272b-46f3-8391-5f9345736143" alt="첫페이지"/>
 <ul>
       <li>로그인이 되어 있지 않은 경우 : SNS 로그인 페이지</li>
       <li>로그인 후 강아지 선택 페이지</li>
