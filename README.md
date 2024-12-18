@@ -80,7 +80,7 @@
 
 
 <h4>[ 커뮤니티 페이지 ] </h4>
-<img src=https://github.com/user-attachments/assets/9ad41f45-73aa-41d1-ac53-e85f4164f12d" alt="커뮤니티 페이지"/>
+<img src="https://github.com/user-attachments/assets/9ad41f45-73aa-41d1-ac53-e85f4164f12d" alt="커뮤니티 페이지"/>
 <ul>
       <li>사용자들 간의 의사소통을 할 수 있는 공간 이며 좋아요, 댓글을 작성 할 수 있습니다.</li>
       <li>사용자가 원하는 검색어를 통해 검색 목록이 출력 됩니다.</li>
