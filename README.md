@@ -1,6 +1,3 @@
-<style>
-  .border_li li {border:1px solid #999; border-radius: 20px;}
-</style>
 <h2>반려견 일기 커뮤니티(Nextjs 구현) </h2>
 
 <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/git/main.png" alt="반려견 일기 커뮤니티(Nextjs 구현)"/>
