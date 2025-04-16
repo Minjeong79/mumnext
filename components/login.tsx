@@ -64,6 +64,16 @@ export default function LoginPage() {
     }
   }
 
+  const signInWithGithub = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `https://trtwwyqzkqlqebdiiujp.supabase.co/auth/v1/callback`,
+      },
+    })
+  }
+
+
   useEffect(() => {}, []);
   return (
     <div className=" mt-6 mx-auto">
@@ -77,6 +87,8 @@ export default function LoginPage() {
           </Link>
         </div>
       ) : (
+        <div>
+
         <button
           onClick={signInWithKakao}
           className="w-72 h-10 rounded-lg flex justify-center items-center gap-2 p-2 bg-[#F5E14B]"
@@ -89,6 +101,19 @@ export default function LoginPage() {
           />
           카카오 로그인
         </button>
+        <button
+          onClick={signInWithGithub}
+          className="w-72 h-10 rounded-lg flex justify-center items-center gap-2 p-2 bg-[#F5E14B]"
+        >
+          <Image
+            src="https://trtwwyqzkqlqebdiiujp.supabase.co/storage/v1/object/public/img/default/git-icon.png"
+            width={16}
+            height={16}
+            alt="카카오 아이콘"
+          />
+          Git 로그인
+        </button>
+        </div>
       )}
     </div>
   );
