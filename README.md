@@ -1,13 +1,19 @@
 <h2>반려견 일기 커뮤니티(Nextjs 구현) </h2>
 
 <img src="https://fpjdvuxtsnhwwltmlwcx.supabase.co/storage/v1/object/public/img/git/main.png" alt="반려견 일기 커뮤니티(Nextjs 구현)"/>
+카카오 로그인(인증으로 인해 첫 로그인 후 12시간 이후에 로그인 가능합니다.)
 <ul>
         <li>배포 url : https://mumnext.vercel.app/</li>
         <li>Test ID : minj92@kakao.com</li>
         <li>Test PW : fkdnxj0906!!</li>
 </ul>
 
-
+Git로그인(바로 로그인 가능 합니다.)
+<ul>
+        <li>배포 url : https://ai-chat-gamma-hazel.vercel.app/</li>
+        <li>Test ID : jmjeong72@gmail.com</li>
+        <li>Test PW : xptmxmrpwjd12!!</li>
+</ul>
 
 <h3>🌟프로젝트 소개</h3>
 <ul>
